@@ -1,0 +1,325 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D44CA3E15B14C6200400EAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA3D15B14C6200400EAD /* UIKit.framework */; };
+		0D44CA4015B14C6200400EAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA3F15B14C6200400EAD /* Foundation.framework */; };
+		0D44CA4215B14C6200400EAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA4115B14C6200400EAD /* CoreGraphics.framework */; };
+		0D44CA4815B14C6200400EAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA4615B14C6200400EAD /* InfoPlist.strings */; };
+		0D44CA4A15B14C6200400EAD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA4915B14C6200400EAD /* main.m */; };
+		0D44CA4E15B14C6200400EAD /* SangerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA4D15B14C6200400EAD /* SangerAppDelegate.m */; };
+		0D44CA5115B14C6200400EAD /* SangerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA5015B14C6200400EAD /* SangerViewController.m */; };
+		0D44CA5415B14C6200400EAD /* SangerViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA5215B14C6200400EAD /* SangerViewController_iPhone.xib */; };
+		0D44CA5715B14C6200400EAD /* SangerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA5515B14C6200400EAD /* SangerViewController_iPad.xib */; };
+		0D44CA6B15B155AD00400EAD /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA6915B155AD00400EAD /* StoreViewController.m */; };
+		0D44CA6C15B155AD00400EAD /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA6A15B155AD00400EAD /* StoreViewController.xib */; };
+		0D44CA6F15B15A2200400EAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA6E15B15A2200400EAD /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0D44CA3915B14C6200400EAD /* Sanger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sanger.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D44CA3D15B14C6200400EAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		0D44CA3F15B14C6200400EAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		0D44CA4115B14C6200400EAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		0D44CA4515B14C6200400EAD /* Sanger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sanger-Info.plist"; sourceTree = "<group>"; };
+		0D44CA4715B14C6200400EAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0D44CA4915B14C6200400EAD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		0D44CA4B15B14C6200400EAD /* Sanger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sanger-Prefix.pch"; sourceTree = "<group>"; };
+		0D44CA4C15B14C6200400EAD /* SangerAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SangerAppDelegate.h; sourceTree = "<group>"; };
+		0D44CA4D15B14C6200400EAD /* SangerAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SangerAppDelegate.m; sourceTree = "<group>"; };
+		0D44CA4F15B14C6200400EAD /* SangerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SangerViewController.h; sourceTree = "<group>"; };
+		0D44CA5015B14C6200400EAD /* SangerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SangerViewController.m; sourceTree = "<group>"; };
+		0D44CA5315B14C6200400EAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SangerViewController_iPhone.xib; sourceTree = "<group>"; };
+		0D44CA5615B14C6200400EAD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SangerViewController_iPad.xib; sourceTree = "<group>"; };
+		0D44CA6815B155AD00400EAD /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreViewController.h; path = Store/StoreViewController.h; sourceTree = "<group>"; };
+		0D44CA6915B155AD00400EAD /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = Store/StoreViewController.m; sourceTree = "<group>"; };
+		0D44CA6A15B155AD00400EAD /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = Store/StoreViewController.xib; sourceTree = "<group>"; };
+		0D44CA6E15B15A2200400EAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D44CA3615B14C6200400EAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D44CA6F15B15A2200400EAD /* QuartzCore.framework in Frameworks */,
+				0D44CA3E15B14C6200400EAD /* UIKit.framework in Frameworks */,
+				0D44CA4015B14C6200400EAD /* Foundation.framework in Frameworks */,
+				0D44CA4215B14C6200400EAD /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D44CA2E15B14C6100400EAD = {
+			isa = PBXGroup;
+			children = (
+				0D44CA4315B14C6200400EAD /* Sanger */,
+				0D44CA3C15B14C6200400EAD /* Frameworks */,
+				0D44CA3A15B14C6200400EAD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0D44CA3A15B14C6200400EAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D44CA3915B14C6200400EAD /* Sanger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D44CA3C15B14C6200400EAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0D44CA6E15B15A2200400EAD /* QuartzCore.framework */,
+				0D44CA3D15B14C6200400EAD /* UIKit.framework */,
+				0D44CA3F15B14C6200400EAD /* Foundation.framework */,
+				0D44CA4115B14C6200400EAD /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0D44CA4315B14C6200400EAD /* Sanger */ = {
+			isa = PBXGroup;
+			children = (
+				0D44CA6715B1551E00400EAD /* Store */,
+				0D44CA6D15B1565400400EAD /* Box */,
+				0D44CA4C15B14C6200400EAD /* SangerAppDelegate.h */,
+				0D44CA4D15B14C6200400EAD /* SangerAppDelegate.m */,
+				0D44CA4F15B14C6200400EAD /* SangerViewController.h */,
+				0D44CA5015B14C6200400EAD /* SangerViewController.m */,
+				0D44CA5215B14C6200400EAD /* SangerViewController_iPhone.xib */,
+				0D44CA5515B14C6200400EAD /* SangerViewController_iPad.xib */,
+				0D44CA4415B14C6200400EAD /* Supporting Files */,
+			);
+			path = Sanger;
+			sourceTree = "<group>";
+		};
+		0D44CA4415B14C6200400EAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0D44CA4515B14C6200400EAD /* Sanger-Info.plist */,
+				0D44CA4615B14C6200400EAD /* InfoPlist.strings */,
+				0D44CA4915B14C6200400EAD /* main.m */,
+				0D44CA4B15B14C6200400EAD /* Sanger-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0D44CA6715B1551E00400EAD /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				0D44CA6815B155AD00400EAD /* StoreViewController.h */,
+				0D44CA6915B155AD00400EAD /* StoreViewController.m */,
+				0D44CA6A15B155AD00400EAD /* StoreViewController.xib */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		0D44CA6D15B1565400400EAD /* Box */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Box;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0D44CA3815B14C6200400EAD /* Sanger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D44CA5A15B14C6200400EAD /* Build configuration list for PBXNativeTarget "Sanger" */;
+			buildPhases = (
+				0D44CA3515B14C6200400EAD /* Sources */,
+				0D44CA3615B14C6200400EAD /* Frameworks */,
+				0D44CA3715B14C6200400EAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sanger;
+			productName = Sanger;
+			productReference = 0D44CA3915B14C6200400EAD /* Sanger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0D44CA3015B14C6100400EAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Sanger;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Founder;
+			};
+			buildConfigurationList = 0D44CA3315B14C6100400EAD /* Build configuration list for PBXProject "Sanger" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0D44CA2E15B14C6100400EAD;
+			productRefGroup = 0D44CA3A15B14C6200400EAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0D44CA3815B14C6200400EAD /* Sanger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0D44CA3715B14C6200400EAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D44CA4815B14C6200400EAD /* InfoPlist.strings in Resources */,
+				0D44CA5415B14C6200400EAD /* SangerViewController_iPhone.xib in Resources */,
+				0D44CA5715B14C6200400EAD /* SangerViewController_iPad.xib in Resources */,
+				0D44CA6C15B155AD00400EAD /* StoreViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D44CA3515B14C6200400EAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D44CA4A15B14C6200400EAD /* main.m in Sources */,
+				0D44CA4E15B14C6200400EAD /* SangerAppDelegate.m in Sources */,
+				0D44CA5115B14C6200400EAD /* SangerViewController.m in Sources */,
+				0D44CA6B15B155AD00400EAD /* StoreViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0D44CA4615B14C6200400EAD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D44CA4715B14C6200400EAD /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0D44CA5215B14C6200400EAD /* SangerViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D44CA5315B14C6200400EAD /* en */,
+			);
+			name = SangerViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		0D44CA5515B14C6200400EAD /* SangerViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D44CA5615B14C6200400EAD /* en */,
+			);
+			name = SangerViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0D44CA5815B14C6200400EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0D44CA5915B14C6200400EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0D44CA5B15B14C6200400EAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sanger/Sanger-Prefix.pch";
+				INFOPLIST_FILE = "Sanger/Sanger-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		0D44CA5C15B14C6200400EAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sanger/Sanger-Prefix.pch";
+				INFOPLIST_FILE = "Sanger/Sanger-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D44CA3315B14C6100400EAD /* Build configuration list for PBXProject "Sanger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D44CA5815B14C6200400EAD /* Debug */,
+				0D44CA5915B14C6200400EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D44CA5A15B14C6200400EAD /* Build configuration list for PBXNativeTarget "Sanger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D44CA5B15B14C6200400EAD /* Debug */,
+				0D44CA5C15B14C6200400EAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0D44CA3015B14C6100400EAD /* Project object */;
+}
