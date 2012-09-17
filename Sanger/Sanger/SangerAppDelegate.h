@@ -12,8 +12,8 @@
 
 @interface SangerAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (retain, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UIWindow *window;
 
-@property (retain, nonatomic) SangerViewController *viewController;
+@property (strong, nonatomic) SangerViewController *viewController;
 
 @end

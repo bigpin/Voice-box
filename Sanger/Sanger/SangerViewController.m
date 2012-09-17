@@ -48,10 +48,10 @@
     StoreViewController* store = [[StoreViewController alloc] initWithNibName:@"StoreViewController" bundle:nil];
     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:store];
     
-    UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromLeft;
+    UIViewAnimationTransition transition = UIViewAnimationTransitionFlipFromLeft;
     [UIView beginAnimations: nil context: nil];
     [UIView setAnimationDuration:0.5];
-    [UIView setAnimationTransition: trans forView:[nav.view window] cache: YES];
+    [UIView setAnimationTransition:transition forView:[nav.view window] cache: YES];
     [self presentModalViewController:nav animated:NO];
     [UIView commitAnimations];
     
