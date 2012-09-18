@@ -9,4 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SangerViewController : UIViewController
+
+- (void)addTitleBarBackground;
 @end

@@ -98,6 +98,18 @@
 		0D44CA6B15B155AD00400EAD /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA6915B155AD00400EAD /* StoreViewController.m */; };
 		0D44CA6C15B155AD00400EAD /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA6A15B155AD00400EAD /* StoreViewController.xib */; };
 		0D44CA6F15B15A2200400EAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA6E15B15A2200400EAD /* QuartzCore.framework */; };
+		0DC571CC16070CE800A5D17B /* bg_bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571CA16070CE800A5D17B /* bg_bookshelf.png */; };
+		0DC571CD16070CE800A5D17B /* bg_bookshelf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571CB16070CE800A5D17B /* bg_bookshelf@2x.png */; };
+		0DC571E21607106300A5D17B /* VoiceShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DC571E01607106300A5D17B /* VoiceShelfViewController.m */; };
+		0DC571E31607106300A5D17B /* VoiceShelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571E11607106300A5D17B /* VoiceShelfViewController.xib */; };
+		0DC571E61607148D00A5D17B /* bg_shelf_titlebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571E41607148C00A5D17B /* bg_shelf_titlebar.png */; };
+		0DC571E71607148D00A5D17B /* bg_shelf_titlebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571E51607148C00A5D17B /* bg_shelf_titlebar@2x.png */; };
+		0DC571EA16071D1300A5D17B /* icon_setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571E816071D1300A5D17B /* icon_setting.png */; };
+		0DC571EB16071D1300A5D17B /* icon_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571E916071D1300A5D17B /* icon_setting@2x.png */; };
+		0DC571F0160729CE00A5D17B /* bookshelf_titlebar_shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571EC160729CB00A5D17B /* bookshelf_titlebar_shadow.png */; };
+		0DC571F1160729CE00A5D17B /* bookshelf_titlebar_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571ED160729CD00A5D17B /* bookshelf_titlebar_shadow@2x.png */; };
+		0DC571F2160729CE00A5D17B /* bookshelf_titlebar_shadow@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571EE160729CD00A5D17B /* bookshelf_titlebar_shadow@2x~iphone.png */; };
+		0DC571F3160729CE00A5D17B /* bookshelf_titlebar_shadow~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571EF160729CE00A5D17B /* bookshelf_titlebar_shadow~iphone.png */; };
 		0DD848BC15FF2B6400B2F2F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD848BB15FF2B6400B2F2F1 /* MapKit.framework */; };
 		0DD848BE15FF2B6D00B2F2F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD848BD15FF2B6D00B2F2F1 /* AVFoundation.framework */; };
 		0DD8492915FF2FDA00B2F2F1 /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DD8491415FF2FDA00B2F2F1 /* CDataScanner.m */; };
@@ -313,6 +325,19 @@
 		0D44CA6915B155AD00400EAD /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = Store/StoreViewController.m; sourceTree = "<group>"; };
 		0D44CA6A15B155AD00400EAD /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = Store/StoreViewController.xib; sourceTree = "<group>"; };
 		0D44CA6E15B15A2200400EAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0DC571CA16070CE800A5D17B /* bg_bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bookshelf.png; sourceTree = "<group>"; };
+		0DC571CB16070CE800A5D17B /* bg_bookshelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_bookshelf@2x.png"; sourceTree = "<group>"; };
+		0DC571DF1607106300A5D17B /* VoiceShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoiceShelfViewController.h; path = Sanger/Shelf/VoiceShelfViewController.h; sourceTree = "<group>"; };
+		0DC571E01607106300A5D17B /* VoiceShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoiceShelfViewController.m; path = Sanger/Shelf/VoiceShelfViewController.m; sourceTree = "<group>"; };
+		0DC571E11607106300A5D17B /* VoiceShelfViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VoiceShelfViewController.xib; path = Sanger/Shelf/VoiceShelfViewController.xib; sourceTree = "<group>"; };
+		0DC571E41607148C00A5D17B /* bg_shelf_titlebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_shelf_titlebar.png; sourceTree = "<group>"; };
+		0DC571E51607148C00A5D17B /* bg_shelf_titlebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_shelf_titlebar@2x.png"; sourceTree = "<group>"; };
+		0DC571E816071D1300A5D17B /* icon_setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_setting.png; sourceTree = "<group>"; };
+		0DC571E916071D1300A5D17B /* icon_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_setting@2x.png"; sourceTree = "<group>"; };
+		0DC571EC160729CB00A5D17B /* bookshelf_titlebar_shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookshelf_titlebar_shadow.png; sourceTree = "<group>"; };
+		0DC571ED160729CD00A5D17B /* bookshelf_titlebar_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookshelf_titlebar_shadow@2x.png"; sourceTree = "<group>"; };
+		0DC571EE160729CD00A5D17B /* bookshelf_titlebar_shadow@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookshelf_titlebar_shadow@2x~iphone.png"; sourceTree = "<group>"; };
+		0DC571EF160729CE00A5D17B /* bookshelf_titlebar_shadow~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookshelf_titlebar_shadow~iphone.png"; sourceTree = "<group>"; };
 		0DD848BB15FF2B6400B2F2F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		0DD848BD15FF2B6D00B2F2F1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0DD8491315FF2FDA00B2F2F1 /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
@@ -778,6 +803,9 @@
 		0D44CA2E15B14C6100400EAD = {
 			isa = PBXGroup;
 			children = (
+				0DC571DF1607106300A5D17B /* VoiceShelfViewController.h */,
+				0DC571E01607106300A5D17B /* VoiceShelfViewController.m */,
+				0DC571E11607106300A5D17B /* VoiceShelfViewController.xib */,
 				0D44CA4315B14C6200400EAD /* Sanger */,
 				0D44CA3C15B14C6200400EAD /* Frameworks */,
 				0D44CA3A15B14C6200400EAD /* Products */,
@@ -816,6 +844,7 @@
 		0D44CA4315B14C6200400EAD /* Sanger */ = {
 			isa = PBXGroup;
 			children = (
+				0DC571CE16070D2000A5D17B /* Shelf */,
 				0D279E1D15DC8D950092874C /* Voice */,
 				0D44CA6715B1551E00400EAD /* Store */,
 				0D44CA6D15B1565400400EAD /* Box */,
@@ -825,6 +854,7 @@
 				0D44CA5015B14C6200400EAD /* SangerViewController.m */,
 				0D44CA5215B14C6200400EAD /* SangerViewController_iPhone.xib */,
 				0D44CA5515B14C6200400EAD /* SangerViewController_iPad.xib */,
+				0DC571C516070CCC00A5D17B /* Resource */,
 				0D44CA4415B14C6200400EAD /* Supporting Files */,
 			);
 			path = Sanger;
@@ -857,6 +887,62 @@
 			children = (
 			);
 			name = Box;
+			sourceTree = "<group>";
+		};
+		0DC571C516070CCC00A5D17B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				0DC571C616070CCC00A5D17B /* Imges */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		0DC571C616070CCC00A5D17B /* Imges */ = {
+			isa = PBXGroup;
+			children = (
+				0DC571C716070CCC00A5D17B /* Shelf */,
+				0DC571C816070CCC00A5D17B /* Store */,
+				0DC571C916070CCC00A5D17B /* Voice */,
+			);
+			path = Imges;
+			sourceTree = "<group>";
+		};
+		0DC571C716070CCC00A5D17B /* Shelf */ = {
+			isa = PBXGroup;
+			children = (
+				0DC571EC160729CB00A5D17B /* bookshelf_titlebar_shadow.png */,
+				0DC571ED160729CD00A5D17B /* bookshelf_titlebar_shadow@2x.png */,
+				0DC571EE160729CD00A5D17B /* bookshelf_titlebar_shadow@2x~iphone.png */,
+				0DC571EF160729CE00A5D17B /* bookshelf_titlebar_shadow~iphone.png */,
+				0DC571E816071D1300A5D17B /* icon_setting.png */,
+				0DC571E916071D1300A5D17B /* icon_setting@2x.png */,
+				0DC571E41607148C00A5D17B /* bg_shelf_titlebar.png */,
+				0DC571E51607148C00A5D17B /* bg_shelf_titlebar@2x.png */,
+				0DC571CA16070CE800A5D17B /* bg_bookshelf.png */,
+				0DC571CB16070CE800A5D17B /* bg_bookshelf@2x.png */,
+			);
+			path = Shelf;
+			sourceTree = "<group>";
+		};
+		0DC571C816070CCC00A5D17B /* Store */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		0DC571C916070CCC00A5D17B /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Voice;
+			sourceTree = "<group>";
+		};
+		0DC571CE16070D2000A5D17B /* Shelf */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shelf;
 			sourceTree = "<group>";
 		};
 		0DD8470715FF261B00B2F2F1 /* CoverFlow */ = {
@@ -1030,6 +1116,17 @@
 				0D279F1C15DC8E9E0092874C /* SettingTrainingModeCell.xib in Resources */,
 				0D279F1E15DC8E9E0092874C /* SettingViewController.xib in Resources */,
 				0DD8495F15FF39EE00B2F2F1 /* TapkuLibrary.bundle in Resources */,
+				0DC571CC16070CE800A5D17B /* bg_bookshelf.png in Resources */,
+				0DC571CD16070CE800A5D17B /* bg_bookshelf@2x.png in Resources */,
+				0DC571E31607106300A5D17B /* VoiceShelfViewController.xib in Resources */,
+				0DC571E61607148D00A5D17B /* bg_shelf_titlebar.png in Resources */,
+				0DC571E71607148D00A5D17B /* bg_shelf_titlebar@2x.png in Resources */,
+				0DC571EA16071D1300A5D17B /* icon_setting.png in Resources */,
+				0DC571EB16071D1300A5D17B /* icon_setting@2x.png in Resources */,
+				0DC571F0160729CE00A5D17B /* bookshelf_titlebar_shadow.png in Resources */,
+				0DC571F1160729CE00A5D17B /* bookshelf_titlebar_shadow@2x.png in Resources */,
+				0DC571F2160729CE00A5D17B /* bookshelf_titlebar_shadow@2x~iphone.png in Resources */,
+				0DC571F3160729CE00A5D17B /* bookshelf_titlebar_shadow~iphone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1097,6 +1194,7 @@
 				0DD8493015FF2FDA00B2F2F1 /* CJSONScanner.m in Sources */,
 				0DD8493115FF2FDA00B2F2F1 /* CJSONSerializer.m in Sources */,
 				0DD8493215FF2FDA00B2F2F1 /* CSerializedJSONData.m in Sources */,
+				0DC571E21607106300A5D17B /* VoiceShelfViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,7 +53,7 @@
     UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromRight;
     [UIView beginAnimations: nil context: nil];
     [UIView setAnimationDuration:0.5];
-    [UIView setAnimationTransition: trans forView:[self.view window] cache: YES];
+    [UIView setAnimationTransition: trans forView:[self.view window] cache: NO];
     [self dismissModalViewControllerAnimated:NO];
     [UIView commitAnimations];
 }
