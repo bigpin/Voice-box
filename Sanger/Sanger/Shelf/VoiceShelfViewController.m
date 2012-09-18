@@ -2,12 +2,15 @@
 //  VoiceShelfViewController.m
 //  Sanger
 //
-//  Created by JiaLi on 12-9-17.
+//  Created by JiaLi on 12-9-18.
 //  Copyright (c) 2012年 Founder. All rights reserved.
 //
 
 #import "VoiceShelfViewController.h"
+#import "VoiceDataView.h"
+#import "VoiceDataCellView.h"
 
+#define CELL_HEIGHT 139.0f
 
 @interface VoiceShelfViewController ()
 
@@ -15,9 +18,9 @@
 
 @implementation VoiceShelfViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -27,23 +30,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString* stringResource = @"bg_bookshelf.png";
-    resourcePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
-    UIImage* bgImage = [UIImage imageWithContentsOfFile:resourcePath];
+    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
+    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorColor = [UIColor clearColor];
+    // Do any additional setup after loading the view from its nib.
+    //[self initBarButtons];
+    [self switchToNormalMode];
     
-    UIView* backview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    backview.backgroundColor = [UIColor redColor];
-    [self.navigationController.navigationBar addSubview:backview];
+	[self initBooks];
+    NSInteger nWidth = self.view.bounds.size.width;
+    NSInteger nHeight = self.view.bounds.size.height;
+    //AboveTopView *aboveTop = [[AboveTopView alloc] initWithFrame:CGRectMake(0, 0, 320, 164)];
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(22, 0, nWidth - 44, 44)];
+    if ([_searchBar.subviews count] > 0) {
+        [[_searchBar.subviews objectAtIndex:0]removeFromSuperview];
+    }
+	_searchBar.backgroundColor = [UIColor clearColor];
+    [_searchBar setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    _belowBottomView = [[BelowBottomView alloc] initWithFrame:CGRectMake(0, 0, nWidth, CELL_HEIGHT * 2)];
+    [_belowBottomView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+    _bookShelfView = [[GSBookShelfView alloc] initWithFrame:CGRectMake(0, 0, nWidth, nHeight)];
+    [_bookShelfView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [_bookShelfView setDataSource:self];
+    
+    [self.view addSubview:_bookShelfView];
 }
 
 - (void)viewDidUnload
@@ -58,110 +70,254 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Table view data source
-
-/*- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}*/
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return 1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        //cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-        label.tag = 1;
-        label.lineBreakMode = UILineBreakModeWordWrap;
-        label.highlightedTextColor = [UIColor whiteColor];
-        label.numberOfLines = 0;
-        label.opaque = NO;
-        label.backgroundColor = [UIColor clearColor];
-        [cell.contentView addSubview:label];
-        [label release];
+- (void)initBooks {
+    NSInteger numberOfBooks = 2;
+    _bookArray = [[NSMutableArray alloc] initWithCapacity:numberOfBooks];
+    _bookStatus = [[NSMutableArray alloc] initWithCapacity:numberOfBooks];
+    for (int i = 0; i < numberOfBooks; i++) {
+        NSNumber *number = [NSNumber numberWithInt:i % 4 + 1];
+        [_bookArray addObject:number];
+        [_bookStatus addObject:[NSNumber numberWithInt:BOOK_UNSELECTED]];
     }
     
-    UILabel *label = (UILabel *)[cell viewWithTag:1];
-    NSString *text;
-    text = @"hello";
-    CGRect cellFrame = [cell frame];
-    cellFrame.origin = CGPointMake(0, 0);
+    _booksIndexsToBeRemoved = [NSMutableIndexSet indexSet];
+}
+
+- (void)initBarButtons {
+    _editBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editButtonClicked:)];
+    _cancleBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancleButtonClicked:)];
     
-    label.text = text;
-    CGRect rect = CGRectInset(cellFrame, 2, 2);
-    label.frame = rect;
-    [label sizeToFit];
-    if (label.frame.size.height > 46) {
-        cellFrame.size.height = 50 + label.frame.size.height - 46;
+    _trashBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trashButtonClicked:)];
+    _addBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
+}
+
+- (void)switchToNormalMode {
+    _editMode = NO;
+    
+    [self.navigationItem setLeftBarButtonItem:_editBarButton];
+    [self.navigationItem setRightBarButtonItem:_addBarButton];
+}
+
+- (void)switchToEditMode {
+    _editMode = YES;
+    [_booksIndexsToBeRemoved removeAllIndexes];
+    [self.navigationItem setLeftBarButtonItem:_cancleBarButton];
+    [self.navigationItem setRightBarButtonItem:_trashBarButton];
+    
+    for (int i = 0; i < [_bookArray count]; i++) {
+        [_bookStatus addObject:[NSNumber numberWithInt:BOOK_UNSELECTED]];
+    }
+    
+    for (VoiceDataView *bookView in [_bookShelfView visibleBookViews]) {
+        [bookView setSelected:NO];
+    }
+}
+
+#pragma mark - View lifecycle
+
+- (void)testScrollToRow {
+    [_bookShelfView scrollToRow:34 animate:YES];
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSLog(@"will rotate from %u to %u", [[UIDevice currentDevice] orientation], toInterfaceOrientation);
+    // TODO:only set orientation change flag when protrait to landscape and reverse
+    [_bookShelfView oritationChangeReloadData];
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSLog(@"will animate rotate");
+    NSLog(@"bookShelfViewFrame:%@", NSStringFromCGRect(_bookShelfView.frame));
+ }
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    NSLog(@"didRotate");
+    NSLog(@"bookShelfViewFrame:%@", NSStringFromCGRect(_bookShelfView.frame));
+}
+
+#pragma mark GSBookShelfViewDataSource
+
+- (NSInteger)numberOfBooksInBookShelfView:(GSBookShelfView *)bookShelfView {
+    return [_bookArray count];
+}
+
+- (NSInteger)numberOFBooksInCellOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(orientation)) {
+        return 4;
     }
     else {
-        cellFrame.size.height = 50;
+        return 3;
     }
-    [cell setFrame:cellFrame];
+}
+
+- (UIView *)bookShelfView:(GSBookShelfView *)bookShelfView bookViewAtIndex:(NSInteger)index {
+    static NSString *identifier = @"bookView";
+    VoiceDataView *bookView = (VoiceDataView *)[bookShelfView dequeueReuseableBookViewWithIdentifier:identifier];
+    if (bookView == nil) {
+        bookView = [[VoiceDataView alloc] initWithFrame:CGRectZero];
+        bookView.reuseIdentifier = identifier;
+        [bookView addTarget:self action:@selector(bookViewClicked:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [bookView setIndex:index];
+    [bookView setSelected:[(NSNumber *)[_bookStatus objectAtIndex:index] intValue]];
+    //int imageNO = [(NSNumber *)[_bookArray objectAtIndex:index] intValue];
+    // set book cover
+    //[bookView setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"mask_book.png"]] forState:UIControlStateNormal];
+    if (index == 0) {
+        [bookView setBookCover:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"chuguobibei.png"]]];
+        [bookView setText:STRING_DATA_SAMPLE_1];
+
+    } else {
+        [bookView setBookCover:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"zhichangyingyu"]]];
+        [bookView setText:STRING_DATA_SAMPLE_2];
+       
+    }
+
+    return bookView;
+}
+
+- (UIView *)bookShelfView:(GSBookShelfView *)bookShelfView cellForRow:(NSInteger)row {
+    static NSString *identifier = @"cell";
+    /*MyCellView *cellView = (MyCellView *)[bookShelfView dequeueReuseableCellViewWithIdentifier:identifier];
+     if (cellView == nil) {
+     cellView = [[MyCellView alloc] initWithFrame:CGRectZero];
+     cellView.reuseIdentifier = identifier;
+     [cellView.layer setBorderColor:[[UIColor redColor] CGColor]];
+     [cellView.layer setBorderWidth:2.0f];
+     }
+     [cellView.label setText:[NSString stringWithFormat:@"row:%d", row]];
+     return cellView;*/
     
-    return cell;
+    VoiceDataCellView *cellView = (VoiceDataCellView *)[bookShelfView dequeueReuseableCellViewWithIdentifier:identifier];
+    if (cellView == nil) {
+        cellView = [[VoiceDataCellView alloc] initWithFrame:CGRectZero];
+        [cellView setReuseIdentifier:identifier];
+        //[cellView.layer setBorderColor:[[UIColor redColor] CGColor]];
+        //[cellView.layer setBorderWidth:2.0f];
+    }
+    return cellView;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (UIView *)aboveTopViewOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return nil;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (UIView *)belowBottomViewOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return _belowBottomView;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (UIView *)headerViewOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return _searchBar;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (CGFloat)cellHeightOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return CELL_HEIGHT;
 }
-*/
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+- (CGFloat)cellMarginOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return 10.0f;
 }
+
+- (CGFloat)bookViewHeightOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return 126.0f;
+}
+
+- (CGFloat)bookViewWidthOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return 98.0f;
+}
+
+- (CGFloat)bookViewBottomOffsetOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    return 134.0f;
+}
+
+- (CGFloat)cellShadowHeightOfBookShelfView:(GSBookShelfView *)bookShelfView {
+    //return 0.0f;
+    return 20.0f;
+}
+
+- (void)bookShelfView:(GSBookShelfView *)bookShelfView moveBookFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+    if ([(NSNumber *)[_bookStatus objectAtIndex:fromIndex] intValue] == BOOK_SELECTED) {
+        [_booksIndexsToBeRemoved removeIndex:fromIndex];
+        [_booksIndexsToBeRemoved addIndex:toIndex];
+    }
+    
+    [_bookArray moveObjectFromIndex:fromIndex toIndex:toIndex];
+    [_bookStatus moveObjectFromIndex:fromIndex toIndex:toIndex];
+    
+    // the bookview is recognized by index in the demo, so change all the indexes of affected bookViews here
+    // This is just a example, not a good one.In your code, you'd better use a key to recognize the bookView.
+    // and you won't need to do the following
+    VoiceDataView *bookView;
+    bookView = (VoiceDataView *)[_bookShelfView bookViewAtIndex:toIndex];
+    [bookView setIndex:toIndex];
+    if (fromIndex <= toIndex) {
+        for (int i = fromIndex; i < toIndex; i++) {
+            bookView = (VoiceDataView *)[_bookShelfView bookViewAtIndex:i];
+            [bookView setIndex:bookView.index - 1];
+        }
+    }
+    else {
+        for (int i = toIndex + 1; i <= fromIndex; i++) {
+            bookView = (VoiceDataView *)[_bookShelfView bookViewAtIndex:i];
+            [bookView setIndex:bookView.index + 1];
+        }
+    }
+}
+
+#pragma mark - BarButtonListener
+
+- (void)editButtonClicked:(id)sender {
+    [self switchToEditMode];
+}
+
+- (void)cancleButtonClicked:(id)sender {
+    [self switchToNormalMode];
+}
+
+- (void)trashButtonClicked:(id)sender {
+    [_bookArray removeObjectsAtIndexes:_booksIndexsToBeRemoved];
+    [_bookStatus removeObjectsAtIndexes:_booksIndexsToBeRemoved];
+    [_bookShelfView removeBookViewsAtIndexs:_booksIndexsToBeRemoved animate:YES];
+    [self switchToNormalMode];
+}
+
+- (void)addButtonClicked:(id)sender {
+    int a[6] = {1, 2, 5, 7, 9, 22};
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    NSMutableArray *arr = [NSMutableArray array];
+    NSMutableArray *stat = [NSMutableArray array];
+    for (int i = 0; i < 6; i++) {
+        [indexSet addIndex:a[i]];
+        [arr addObject:[NSNumber numberWithInt:1]];
+        [stat addObject:[NSNumber numberWithInt:BOOK_UNSELECTED]];
+    }
+    [_bookArray insertObjects:arr atIndexes:indexSet];
+    [_bookStatus insertObjects:stat atIndexes:indexSet];
+    [_bookShelfView insertBookViewsAtIndexs:indexSet animate:YES];
+}
+
+#pragma mark - BookView Listener
+
+- (void)bookViewClicked:(UIButton *)button {
+    VoiceDataView *bookView = (VoiceDataView *)button;
+    
+    if (_editMode) {
+        NSNumber *status = [NSNumber numberWithInt:bookView.selected];
+        [_bookStatus replaceObjectAtIndex:bookView.index withObject:status];
+        
+        if (bookView.selected) {
+            [_booksIndexsToBeRemoved addIndex:bookView.index];
+        }
+        else {
+            [_booksIndexsToBeRemoved removeIndex:bookView.index];
+        }
+    }
+    else {
+        [bookView setSelected:NO];
+    }
+}
+
+
 
 @end

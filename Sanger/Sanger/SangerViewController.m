@@ -8,7 +8,6 @@
 
 #import "SangerViewController.h"
 #import "StoreViewController.h"
-#import "VoiceShelfViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface SangerViewController ()
@@ -46,8 +45,16 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     
     // shelf tableView
-    VoiceShelfViewController* shelf = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewController" bundle:nil];
-    [self.view addSubview:shelf.view];
+    if (_dataShelfViewController == nil) {
+        if (IS_IPAD) {
+            _dataShelfViewController = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewControllerforiPad" bundle:nil];
+
+        } else {
+            _dataShelfViewController = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewControllerforiPhone" bundle:nil];
+
+        }
+        [self.view addSubview:_dataShelfViewController.view];
+    }
     
     // shadowView
     UIView* shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 53 )];
@@ -116,4 +123,23 @@
 {
     
 }
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (_dataShelfViewController != nil) {
+        [_dataShelfViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (_dataShelfViewController != nil) {
+        [_dataShelfViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (_dataShelfViewController != nil) {
+        [_dataShelfViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+    }
+}
+
 @end
