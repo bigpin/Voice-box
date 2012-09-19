@@ -7,6 +7,9 @@
 //
 
 #import "StoreViewController.h"
+#import "GTMHTTPFetcher.h"
+#import "StoreVoiceDataListParser.h"
+#import "StoreRootViewController.h"
 
 @interface StoreViewController ()
 
@@ -26,10 +29,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = STRING_DATA_CENTER;
     // Do any additional setup after loading the view from its nib.
-    UIBarButtonItem* box = [[UIBarButtonItem alloc] initWithTitle:@"shelf" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    UIBarButtonItem* box = [[UIBarButtonItem alloc] initWithTitle:STRING_MY_DATA_CENTER style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     self.navigationItem.rightBarButtonItem = box;
     [box release];
+
+    NSURL* url = [NSURL URLWithString:@"http://hd2002105.ourhost.cn/index_android.xml"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"MyApp" forHTTPHeaderField:@"User-Agent"];
+    
+    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
+    [fetcher beginFetchWithDelegate:self
+                  didFinishSelector:@selector(fetcher:finishedWithData:error:)];
+
 }
 
 - (void)viewDidUnload
@@ -57,4 +71,22 @@
     [self dismissModalViewControllerAnimated:NO];
     [UIView commitAnimations];
 }
+
+
+- (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
+{
+    NSLog(@"fecther : %@", [fecther description]);
+    NSLog(@"error : %@", [error description]);
+    NSString* xmlPath =  [NSString stringWithFormat:@"%@voice.xml", NSTemporaryDirectory()];
+    [data writeToFile:xmlPath atomically:YES];
+    StoreVoiceDataListParser * dataParser = [[StoreVoiceDataListParser alloc] init];
+    [dataParser loadWithData:data];
+    if ([dataParser.pkgsArray count] > 0) {
+        StoreRootViewController* rootViewController = [[StoreRootViewController alloc] init];
+        rootViewController.pkgArray = dataParser.pkgsArray;
+        [self.view addSubview:rootViewController.view];
+    }
+    [dataParser release];
+}
+
 @end

@@ -1,0 +1,152 @@
+//
+//  StoreVoiceDataListParser.m
+//  Sanger
+//
+//  Created by JiaLi on 12-9-19.
+//  Copyright (c) 2012年 Founder. All rights reserved.
+//
+
+#import "StoreVoiceDataListParser.h"
+
+
+@implementation DataPkgCourseInfo
+
+@synthesize title;
+@synthesize path;
+@synthesize file;
+@synthesize url;
+@synthesize cover;
+
+- (void)dealloc
+{
+    [self.title release];
+    [self.path release];
+    [self.file release];
+    [self.url release];
+    [super dealloc];
+}
+@end
+
+@implementation DataPkgInfo
+
+@synthesize title;
+@synthesize count;
+@synthesize coverURL;
+@synthesize url;
+@synthesize intro;
+@synthesize dataPkgCourseInfoArray;
+
+- (void)dealloc
+{
+    [self.title release];
+    [self.coverURL release];
+    [self.url release];
+    [self.intro release];
+    [self.dataPkgCourseInfoArray release];
+    [super dealloc];
+}
+@end
+
+@implementation StoreVoiceDataListParser
+@synthesize pkgsArray;
+
+- (void)loadWithPath:(NSString*)path
+{
+    NSData* filedata = [NSData dataWithContentsOfFile:path];
+    [self loadWithData:filedata];
+}
+
+- (void)loadWithData:(NSData*)filedata
+{
+    TBXML* tbxml = [[TBXML tbxmlWithXMLData:filedata] retain];
+	
+	// Obtain root element
+	TBXMLElement * root = tbxml.rootXMLElement;
+    if (root) {
+        TBXMLElement * body = [TBXML childElementNamed:@"body" parentElement:root];
+		if (body) {
+            TBXMLElement * pkgs = [TBXML childElementNamed:@"pkgs" parentElement:body];
+            if (pkgs) {
+                NSString* countText = [TBXML valueOfAttributeNamed:@"count" forElement:pkgs];
+                NSLog(@"pkgs count: %d", [countText intValue]);
+                NSMutableArray* array = [[NSMutableArray alloc] init];
+                [self loadPkgs:pkgs withArray:array];
+                self.pkgsArray = array;
+                [array release];
+            }
+		}
+        
+    }
+	
+	if (root) {
+		
+	}
+	[tbxml release];
+
+}
+
+- (void)loadPkgs:(TBXMLElement*)parentElement withArray:(NSMutableArray*)array
+{
+    TBXMLElement* pkg = [TBXML childElementNamed:@"pkg" parentElement:parentElement];
+    while (pkg) {
+        DataPkgInfo* pkgInfo = [[DataPkgInfo alloc] init];
+        NSString* title = [TBXML valueOfAttributeNamed:@"title" forElement:pkg];
+        pkgInfo.title = title;
+        
+        NSString* count = [TBXML valueOfAttributeNamed:@"count" forElement:pkg];
+        pkgInfo.count = [count intValue];
+        
+        NSString* cover = [TBXML valueOfAttributeNamed:@"cover" forElement:pkg];
+        pkgInfo.coverURL = cover;
+        
+        NSString* url = [TBXML valueOfAttributeNamed:@"url" forElement:pkg];
+        pkgInfo.url = url;
+        
+        TBXMLElement* introElement = [TBXML childElementNamed:@"intro" parentElement:pkg];
+        if (introElement) {
+            NSString* introText = [TBXML textForElement:introElement];
+            pkgInfo.intro = introText;
+        }
+        TBXMLElement* pkgCourseElement =  [TBXML nextSiblingNamed:@"course" searchFromElement:introElement];
+        
+        if (pkgCourseElement == nil) {
+            pkgCourseElement = [TBXML childElementNamed:@"course" parentElement:pkg];
+        }
+        NSMutableArray* pkgCourseArray = [[NSMutableArray alloc] init];
+        while (pkgCourseElement) {
+            DataPkgCourseInfo* courseInfo = [[DataPkgCourseInfo alloc] init];
+            NSString* title = [TBXML valueOfAttributeNamed:@"title" forElement:pkgCourseElement];
+            courseInfo.title = title;
+ 
+            NSString* path = [TBXML valueOfAttributeNamed:@"path" forElement:pkgCourseElement];
+            courseInfo.path = path;
+
+            NSString* file = [TBXML valueOfAttributeNamed:@"file" forElement:pkgCourseElement];
+            courseInfo.file = file;
+
+            NSString* cover = [TBXML valueOfAttributeNamed:@"cover" forElement:pkgCourseElement];
+            courseInfo.cover = cover;
+
+            NSString* url = [TBXML valueOfAttributeNamed:@"url" forElement:pkgCourseElement];
+            courseInfo.url = url;
+            
+            [pkgCourseArray addObject:courseInfo];
+            [courseInfo release];
+            pkgCourseElement =  [TBXML nextSiblingNamed:@"course" searchFromElement:pkgCourseElement];
+            
+        }
+        pkgInfo.dataPkgCourseInfoArray = pkgCourseArray;
+        [pkgCourseArray release];
+        [array addObject:pkgInfo];
+        [pkgInfo release];
+        
+        pkg = [TBXML nextSiblingNamed:@"pkg" searchFromElement:pkg];
+    }
+}
+
+- (void)dealloc
+{
+    [self.pkgsArray release];
+    [super dealloc];
+}
+@end

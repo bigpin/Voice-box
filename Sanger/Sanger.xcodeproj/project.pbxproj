@@ -142,6 +142,11 @@
 		0DE21CE41609A6C400407EB4 /* GTMHTTPUploadFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CDA1609A6C400407EB4 /* GTMHTTPUploadFetcher.m */; };
 		0DE21CE51609A6C400407EB4 /* GTMMIMEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CDC1609A6C400407EB4 /* GTMMIMEDocument.m */; };
 		0DE21CE61609A6C400407EB4 /* GTMReadMonitorInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CDE1609A6C400407EB4 /* GTMReadMonitorInputStream.m */; };
+		0DE21CEE1609B43E00407EB4 /* StoreRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CED1609B43E00407EB4 /* StoreRootViewController.m */; };
+		0DE21CF11609B4C500407EB4 /* StoreVoiceDataListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CF01609B4C500407EB4 /* StoreVoiceDataListParser.m */; };
+		0DE21CF81609CEA600407EB4 /* StorePkgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */; };
+		0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */; };
+		0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */; };
 		0DE515CE1608743300B305A3 /* chuguobibei.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515CD1608743300B305A3 /* chuguobibei.png */; };
 		0DE515D016087DAA00B305A3 /* zhichangyingyu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */; };
 		0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */; };
@@ -409,6 +414,14 @@
 		0DE21CDC1609A6C400407EB4 /* GTMMIMEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMMIMEDocument.m; sourceTree = "<group>"; };
 		0DE21CDD1609A6C400407EB4 /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
 		0DE21CDE1609A6C400407EB4 /* GTMReadMonitorInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMReadMonitorInputStream.m; sourceTree = "<group>"; };
+		0DE21CEC1609B43E00407EB4 /* StoreRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreRootViewController.h; path = Store/StoreRootViewController.h; sourceTree = "<group>"; };
+		0DE21CED1609B43E00407EB4 /* StoreRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreRootViewController.m; path = Store/StoreRootViewController.m; sourceTree = "<group>"; };
+		0DE21CEF1609B4C500407EB4 /* StoreVoiceDataListParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreVoiceDataListParser.h; path = Store/StoreVoiceDataListParser.h; sourceTree = "<group>"; };
+		0DE21CF01609B4C500407EB4 /* StoreVoiceDataListParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreVoiceDataListParser.m; path = Store/StoreVoiceDataListParser.m; sourceTree = "<group>"; };
+		0DE21CF61609CEA600407EB4 /* StorePkgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StorePkgTableViewCell.h; path = Store/StorePkgTableViewCell.h; sourceTree = "<group>"; };
+		0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StorePkgTableViewCell.m; path = Store/StorePkgTableViewCell.m; sourceTree = "<group>"; };
+		0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StorePkgTableViewCell.xib; path = Store/StorePkgTableViewCell.xib; sourceTree = "<group>"; };
+		0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreAdTableViewCell.xib; path = Store/StoreAdTableViewCell.xib; sourceTree = "<group>"; };
 		0DE515CD1608743300B305A3 /* chuguobibei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chuguobibei.png; sourceTree = "<group>"; };
 		0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhichangyingyu.png; sourceTree = "<group>"; };
 		0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceShelfViewControllerforiPad.xib; sourceTree = "<group>"; };
@@ -937,6 +950,14 @@
 				0D44CA6815B155AD00400EAD /* StoreViewController.h */,
 				0D44CA6915B155AD00400EAD /* StoreViewController.m */,
 				0D44CA6A15B155AD00400EAD /* StoreViewController.xib */,
+				0DE21CEC1609B43E00407EB4 /* StoreRootViewController.h */,
+				0DE21CED1609B43E00407EB4 /* StoreRootViewController.m */,
+				0DE21CEF1609B4C500407EB4 /* StoreVoiceDataListParser.h */,
+				0DE21CF01609B4C500407EB4 /* StoreVoiceDataListParser.m */,
+				0DE21CF61609CEA600407EB4 /* StorePkgTableViewCell.h */,
+				0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */,
+				0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */,
+				0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -1275,6 +1296,8 @@
 				0DE515CE1608743300B305A3 /* chuguobibei.png in Resources */,
 				0DE515D016087DAA00B305A3 /* zhichangyingyu.png in Resources */,
 				0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */,
+				0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */,
+				0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,6 +1381,9 @@
 				0DE21CE41609A6C400407EB4 /* GTMHTTPUploadFetcher.m in Sources */,
 				0DE21CE51609A6C400407EB4 /* GTMMIMEDocument.m in Sources */,
 				0DE21CE61609A6C400407EB4 /* GTMReadMonitorInputStream.m in Sources */,
+				0DE21CEE1609B43E00407EB4 /* StoreRootViewController.m in Sources */,
+				0DE21CF11609B4C500407EB4 /* StoreVoiceDataListParser.m in Sources */,
+				0DE21CF81609CEA600407EB4 /* StorePkgTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
