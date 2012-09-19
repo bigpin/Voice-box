@@ -134,6 +134,14 @@
 		0DD84AF415FF3BD500B2F2F1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD84AF315FF3BD500B2F2F1 /* AudioToolbox.framework */; };
 		0DD84AF615FF3BFF00B2F2F1 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD84AF515FF3BFF00B2F2F1 /* libsqlite3.0.dylib */; };
 		0DD84BBA15FF42F100B2F2F1 /* libTapkuLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD84BA815FF3F7D00B2F2F1 /* libTapkuLibrary.a */; };
+		0DE21CDF1609A6C400407EB4 /* GTMGatherInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CD01609A6C400407EB4 /* GTMGatherInputStream.m */; };
+		0DE21CE01609A6C400407EB4 /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CD21609A6C400407EB4 /* GTMHTTPFetcher.m */; };
+		0DE21CE11609A6C400407EB4 /* GTMHTTPFetcherLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CD41609A6C400407EB4 /* GTMHTTPFetcherLogging.m */; };
+		0DE21CE21609A6C400407EB4 /* GTMHTTPFetcherService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CD61609A6C400407EB4 /* GTMHTTPFetcherService.m */; };
+		0DE21CE31609A6C400407EB4 /* GTMHTTPFetchHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CD81609A6C400407EB4 /* GTMHTTPFetchHistory.m */; };
+		0DE21CE41609A6C400407EB4 /* GTMHTTPUploadFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CDA1609A6C400407EB4 /* GTMHTTPUploadFetcher.m */; };
+		0DE21CE51609A6C400407EB4 /* GTMMIMEDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CDC1609A6C400407EB4 /* GTMMIMEDocument.m */; };
+		0DE21CE61609A6C400407EB4 /* GTMReadMonitorInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CDE1609A6C400407EB4 /* GTMReadMonitorInputStream.m */; };
 		0DE515CE1608743300B305A3 /* chuguobibei.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515CD1608743300B305A3 /* chuguobibei.png */; };
 		0DE515D016087DAA00B305A3 /* zhichangyingyu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */; };
 		0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */; };
@@ -385,6 +393,22 @@
 		0DD84AF315FF3BD500B2F2F1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0DD84AF515FF3BFF00B2F2F1 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		0DD84B9F15FF3F7C00B2F2F1 /* TapkuLibrary.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TapkuLibrary.xcodeproj; path = Src/TapkuLibrary.xcodeproj; sourceTree = "<group>"; };
+		0DE21CCF1609A6C400407EB4 /* GTMGatherInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMGatherInputStream.h; sourceTree = "<group>"; };
+		0DE21CD01609A6C400407EB4 /* GTMGatherInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMGatherInputStream.m; sourceTree = "<group>"; };
+		0DE21CD11609A6C400407EB4 /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = "<group>"; };
+		0DE21CD21609A6C400407EB4 /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcher.m; sourceTree = "<group>"; };
+		0DE21CD31609A6C400407EB4 /* GTMHTTPFetcherLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcherLogging.h; sourceTree = "<group>"; };
+		0DE21CD41609A6C400407EB4 /* GTMHTTPFetcherLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcherLogging.m; sourceTree = "<group>"; };
+		0DE21CD51609A6C400407EB4 /* GTMHTTPFetcherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcherService.h; sourceTree = "<group>"; };
+		0DE21CD61609A6C400407EB4 /* GTMHTTPFetcherService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcherService.m; sourceTree = "<group>"; };
+		0DE21CD71609A6C400407EB4 /* GTMHTTPFetchHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetchHistory.h; sourceTree = "<group>"; };
+		0DE21CD81609A6C400407EB4 /* GTMHTTPFetchHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetchHistory.m; sourceTree = "<group>"; };
+		0DE21CD91609A6C400407EB4 /* GTMHTTPUploadFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPUploadFetcher.h; sourceTree = "<group>"; };
+		0DE21CDA1609A6C400407EB4 /* GTMHTTPUploadFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPUploadFetcher.m; sourceTree = "<group>"; };
+		0DE21CDB1609A6C400407EB4 /* GTMMIMEDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMMIMEDocument.h; sourceTree = "<group>"; };
+		0DE21CDC1609A6C400407EB4 /* GTMMIMEDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMMIMEDocument.m; sourceTree = "<group>"; };
+		0DE21CDD1609A6C400407EB4 /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
+		0DE21CDE1609A6C400407EB4 /* GTMReadMonitorInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMReadMonitorInputStream.m; sourceTree = "<group>"; };
 		0DE515CD1608743300B305A3 /* chuguobibei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chuguobibei.png; sourceTree = "<group>"; };
 		0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhichangyingyu.png; sourceTree = "<group>"; };
 		0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceShelfViewControllerforiPad.xib; sourceTree = "<group>"; };
@@ -909,6 +933,7 @@
 		0D44CA6715B1551E00400EAD /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				0DE21CCE1609A6C400407EB4 /* GTMHTTPFetcher */,
 				0D44CA6815B155AD00400EAD /* StoreViewController.h */,
 				0D44CA6915B155AD00400EAD /* StoreViewController.m */,
 				0D44CA6A15B155AD00400EAD /* StoreViewController.xib */,
@@ -1056,6 +1081,30 @@
 				0DD84BAA15FF3F7D00B2F2F1 /* LogicTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0DE21CCE1609A6C400407EB4 /* GTMHTTPFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				0DE21CCF1609A6C400407EB4 /* GTMGatherInputStream.h */,
+				0DE21CD01609A6C400407EB4 /* GTMGatherInputStream.m */,
+				0DE21CD11609A6C400407EB4 /* GTMHTTPFetcher.h */,
+				0DE21CD21609A6C400407EB4 /* GTMHTTPFetcher.m */,
+				0DE21CD31609A6C400407EB4 /* GTMHTTPFetcherLogging.h */,
+				0DE21CD41609A6C400407EB4 /* GTMHTTPFetcherLogging.m */,
+				0DE21CD51609A6C400407EB4 /* GTMHTTPFetcherService.h */,
+				0DE21CD61609A6C400407EB4 /* GTMHTTPFetcherService.m */,
+				0DE21CD71609A6C400407EB4 /* GTMHTTPFetchHistory.h */,
+				0DE21CD81609A6C400407EB4 /* GTMHTTPFetchHistory.m */,
+				0DE21CD91609A6C400407EB4 /* GTMHTTPUploadFetcher.h */,
+				0DE21CDA1609A6C400407EB4 /* GTMHTTPUploadFetcher.m */,
+				0DE21CDB1609A6C400407EB4 /* GTMMIMEDocument.h */,
+				0DE21CDC1609A6C400407EB4 /* GTMMIMEDocument.m */,
+				0DE21CDD1609A6C400407EB4 /* GTMReadMonitorInputStream.h */,
+				0DE21CDE1609A6C400407EB4 /* GTMReadMonitorInputStream.m */,
+			);
+			name = GTMHTTPFetcher;
+			path = Store/GTMHTTPFetcher;
 			sourceTree = "<group>";
 		};
 		0DE718ED1607FA04001E03F1 /* GSBookShelf */ = {
@@ -1301,6 +1350,14 @@
 				0DE719091608039C001E03F1 /* VoiceDataView.m in Sources */,
 				0DE7190C160804D6001E03F1 /* VoiceDataCellView.m in Sources */,
 				0DE7190F1608060F001E03F1 /* BelowBottomView.m in Sources */,
+				0DE21CDF1609A6C400407EB4 /* GTMGatherInputStream.m in Sources */,
+				0DE21CE01609A6C400407EB4 /* GTMHTTPFetcher.m in Sources */,
+				0DE21CE11609A6C400407EB4 /* GTMHTTPFetcherLogging.m in Sources */,
+				0DE21CE21609A6C400407EB4 /* GTMHTTPFetcherService.m in Sources */,
+				0DE21CE31609A6C400407EB4 /* GTMHTTPFetchHistory.m in Sources */,
+				0DE21CE41609A6C400407EB4 /* GTMHTTPUploadFetcher.m in Sources */,
+				0DE21CE51609A6C400407EB4 /* GTMMIMEDocument.m in Sources */,
+				0DE21CE61609A6C400407EB4 /* GTMReadMonitorInputStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
