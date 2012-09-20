@@ -7,12 +7,24 @@
 //
 
 #import "StorePkgDetailViewController.h"
+#import "StorePkgDetailTableViewCell.h"
 
 @interface StorePkgDetailViewController ()
 
 @end
 
 @implementation StorePkgDetailViewController
+@synthesize info;
+
++ (CGSize)calcTextHeight:(NSString *)str withWidth:(CGFloat)width withFontSize:(CGFloat)fontSize;
+{
+    
+    CGSize textSize = {width, 20000.0};
+    CGSize size     = [str sizeWithFont:[UIFont systemFontOfSize:fontSize]
+                      constrainedToSize:textSize];
+    
+    return size;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,7 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.title = self.info.title;
+    self.tableView.separatorColor = [UIColor clearColor];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -50,16 +63,50 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
+    if (self.info != nil) {
+        return 2;
+    }
     return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    if (section == 0) {
+        return 1;
+    } else if (section == 1) {
+        return self.info.dataPkgCourseInfoArray.count + 1;
+    } else {
+        return 0;
+        
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSInteger section = indexPath.section;
+    NSInteger row =  indexPath.row;
+    CGFloat height = 44.0f;
+   if (section == 0) {
+        return 114.0f;
+    } else if (section == 1) {
+        if (row == 0) {
+            CGSize sz = [StorePkgDetailViewController calcTextHeight:info.intro withWidth:self.view.frame.size.width withFontSize:17];
+            return fmaxf(height, (sz.height + 44));
+        } else {
+            NSInteger i = row - 1;
+            if (i < [self.info.dataPkgCourseInfoArray count] ) {
+                DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+                CGSize sz = [StorePkgDetailViewController calcTextHeight:course.title withWidth:self.view.frame.size.width withFontSize:17];
+                return fmaxf(height, sz.height);
+            }
+        }
+
+        return 44.0f;
+    } else {
+        return 44.0f;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +115,36 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
+    NSInteger section = indexPath.section;
+    NSInteger row =  indexPath.row;
+    
+    if (!cell) {
+        if (section == 0) {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StorePkgDetailTableViewCell" owner:self options:NULL];
+            if ([array count] > 0) {
+                cell = [array objectAtIndex:0];
+            }
+        } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell"];
+        }
+     }
+    
+    if (section == 0) {
+        StorePkgDetailTableViewCell * detailCell = (StorePkgDetailTableViewCell*)cell;
+        [detailCell setVoiceData:info];
+    } else {
+        [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
+        cell.textLabel.numberOfLines = 0;
+        if (row == 0) {
+            cell.textLabel.text = info.intro;
+        } else {
+            NSInteger i = row - 1;
+            if (i < [self.info.dataPkgCourseInfoArray count] ) {
+                DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+                cell.textLabel.text = course.title;
+            }
+        }
+    }
     
     return cell;
 }
@@ -123,6 +200,12 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+}
+
+- (void)dealloc
+{
+    [self.info release];
+    [super dealloc];
 }
 
 @end

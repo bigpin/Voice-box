@@ -24,3 +24,4 @@
 #define STRING_DATA_SAMPLE_2 @"职场英语"
 #define STRING_LOADINGDATA_WAITING @"正在载入..."
 #define STRING_LOADINGDATA_ERROR @"网络连接错误"
+#define STRING_DOWNLOAD @"下载"

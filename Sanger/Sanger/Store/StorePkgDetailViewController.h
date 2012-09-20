@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StoreVoiceDataListParser.h"
 
 @interface StorePkgDetailViewController : UITableViewController
+
+@property (nonatomic, retain, readwrite) DataPkgInfo* info;
+
++ (CGSize)calcTextHeight:(NSString *)str withWidth:(CGFloat)width withFontSize:(CGFloat)fontSize;
 
 @end

@@ -103,8 +103,9 @@
         
     } else {
         if (_info != nil) {
-            NSString* pngPath =  [NSString stringWithFormat:@"%@%d.png", NSTemporaryDirectory(),(arc4random())];
+            NSString* pngPath =  [NSString stringWithFormat:@"%@%d", NSTemporaryDirectory(),(arc4random())];
             _info.receivedCoverImagePath = pngPath;
+            [data writeToFile:pngPath atomically:YES];
             UIImage* im = [UIImage imageWithData:data];
             self.coverImageView.image = im;
         }

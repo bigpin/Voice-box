@@ -165,6 +165,11 @@
     
      StorePkgDetailViewController *detailViewController = [[StorePkgDetailViewController alloc] init];
      // ...
+    NSInteger i = indexPath.row;// - 1;
+    if (i < [pkgArray count]) {
+        DataPkgInfo* info = [pkgArray objectAtIndex:i];
+        detailViewController.info = info;
+    }
      // Pass the selected object to the new view controller.
     [self.delegate pushViewController:detailViewController];
     // [self.navigationController pushViewController:detailViewController animated:YES];
