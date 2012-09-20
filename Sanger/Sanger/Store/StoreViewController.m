@@ -10,6 +10,7 @@
 #import "GTMHTTPFetcher.h"
 #import "StoreVoiceDataListParser.h"
 #import "StoreRootViewController.h"
+#import "StoreNetworkConnectionView.h"
 
 @interface StoreViewController ()
 
@@ -30,12 +31,34 @@
 {
     [super viewDidLoad];
     
+
+    // backgroundColor
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString* stringResource = @"bg_webview.png";
+    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
+    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+    [StoreNetworkConnectionView startAnimation:self.view];
+
     self.title = STRING_DATA_CENTER;
     // Do any additional setup after loading the view from its nib.
     UIBarButtonItem* box = [[UIBarButtonItem alloc] initWithTitle:STRING_MY_DATA_CENTER style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     self.navigationItem.rightBarButtonItem = box;
     [box release];
 
+    // shadowView
+    UIView* shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 53 )];
+    shadowView.tag = 101;
+    shadowView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin;
+    NSString* shadowImageName = @"bookshelf_titlebar_shadow.png";
+    NSString* shadowPath = [NSString stringWithFormat:@"%@/%@", resourcePath, shadowImageName];
+    UIImage* shadowimage = [UIImage imageWithContentsOfFile:shadowPath];
+    shadowView.backgroundColor = [UIColor colorWithPatternImage:shadowimage];
+    [self.view addSubview:shadowView];
+    [shadowView release];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:VALUE_TITLEBAR_COLOR_R green:VALUE_TITLEBAR_COLOR_G blue:VALUE_TITLEBAR_COLOR_B alpha:1.0];
+
+    
     NSURL* url = [NSURL URLWithString:@"http://hd2002105.ourhost.cn/index_android.xml"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"MyApp" forHTTPHeaderField:@"User-Agent"];
@@ -77,16 +100,39 @@
 {
     NSLog(@"fecther : %@", [fecther description]);
     NSLog(@"error : %@", [error description]);
-    NSString* xmlPath =  [NSString stringWithFormat:@"%@voice.xml", NSTemporaryDirectory()];
-    [data writeToFile:xmlPath atomically:YES];
-    StoreVoiceDataListParser * dataParser = [[StoreVoiceDataListParser alloc] init];
-    [dataParser loadWithData:data];
-    if ([dataParser.pkgsArray count] > 0) {
-        StoreRootViewController* rootViewController = [[StoreRootViewController alloc] init];
-        rootViewController.pkgArray = dataParser.pkgsArray;
-        [self.view addSubview:rootViewController.view];
+    if (error != nil) {
+        [StoreNetworkConnectionView stopAnimation:STRING_LOADINGDATA_ERROR withSuperView:self.view];
+
+    } else {
+        
+        [StoreNetworkConnectionView removeConnectionView:self.view];
+        NSString* xmlPath =  [NSString stringWithFormat:@"%@voice.xml", NSTemporaryDirectory()];
+        [data writeToFile:xmlPath atomically:YES];
+        StoreVoiceDataListParser * dataParser = [[StoreVoiceDataListParser alloc] init];
+        [dataParser loadWithData:data];
+        if ([dataParser.pkgsArray count] > 0) {
+            StoreRootViewController* rootViewController = [[StoreRootViewController alloc] init];
+            rootViewController.pkgArray = dataParser.pkgsArray;
+            rootViewController.delegate = (id)self;
+            CGRect rc = rootViewController.view.frame;
+            rootViewController.view.frame = CGRectMake(0, 0, rc.size.width, rc.size.height);
+            [self.view addSubview:rootViewController.view];
+        }
+        [dataParser release];
+        
+        UIView* shadowView = [self.view viewWithTag:101];
+        [self.view bringSubviewToFront:shadowView];
     }
-    [dataParser release];
 }
 
+- (void)dealloc
+{
+    [StoreNetworkConnectionView removeConnectionView:self.view];
+    [super dealloc];
+}
+
+- (void)pushViewController:(UIViewController*)detail;
+{
+    [self.navigationController pushViewController:detail animated:YES];
+}
 @end

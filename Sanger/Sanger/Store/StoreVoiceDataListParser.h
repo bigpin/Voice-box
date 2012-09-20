@@ -24,6 +24,7 @@
 @property (nonatomic, retain, readwrite) NSString* url;
 @property (nonatomic, retain, readwrite) NSString* intro;
 @property (nonatomic, retain, readwrite) NSMutableArray* dataPkgCourseInfoArray;
+@property (nonatomic, retain, readwrite) NSString* receivedCoverImagePath;
 @end    
 
 

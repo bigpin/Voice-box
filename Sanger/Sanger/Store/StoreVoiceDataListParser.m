@@ -29,6 +29,7 @@
 
 @implementation DataPkgInfo
 
+@synthesize receivedCoverImagePath;
 @synthesize title;
 @synthesize count;
 @synthesize coverURL;

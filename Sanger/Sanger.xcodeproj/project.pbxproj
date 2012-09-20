@@ -159,6 +159,11 @@
 		0DE719091608039C001E03F1 /* VoiceDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE719081608039C001E03F1 /* VoiceDataView.m */; };
 		0DE7190C160804D6001E03F1 /* VoiceDataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7190B160804D6001E03F1 /* VoiceDataCellView.m */; };
 		0DE7190F1608060F001E03F1 /* BelowBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7190E1608060F001E03F1 /* BelowBottomView.m */; };
+		0DFEAC34160A904600D32AF6 /* bg_webview.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC33160A904600D32AF6 /* bg_webview.png */; };
+		0DFEAC37160A91EE00D32AF6 /* StoreNetworkConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFEAC36160A91EE00D32AF6 /* StoreNetworkConnectionView.m */; };
+		0DFEAC3D160ADB0C00D32AF6 /* cellBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC3C160ADB0C00D32AF6 /* cellBg.png */; };
+		0DFEAC40160ADF8F00D32AF6 /* StorePkgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DFEAC3F160ADF8F00D32AF6 /* StorePkgDetailViewController.m */; };
+		0DFEAC42160AE9DF00D32AF6 /* bg_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC41160AE9DF00D32AF6 /* bg_cell.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -444,6 +449,13 @@
 		0DE7190B160804D6001E03F1 /* VoiceDataCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceDataCellView.m; sourceTree = "<group>"; };
 		0DE7190D1608060E001E03F1 /* BelowBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BelowBottomView.h; sourceTree = "<group>"; };
 		0DE7190E1608060F001E03F1 /* BelowBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BelowBottomView.m; sourceTree = "<group>"; };
+		0DFEAC33160A904600D32AF6 /* bg_webview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_webview.png; sourceTree = "<group>"; };
+		0DFEAC35160A91EE00D32AF6 /* StoreNetworkConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreNetworkConnectionView.h; path = Store/StoreNetworkConnectionView.h; sourceTree = "<group>"; };
+		0DFEAC36160A91EE00D32AF6 /* StoreNetworkConnectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreNetworkConnectionView.m; path = Store/StoreNetworkConnectionView.m; sourceTree = "<group>"; };
+		0DFEAC3C160ADB0C00D32AF6 /* cellBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBg.png; sourceTree = "<group>"; };
+		0DFEAC3E160ADF8E00D32AF6 /* StorePkgDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StorePkgDetailViewController.h; path = Store/StorePkgDetailViewController.h; sourceTree = "<group>"; };
+		0DFEAC3F160ADF8F00D32AF6 /* StorePkgDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StorePkgDetailViewController.m; path = Store/StorePkgDetailViewController.m; sourceTree = "<group>"; };
+		0DFEAC41160AE9DF00D32AF6 /* bg_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_cell.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -956,8 +968,12 @@
 				0DE21CF01609B4C500407EB4 /* StoreVoiceDataListParser.m */,
 				0DE21CF61609CEA600407EB4 /* StorePkgTableViewCell.h */,
 				0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */,
+				0DFEAC3E160ADF8E00D32AF6 /* StorePkgDetailViewController.h */,
+				0DFEAC3F160ADF8F00D32AF6 /* StorePkgDetailViewController.m */,
 				0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */,
 				0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */,
+				0DFEAC35160A91EE00D32AF6 /* StoreNetworkConnectionView.h */,
+				0DFEAC36160A91EE00D32AF6 /* StoreNetworkConnectionView.m */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -1013,6 +1029,9 @@
 		0DC571C816070CCC00A5D17B /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				0DFEAC41160AE9DF00D32AF6 /* bg_cell.png */,
+				0DFEAC3C160ADB0C00D32AF6 /* cellBg.png */,
+				0DFEAC33160A904600D32AF6 /* bg_webview.png */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1298,6 +1317,9 @@
 				0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */,
 				0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */,
 				0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */,
+				0DFEAC34160A904600D32AF6 /* bg_webview.png in Resources */,
+				0DFEAC3D160ADB0C00D32AF6 /* cellBg.png in Resources */,
+				0DFEAC42160AE9DF00D32AF6 /* bg_cell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1384,6 +1406,8 @@
 				0DE21CEE1609B43E00407EB4 /* StoreRootViewController.m in Sources */,
 				0DE21CF11609B4C500407EB4 /* StoreVoiceDataListParser.m in Sources */,
 				0DE21CF81609CEA600407EB4 /* StorePkgTableViewCell.m in Sources */,
+				0DFEAC37160A91EE00D32AF6 /* StoreNetworkConnectionView.m in Sources */,
+				0DFEAC40160ADF8F00D32AF6 /* StorePkgDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

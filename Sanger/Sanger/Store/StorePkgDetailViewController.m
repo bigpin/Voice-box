@@ -1,23 +1,18 @@
 //
-//  StoreRootViewController.m
+//  StorePkgDetailViewController.m
 //  Sanger
 //
-//  Created by JiaLi on 12-9-19.
+//  Created by JiaLi on 12-9-20.
 //  Copyright (c) 2012年 Founder. All rights reserved.
 //
 
-#import "StoreRootViewController.h"
-#import "StoreVoiceDataListParser.h"
-#import "StorePkgTableViewCell.h"
 #import "StorePkgDetailViewController.h"
 
-@interface StoreRootViewController ()
+@interface StorePkgDetailViewController ()
 
 @end
 
-@implementation StoreRootViewController
-@synthesize pkgArray;
-@synthesize delegate;
+@implementation StorePkgDetailViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,12 +27,6 @@
 {
     [super viewDidLoad];
 
-    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString* stringResource = @"bg_webview.png";
-    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
-    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-    self.tableView.separatorColor = [UIColor clearColor];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -61,60 +50,25 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [pkgArray count];// + 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    /*if (indexPath.row == 0) {
-        return 114.0f;
-    }*/
-    return 98.0f;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-   /* static NSString *adCellIdentifier = @"AdCell";
-   if (indexPath.row == 0) {
-       UITableViewCell *cell = (StorePkgTableViewCell*)[tableView dequeueReusableCellWithIdentifier:adCellIdentifier];
-
-       if (!cell) {
-           NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreAdTableViewCell" owner:self options:NULL];
-           if ([array count] > 0) {
-               cell = [array objectAtIndex:0];
-           }
-        }
-       return cell;
-    }
-    
-    */
-    StorePkgTableViewCell *cell = (StorePkgTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    if (!cell) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StorePkgTableViewCell" owner:self options:NULL];
-        if ([array count] > 0) {
-            cell = (StorePkgTableViewCell*)[array objectAtIndex:0];
-            CustomBackgroundView* backView = [[CustomBackgroundView alloc] init];
-            cell.backgroundView = backView;
-            [backView release];
-        }
-    }
-    NSInteger i = indexPath.row;// - 1;
-    if (i < [pkgArray count]) {
-        DataPkgInfo* info = [pkgArray objectAtIndex:i];
-        [cell setVoiceData:info];
-   }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     return cell;
 }
 
@@ -162,14 +116,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    
-     StorePkgDetailViewController *detailViewController = [[StorePkgDetailViewController alloc] init];
+    /*
+     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
      // ...
      // Pass the selected object to the new view controller.
-    [self.delegate pushViewController:detailViewController];
-    // [self.navigationController pushViewController:detailViewController animated:YES];
+     [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
-     
+     */
 }
 
 @end
