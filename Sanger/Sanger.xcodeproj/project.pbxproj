@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2437BF160FE7B000AA4039 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D2437BE160FE7B000AA4039 /* Default-568h@2x.png */; };
 		0D279ED515DC8E9D0092874C /* AdMoGoAdapterGoogleAdMobAds.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E2C15DC8E9D0092874C /* AdMoGoAdapterGoogleAdMobAds.m */; };
 		0D279ED615DC8E9D0092874C /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279E3615DC8E9D0092874C /* libGoogleAdMobAds.a */; };
 		0D279ED715DC8E9E0092874C /* AdMoGoAdapterDoMob.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E3A15DC8E9D0092874C /* AdMoGoAdapterDoMob.m */; };
@@ -201,6 +202,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D2437BE160FE7B000AA4039 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0D279E2B15DC8E9D0092874C /* AdMoGoAdapterGoogleAdMobAds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdMoGoAdapterGoogleAdMobAds.h; sourceTree = "<group>"; };
 		0D279E2C15DC8E9D0092874C /* AdMoGoAdapterGoogleAdMobAds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdMoGoAdapterGoogleAdMobAds.m; sourceTree = "<group>"; };
 		0D279E2D15DC8E9D0092874C /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
@@ -513,6 +515,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D2437BD160FE7B000AA4039 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				0D2437BE160FE7B000AA4039 /* Default-568h@2x.png */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		0D279E1D15DC8D950092874C /* Voice */ = {
 			isa = PBXGroup;
 			children = (
@@ -1020,6 +1030,7 @@
 		0DC571C616070CCC00A5D17B /* Imges */ = {
 			isa = PBXGroup;
 			children = (
+				0D2437BD160FE7B000AA4039 /* App */,
 				0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */,
 				0DE515CD1608743300B305A3 /* chuguobibei.png */,
 				0DC571C716070CCC00A5D17B /* Shelf */,
@@ -1361,6 +1372,7 @@
 				0DFEAC55160B1DE000D32AF6 /* greenButton@2x.png in Resources */,
 				0DFEAC56160B1DE000D32AF6 /* greenButtonActivated.png in Resources */,
 				0DFEAC57160B1DE000D32AF6 /* greenButtonActivated@2x.png in Resources */,
+				0D2437BF160FE7B000AA4039 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

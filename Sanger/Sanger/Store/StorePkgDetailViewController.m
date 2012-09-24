@@ -40,6 +40,12 @@
     [super viewDidLoad];
     self.title = self.info.title;
     self.tableView.separatorColor = [UIColor clearColor];
+    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString* stringResource = @"bg_cell.png";
+    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
+    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
+    self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -127,6 +133,7 @@
         } else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell"];
         }
+
      }
     
     if (section == 0) {
@@ -145,7 +152,7 @@
             }
         }
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
