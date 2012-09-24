@@ -38,6 +38,7 @@
     UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -163,7 +164,7 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     
-     StorePkgDetailViewController *detailViewController = [[StorePkgDetailViewController alloc] init];
+    StorePkgDetailViewController *detailViewController = [[StorePkgDetailViewController alloc] initWithStyle:UITableViewStylePlain];
      // ...
     NSInteger i = indexPath.row;// - 1;
     if (i < [pkgArray count]) {

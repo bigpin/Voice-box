@@ -40,12 +40,19 @@
     [super viewDidLoad];
     self.title = self.info.title;
     self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    NSString* stringResource = @"bg_webview.png";
+    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
+    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
+
+    /*NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString* stringResource = @"bg_cell.png";
     NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
     UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
     self.tableView.backgroundColor = [UIColor colorWithPatternImage:bgImage];
-
+    */
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -82,7 +89,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return self.info.dataPkgCourseInfoArray.count + 1;
+        return self.info.dataPkgCourseInfoArray.count + 3;
     } else {
         return 0;
         
@@ -98,17 +105,24 @@
         return 114.0f;
     } else if (section == 1) {
         if (row == 0) {
+            // content text
+            return 44.0f;
+        } else if (row == 1) {
+            // content
             CGSize sz = [StorePkgDetailViewController calcTextHeight:info.intro withWidth:self.view.frame.size.width withFontSize:17];
-            return fmaxf(height, (sz.height + 44));
+            return fmaxf(height, (sz.height + 22));
+        } else if (row == 2){
+            // lesson text
+            return 44.0f;
         } else {
-            NSInteger i = row - 1;
+            // lessons 
+            NSInteger i = row - 3;
             if (i < [self.info.dataPkgCourseInfoArray count] ) {
                 DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
                 CGSize sz = [StorePkgDetailViewController calcTextHeight:course.title withWidth:self.view.frame.size.width withFontSize:17];
                 return fmaxf(height, sz.height);
             }
         }
-
         return 44.0f;
     } else {
         return 44.0f;
@@ -130,29 +144,98 @@
             if ([array count] > 0) {
                 cell = [array objectAtIndex:0];
             }
+            UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+            backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 alpha:1.0];
+            cell.backgroundView = backgroundView;
+            [backgroundView release];
+           
+            
         } else {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell"];
-        }
+            if (row == 0) {
+                DetailCustomBackgroundView* backgroundView = [[DetailCustomBackgroundView alloc] init];
+                cell.backgroundView = backgroundView;
+                [backgroundView release];
+            } else {
+                UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+                backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 alpha:1.0];
+                cell.backgroundView = backgroundView;
+                [backgroundView release];
+                
+            }
+       }
 
      }
-    
-    if (section == 0) {
-        StorePkgDetailTableViewCell * detailCell = (StorePkgDetailTableViewCell*)cell;
-        [detailCell setVoiceData:info];
-    } else {
-        [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
-        cell.textLabel.numberOfLines = 0;
-        if (row == 0) {
-            cell.textLabel.text = info.intro;
-        } else {
-            NSInteger i = row - 1;
-            if (i < [self.info.dataPkgCourseInfoArray count] ) {
-                DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
-                cell.textLabel.text = course.title;
-            }
+
+    switch (section) {
+        case 0:
+        {
+            StorePkgDetailTableViewCell * detailCell = (StorePkgDetailTableViewCell*)cell;
+            [detailCell setVoiceData:info];
+
         }
+            break;
+        case 1:
+        {
+          switch (row) {
+                case 0:
+                {
+                    cell.backgroundColor = [UIColor whiteColor];
+                   cell.textLabel.text = STRING_INTRO_TITLE;
+                    cell.textLabel.numberOfLines = 0;
+                    [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
+                    cell.textLabel.backgroundColor = [UIColor clearColor];
+                    /*NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+                    NSString* stringResource = @"line.png";
+                    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
+                    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
+                    cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:bgImage];*/
+
+                }
+                    
+                    break;
+                case 1:
+                {
+                    cell.textLabel.text = info.intro;
+                    cell.textLabel.numberOfLines = 0;
+                    [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+                    cell.textLabel.backgroundColor = [UIColor clearColor];
+                    //cell.textLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:132.0/255.0 blue:146.0/255.0 alpha:1.0];
+               }
+                    
+                    break;
+                case 2:
+                {
+                   // cell.textLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:132.0/255.0 blue:146.0/255.0 alpha:1.0];
+                   cell.textLabel.text = STRING_LESSONS_TITLE;
+                    cell.textLabel.numberOfLines = 0;
+                    [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
+                    cell.textLabel.backgroundColor = [UIColor clearColor];
+                }
+                    break;
+                default:
+                {
+                    NSInteger i = row - 3;
+                    if (i < [self.info.dataPkgCourseInfoArray count] ) {
+                        DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+                        cell.textLabel.text = course.title;
+                        [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+                        cell.textLabel.backgroundColor = [UIColor clearColor];
+                   }
+                    
+                }
+                    
+                    break;
+            }
+            
+        }
+            
+        break;
+           default:
+             break;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.backgroundColor =  [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 alpha:1.0];
     return cell;
 }
 

@@ -9,6 +9,46 @@
 #import "StorePkgDetailTableViewCell.h"
 #import "GTMHTTPFetcher.h"
 
+@implementation DetailCustomBackgroundView
+
+
+- (id)initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame:frame]) {
+		// Initialization code
+	}
+	return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+	CGContextRef graphicContext = UIGraphicsGetCurrentContext();
+	CGColorSpaceRef colors_pace;
+	size_t num_locations = 2;
+	CGFloat locations[2] = { 0.0, 1.0};
+	CGFloat components[8] = {0.8, 0.8, 0.8, 1.0,
+		VALUE_DETAIL_STORE_BACKGROUND_COLOR1, VALUE_DETAIL_STORE_BACKGROUND_COLOR1, VALUE_DETAIL_STORE_BACKGROUND_COLOR1, 1.0 };
+	
+	
+	colors_pace =  CGColorSpaceCreateDeviceRGB();;
+	CGGradientRef gradientRef = CGGradientCreateWithColorComponents (colors_pace, components,
+                                                                     locations, num_locations);
+	
+	CGPoint ptStart, ptEnd;
+	ptStart.x = 0.0;
+	ptStart.y = 0.0;
+	ptEnd.x = 0.0;
+	ptEnd.y = rect.size.height;
+	CGContextDrawLinearGradient (graphicContext, gradientRef, ptStart, ptEnd, 0);
+    CGColorSpaceRelease(colors_pace);
+ }
+ 
+- (void)dealloc {
+    [super dealloc];
+}
+
+
+
+@end
+
 @implementation StorePkgDetailTableViewCell
 @synthesize coverImageView, titleLabel, downloadButton;
 

@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "StoreVoiceDataListParser.h"
 
+@interface DetailCustomBackgroundView : UIView {
+    
+}
+
+@end
+
+
 @interface StorePkgDetailTableViewCell : UITableViewCell
 {
     DataPkgInfo* _info;
