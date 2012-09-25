@@ -12,6 +12,7 @@
 @interface DetailCustomBackgroundView : UIView {
     
 }
+@property (nonatomic, assign) BOOL bUpToDown;
 
 @end
 
@@ -25,7 +26,6 @@
 @property (nonatomic, retain) IBOutlet UIImageView* coverImageView;
 @property (nonatomic, retain) IBOutlet UILabel* titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton* downloadButton;
-
 - (void)setVoiceData:(DataPkgInfo*)info;
 - (void)setButtomImage;
 @end

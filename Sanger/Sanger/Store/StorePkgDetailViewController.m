@@ -145,7 +145,7 @@
                 cell = [array objectAtIndex:0];
             }
             UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-            backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 alpha:1.0];
+            backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
             cell.backgroundView = backgroundView;
             [backgroundView release];
            
@@ -158,7 +158,7 @@
                 [backgroundView release];
             } else {
                 UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-                backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1 alpha:1.0];
+                backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
                 cell.backgroundView = backgroundView;
                 [backgroundView release];
                 
