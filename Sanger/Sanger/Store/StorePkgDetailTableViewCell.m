@@ -30,13 +30,13 @@
 	colors_pace =  CGColorSpaceCreateDeviceRGB();;
 	CGGradientRef gradientRef;
     if (bUpToDown) {
-        CGFloat componentsupToDown[8] = {0.8, 0.8, 0.8, 1.0,
+        CGFloat componentsupToDown[8] = {0.9, 0.9, 0.9, 1.0,
             VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R, VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G, VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B, 1.0 };
        gradientRef = CGGradientCreateWithColorComponents (colors_pace, componentsupToDown,
                                                locations, num_locations);
     } else {
         CGFloat componentsDownToUp[8] = {
-            VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R, VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G, VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B, 1.0,  0.8, 0.8, 0.8, 1.0 };
+            VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R, VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G, VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B, 1.0,  0.9, 0.9, 0.9, 1.0 };
         gradientRef = CGGradientCreateWithColorComponents (colors_pace, componentsDownToUp,
                                                            locations, num_locations);
         
@@ -49,6 +49,18 @@
 	ptEnd.y = rect.size.height;
 	CGContextDrawLinearGradient (graphicContext, gradientRef, ptStart, ptEnd, 0);
     CGColorSpaceRelease(colors_pace);
+    
+    CGFloat lineColor[] = {0.7, 0.7, 0.7, 1.0};
+    CGContextSetStrokeColor(graphicContext, lineColor);
+    CGContextSetLineWidth(graphicContext, 1);
+    if (bUpToDown) {
+        CGContextMoveToPoint(graphicContext, 0, 0);
+        CGContextAddLineToPoint(graphicContext, rect.size.width, 0);
+    } else {
+        CGContextMoveToPoint(graphicContext, 0, rect.size.height);
+        CGContextAddLineToPoint(graphicContext, rect.size.width, rect.size.height);
+    }
+    CGContextStrokePath(graphicContext);
  }
  
 - (void)dealloc {

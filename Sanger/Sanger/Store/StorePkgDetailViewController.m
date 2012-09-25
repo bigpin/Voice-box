@@ -8,7 +8,7 @@
 
 #import "StorePkgDetailViewController.h"
 #import "StorePkgDetailTableViewCell.h"
-
+#import "StoreCourceTableViewCell.h"
 @interface StorePkgDetailViewController ()
 
 @end
@@ -151,7 +151,13 @@
            
             
         } else {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell"];
+            
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourceTableViewCell" owner:self options:NULL];
+            if ([array count] > 0) {
+                cell = [array objectAtIndex:0];
+            }
+
+            //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell"];
             if (row == 0) {
                 DetailCustomBackgroundView* backgroundView = [[DetailCustomBackgroundView alloc] init];
                 cell.backgroundView = backgroundView;
@@ -185,11 +191,8 @@
                     cell.textLabel.numberOfLines = 0;
                     [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
                     cell.textLabel.backgroundColor = [UIColor clearColor];
-                    /*NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
-                    NSString* stringResource = @"line.png";
-                    NSString* imagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
-                    UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
-                    cell.backgroundView.backgroundColor = [UIColor colorWithPatternImage:bgImage];*/
+                    cell.textLabel.textColor = [UIColor darkGrayColor];
+                   //cell.textLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:128.0/255.0 blue:133.0/255.0 alpha:1.0];
 
                 }
                     
@@ -200,7 +203,8 @@
                     cell.textLabel.numberOfLines = 0;
                     [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
                     cell.textLabel.backgroundColor = [UIColor clearColor];
-                    //cell.textLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:132.0/255.0 blue:146.0/255.0 alpha:1.0];
+                    cell.textLabel.textColor = [UIColor darkGrayColor];
+                   //cell.textLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:132.0/255.0 blue:146.0/255.0 alpha:1.0];
                }
                     
                     break;
@@ -211,7 +215,8 @@
                     cell.textLabel.numberOfLines = 0;
                     [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
                     cell.textLabel.backgroundColor = [UIColor clearColor];
-                }
+                    cell.textLabel.textColor = [UIColor darkGrayColor];
+               }
                     break;
                 default:
                 {
@@ -221,7 +226,10 @@
                         cell.textLabel.text = course.title;
                         [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
                         cell.textLabel.backgroundColor = [UIColor clearColor];
-                   }
+                        cell.textLabel.textColor = [UIColor darkGrayColor];
+                        //StoreCourceTableViewCell * courseCell = (StoreCourceTableViewCell*)cell;
+                        //[courseCell setCourseData:course withURL:self.info.url];
+                  }
                     
                 }
                     

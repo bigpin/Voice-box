@@ -16,6 +16,7 @@
 @synthesize file;
 @synthesize url;
 @synthesize cover;
+@synthesize receivedXMLPath;
 
 - (void)dealloc
 {
@@ -23,6 +24,7 @@
     [self.path release];
     [self.file release];
     [self.url release];
+    [self.receivedXMLPath release];
     [super dealloc];
 }
 @end
