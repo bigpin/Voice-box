@@ -15,4 +15,5 @@
 
 + (CGSize)calcTextHeight:(NSString *)str withWidth:(CGFloat)width withFontSize:(CGFloat)fontSize;
 
+- (IBAction)doDownload:(id)sender;
 @end

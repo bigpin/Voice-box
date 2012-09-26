@@ -30,6 +30,10 @@
 #define STRING_DATA_SAMPLE_2 @"职场英语"
 #define STRING_LOADINGDATA_WAITING @"正在载入..."
 #define STRING_LOADINGDATA_ERROR @"网络连接错误"
-#define STRING_DOWNLOAD @"下载"
-#define STRING_INTRO_TITLE @"内容简介："
-#define STRING_LESSONS_TITLE @"课程内容："
+#define STRING_DOWNLOAD         @"免费"
+#define STRING_DOWNLOADING      @"下载中"
+#define STRING_DOWNLOADED       @"已下载"
+#define STRING_INTRO_TITLE      @"内容简介："
+#define STRING_LESSONS_TITLE    @"课程内容："
+
+#define STRING_VOICE_PKG_DIR    @"VoicePkgData"

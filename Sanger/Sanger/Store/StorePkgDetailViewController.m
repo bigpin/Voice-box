@@ -152,17 +152,22 @@
             
         } else {
             
-            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourceTableViewCell" owner:self options:NULL];
-            if ([array count] > 0) {
-                cell = [array objectAtIndex:0];
-            }
-
-            //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"detailCell"];
             if (row == 0) {
+                
+                NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourseTableCellHeader" owner:self options:NULL];
+                if ([array count] > 0) {
+                    cell = [array objectAtIndex:0];
+                }
+
                 DetailCustomBackgroundView* backgroundView = [[DetailCustomBackgroundView alloc] init];
                 cell.backgroundView = backgroundView;
                 [backgroundView release];
             } else {
+                NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourceTableViewCell" owner:self options:NULL];
+                if ([array count] > 0) {
+                    cell = [array objectAtIndex:0];
+                }
+                
                 UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
                 backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
                 cell.backgroundView = backgroundView;
@@ -178,6 +183,7 @@
         {
             StorePkgDetailTableViewCell * detailCell = (StorePkgDetailTableViewCell*)cell;
             [detailCell setVoiceData:info];
+            detailCell.delegate = (id)self;
 
         }
             break;
@@ -305,5 +311,22 @@
     [self.info release];
     [super dealloc];
 }
+
+- (void)doDownload
+{
+    /* NSFileManager *fm = [NSFileManager defaultManager];
+     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+     NSString *documentDirectory = [paths objectAtIndex:0];
+     documentDirectory = [documentDirectory stringByAppendingString:PATH_ONLINESHOP_FANSHU_TRIGGER];
+     if (![fm fileExistsAtPath:documentDirectory isDirectory:nil])
+     [fm createDirectoryAtPath:documentDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+     */
+}
+
+- (void)updateButtonStatus
+{
+    
+}
+
 
 @end

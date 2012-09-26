@@ -8,6 +8,7 @@
 
 #import "StorePkgDetailTableViewCell.h"
 #import "GTMHTTPFetcher.h"
+#import "StoreDownloadPkg.h"
 
 @implementation DetailCustomBackgroundView
 @synthesize bUpToDown;
@@ -73,6 +74,7 @@
 
 @implementation StorePkgDetailTableViewCell
 @synthesize coverImageView, titleLabel, downloadButton;
+@synthesize delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -148,6 +150,19 @@
 {
     _info = nil;
     [super dealloc];
+}
+
+- (IBAction)clickButton:(id)sender
+{
+    if ([[self.downloadButton titleForState:UIControlStateNormal] isEqual:STRING_DOWNLOAD]) {
+        // begin download
+        [self.downloadButton  setTitle:STRING_DOWNLOADING forState:UIControlStateNormal];
+        self.downloadButton.enabled = NO;
+        /*StoreDownloadPkg* downloadPkg = [[StoreDownloadPkg alloc] init];
+        downloadPkg.info = _info;
+        [downloadPkg doDownload];*/
+    }
+    [self.delegate doDownload];
 }
 
 @end

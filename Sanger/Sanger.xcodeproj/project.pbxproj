@@ -87,6 +87,9 @@
 		0D279F2215DC8E9E0092874C /* libIsaybEncrypt.d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ED315DC8E9D0092874C /* libIsaybEncrypt.d.a */; };
 		0D279F2315DC8E9E0092874C /* libIsaybEncrypt.s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ED415DC8E9D0092874C /* libIsaybEncrypt.s.a */; };
 		0D3A26CC15FF1A8900F52D43 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3A26CA15FF1A8900F52D43 /* libMobClickLibrary.a */; };
+		0D3FA7C31613221300229BCB /* StoreCourseTableCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3FA7C21613221300229BCB /* StoreCourseTableCellHeader.xib */; };
+		0D3FA7C51613227500229BCB /* starsForeground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3FA7C41613227500229BCB /* starsForeground.png */; };
+		0D3FA7D9161338DB00229BCB /* StoreDownloadPkg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3FA7D8161338DA00229BCB /* StoreDownloadPkg.m */; };
 		0D44CA3E15B14C6200400EAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA3D15B14C6200400EAD /* UIKit.framework */; };
 		0D44CA4015B14C6200400EAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA3F15B14C6200400EAD /* Foundation.framework */; };
 		0D44CA4215B14C6200400EAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA4115B14C6200400EAD /* CoreGraphics.framework */; };
@@ -353,6 +356,10 @@
 		0D279F2E15DC8F070092874C /* VoiceDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceDef.h; sourceTree = "<group>"; };
 		0D3A26CA15FF1A8900F52D43 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		0D3A26CB15FF1A8900F52D43 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		0D3FA7C21613221300229BCB /* StoreCourseTableCellHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCourseTableCellHeader.xib; sourceTree = "<group>"; };
+		0D3FA7C41613227500229BCB /* starsForeground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starsForeground.png; sourceTree = "<group>"; };
+		0D3FA7D7161338DA00229BCB /* StoreDownloadPkg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreDownloadPkg.h; path = Store/StoreDownloadPkg.h; sourceTree = "<group>"; };
+		0D3FA7D8161338DA00229BCB /* StoreDownloadPkg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreDownloadPkg.m; path = Store/StoreDownloadPkg.m; sourceTree = "<group>"; };
 		0D44CA3915B14C6200400EAD /* Sanger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sanger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D44CA3D15B14C6200400EAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		0D44CA3F15B14C6200400EAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1009,11 +1016,14 @@
 				0DFEAC43160B0F6000D32AF6 /* StorePkgDetailTableViewCell.xib */,
 				0DFEAC45160B164000D32AF6 /* StorePkgDetailTableViewCell.h */,
 				0DFEAC46160B164000D32AF6 /* StorePkgDetailTableViewCell.m */,
+				0D3FA7D7161338DA00229BCB /* StoreDownloadPkg.h */,
+				0D3FA7D8161338DA00229BCB /* StoreDownloadPkg.m */,
 				0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */,
 				0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */,
 				0DF8124616118CA500AE415C /* StoreCourceTableViewCell.h */,
 				0DF8124716118CA500AE415C /* StoreCourceTableViewCell.m */,
 				0DF8124916118CCB00AE415C /* StoreCourceTableViewCell.xib */,
+				0D3FA7C21613221300229BCB /* StoreCourseTableCellHeader.xib */,
 				0DFEAC35160A91EE00D32AF6 /* StoreNetworkConnectionView.h */,
 				0DFEAC36160A91EE00D32AF6 /* StoreNetworkConnectionView.m */,
 			);
@@ -1072,6 +1082,7 @@
 		0DC571C816070CCC00A5D17B /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				0D3FA7C41613227500229BCB /* starsForeground.png */,
 				0DFEAC50160B1DDF00D32AF6 /* greenButton.png */,
 				0DFEAC51160B1DDF00D32AF6 /* greenButton@2x.png */,
 				0DFEAC52160B1DE000D32AF6 /* greenButtonActivated.png */,
@@ -1382,6 +1393,8 @@
 				0DFEAC57160B1DE000D32AF6 /* greenButtonActivated@2x.png in Resources */,
 				0D2437BF160FE7B000AA4039 /* Default-568h@2x.png in Resources */,
 				0DF8124A16118CCB00AE415C /* StoreCourceTableViewCell.xib in Resources */,
+				0D3FA7C31613221300229BCB /* StoreCourseTableCellHeader.xib in Resources */,
+				0D3FA7C51613227500229BCB /* starsForeground.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,6 +1485,7 @@
 				0DFEAC40160ADF8F00D32AF6 /* StorePkgDetailViewController.m in Sources */,
 				0DFEAC47160B164100D32AF6 /* StorePkgDetailTableViewCell.m in Sources */,
 				0DF8124816118CA500AE415C /* StoreCourceTableViewCell.m in Sources */,
+				0D3FA7D9161338DB00229BCB /* StoreDownloadPkg.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
