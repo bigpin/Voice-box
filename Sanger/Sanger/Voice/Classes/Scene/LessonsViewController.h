@@ -25,7 +25,7 @@
 
 @property (nonatomic, retain) NSString* scenesName;
 @property (nonatomic, retain) UISegmentedControl* pageSegment;
-
+@property (nonatomic, retain) NSString* dataPath;
 - (void) loadCourses;
 - (void) loadToolbarItems;
 - (void) onPrevious:(id)sender;

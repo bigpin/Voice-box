@@ -14,6 +14,19 @@ typedef enum {
     BOOK_SELECTED
 }BookStatus;
 
+@interface VoiceDataPkg : NSObject
+
+@property (nonatomic, retain) NSString* dataPath;
+@property (nonatomic, retain) NSString* dataTitle;
+@property (nonatomic, retain) NSString* dataCover;
+@property (nonatomic, retain) NSNumber* dataNumber;
+@end
+@protocol VoiceShelfViewControllerDelegate <NSObject>
+
+- (void)openVoiceData:(UIViewController*)controller;
+
+@end
+
 @interface VoiceShelfViewController : UIViewController <GSBookShelfViewDelegate, GSBookShelfViewDataSource>{
     GSBookShelfView *_bookShelfView;
     
@@ -32,4 +45,9 @@ typedef enum {
     BelowBottomView *_belowBottomView;
     UISearchBar *_searchBar;
 }
+
+@property (nonatomic, assign, readwrite) id <VoiceShelfViewControllerDelegate> delegate;
+
+- (void)checkPkgData;
+
 @end

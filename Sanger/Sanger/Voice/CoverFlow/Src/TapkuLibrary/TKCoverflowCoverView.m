@@ -39,6 +39,7 @@
 @implementation TKCoverflowCoverView
 @synthesize baseline,gradientLayer;
 @synthesize coverLabel = _coverLabel;
+@synthesize scenesTitleLabel;
 
 - (id) initWithFrame:(CGRect)frame {
     if(!(self=[super initWithFrame:frame])) return nil;
@@ -71,6 +72,22 @@
     [self addSubview:textLabel];
     self.coverLabel = textLabel;
     [textLabel release];
+ 
+    heightOfLabel = heightOfLabel = [[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? 60 : 26;
+    UILabel* textLabelTitle = [[UILabel alloc] initWithFrame:CGRectMake(imageView.frame.size.width/4, imageView.frame.size.height / 2 - heightOfLabel, imageView.frame.size.width, heightOfLabel)];
+    textLabelTitle.backgroundColor = [UIColor clearColor];
+    textLabelTitle.textColor = [UIColor whiteColor];
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(userInterfaceIdiom)] && [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        textLabelTitle.font = [UIFont boldSystemFontOfSize:58];
+    } else {
+        textLabelTitle.font = [UIFont boldSystemFontOfSize:24];
+    }
+    textLabelTitle.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+    [self addSubview:textLabelTitle];
+    self.scenesTitleLabel = textLabelTitle;
+    [textLabelTitle release];
+
+    
     
     return self;
 }

@@ -9,14 +9,31 @@
 #import "VoiceShelfViewController.h"
 #import "VoiceDataView.h"
 #import "VoiceDataCellView.h"
+#import "ScenesCoverViewController.h"
 
 #define CELL_HEIGHT 139.0f
+@implementation VoiceDataPkg
+@synthesize  dataPath;
+@synthesize  dataTitle;
+@synthesize  dataCover;
+@synthesize dataNumber;
+
+- (void)dealloc
+{
+    [self.dataPath release];
+    [self.dataTitle release];
+    [self.dataCover release];
+    [self.dataNumber release];
+    [super dealloc];
+}
+@end
 
 @interface VoiceShelfViewController ()
 
 @end
 
 @implementation VoiceShelfViewController
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +75,48 @@
     [self.view addSubview:_bookShelfView];
 }
 
+- (void)checkPkgData
+{
+    NSFileManager *fm = [NSFileManager defaultManager];
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString *documentDirectory = [paths objectAtIndex:0];
+	if (![fm fileExistsAtPath:documentDirectory isDirectory:nil])
+		[fm createDirectoryAtPath:documentDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+
+    documentDirectory = [documentDirectory stringByAppendingFormat:@"/%@", STRING_VOICE_PKG_DIR];
+    
+    // create pkg
+    if (![fm fileExistsAtPath:documentDirectory isDirectory:nil])
+        [fm createDirectoryAtPath:documentDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:documentDirectory];
+    NSString* file = [dirEnum nextObject];
+    while (file) {
+        NSRange range = [file rangeOfString:@"/" options:NSBackwardsSearch];
+        NSLog(@"%@", file);
+        if (range.location != NSNotFound) {
+            file = [dirEnum nextObject];
+            continue;
+        }
+        
+        if ([[file pathExtension] length] == 0) {
+            if (_bookArray == nil) {
+                _bookArray = [[NSMutableArray alloc] init];
+            }
+            VoiceDataPkg* pkg = [[VoiceDataPkg alloc] init];
+            pkg.dataPath = [NSString stringWithFormat:@"%@/%@",documentDirectory, file];
+            pkg.dataTitle = file;
+            [pkg.dataTitle retain];
+            [_bookArray addObject:pkg];
+            [pkg release];
+        }
+        file = [dirEnum nextObject];
+    }
+    
+     [array release];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -71,12 +130,14 @@
 }
 
 - (void)initBooks {
-    NSInteger numberOfBooks = 2;
-    _bookArray = [[NSMutableArray alloc] initWithCapacity:numberOfBooks];
+    [self checkPkgData];
+    NSInteger numberOfBooks = [_bookArray count];
+    //_bookArray = [[NSMutableArray alloc] initWithCapacity:numberOfBooks];
     _bookStatus = [[NSMutableArray alloc] initWithCapacity:numberOfBooks];
     for (int i = 0; i < numberOfBooks; i++) {
         NSNumber *number = [NSNumber numberWithInt:i % 4 + 1];
-        [_bookArray addObject:number];
+        VoiceDataPkg* pkg = [_bookArray objectAtIndex:i];
+        pkg.dataNumber = number;
         [_bookStatus addObject:[NSNumber numberWithInt:BOOK_UNSELECTED]];
     }
     
@@ -164,7 +225,11 @@
     //int imageNO = [(NSNumber *)[_bookArray objectAtIndex:index] intValue];
     // set book cover
     //[bookView setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"mask_book.png"]] forState:UIControlStateNormal];
-    if (index == 0) {
+    VoiceDataPkg* pkg = [_bookArray objectAtIndex:index];
+    [bookView setBookCover:[UIImage imageWithContentsOfFile:pkg.dataCover]];
+    [bookView setText:pkg.dataTitle];
+
+    /*if (index == 0) {
         [bookView setBookCover:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"chuguobibei.png"]]];
         [bookView setText:STRING_DATA_SAMPLE_1];
 
@@ -172,7 +237,7 @@
         [bookView setBookCover:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"zhichangyingyu"]]];
         [bookView setText:STRING_DATA_SAMPLE_2];
        
-    }
+    }*/
 
     return bookView;
 }
@@ -237,6 +302,7 @@
 }
 
 - (void)bookShelfView:(GSBookShelfView *)bookShelfView moveBookFromIndex:(NSInteger)fromIndex toIndex:(NSInteger)toIndex {
+    return;
     if ([(NSNumber *)[_bookStatus objectAtIndex:fromIndex] intValue] == BOOK_SELECTED) {
         [_booksIndexsToBeRemoved removeIndex:fromIndex];
         [_booksIndexsToBeRemoved addIndex:toIndex];
@@ -301,7 +367,11 @@
 
 - (void)bookViewClicked:(UIButton *)button {
     VoiceDataView *bookView = (VoiceDataView *)button;
-    
+    NSLog(@"click : %d",bookView.index);
+    VoiceDataPkg* pkg = [_bookArray objectAtIndex:bookView.index];
+    NSLog(@"click pkg: %@", pkg.dataTitle);
+    NSLog(@"click pkg number: %d", [pkg.dataNumber intValue]);
+ 
     if (_editMode) {
         NSNumber *status = [NSNumber numberWithInt:bookView.selected];
         [_bookStatus replaceObjectAtIndex:bookView.index withObject:status];
@@ -315,6 +385,11 @@
     }
     else {
         [bookView setSelected:NO];
+        ScenesCoverViewController * scenes = [[ScenesCoverViewController alloc] init];
+        scenes.dataPath = pkg.dataPath;
+        scenes.dataTitle = pkg.dataTitle;
+        [self.delegate openVoiceData:scenes];
+        
     }
 }
 

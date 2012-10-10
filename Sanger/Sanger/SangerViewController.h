@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "VoiceShelfViewController.h"
+#import "VoicePkgShelfViewController.h"
 
 @interface SangerViewController : UIViewController
 {
     VoiceShelfViewController* _dataShelfViewController;
+    VoicePkgShelfViewController* _voicePkgShelfViewController;
 }
 
 - (void)addTitleBarBackground;

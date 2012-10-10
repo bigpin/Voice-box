@@ -102,6 +102,12 @@
 		0D44CA6B15B155AD00400EAD /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA6915B155AD00400EAD /* StoreViewController.m */; };
 		0D44CA6C15B155AD00400EAD /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA6A15B155AD00400EAD /* StoreViewController.xib */; };
 		0D44CA6F15B15A2200400EAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA6E15B15A2200400EAD /* QuartzCore.framework */; };
+		0D9ED33E16254423007BC9D1 /* Image in Resources */ = {isa = PBXBuildFile; fileRef = 0D9ED33D16254423007BC9D1 /* Image */; };
+		0D9ED34B16254C8A007BC9D1 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D9ED34A16254C8A007BC9D1 /* configuration.plist */; };
+		0D9ED34E16257119007BC9D1 /* VoicePkgShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9ED34D16257118007BC9D1 /* VoicePkgShelfViewController.m */; };
+		0D9ED35116257151007BC9D1 /* VoicePkgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9ED35016257150007BC9D1 /* VoicePkgTableViewController.m */; };
+		0D9ED35C162575FB007BC9D1 /* VoicePkgShelfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9ED35B162575FA007BC9D1 /* VoicePkgShelfCell.m */; };
+		0D9ED35E1625764E007BC9D1 /* VoicePkgShelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9ED35D1625764E007BC9D1 /* VoicePkgShelfCell.xib */; };
 		0DC571CC16070CE800A5D17B /* bg_bookshelf.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571CA16070CE800A5D17B /* bg_bookshelf.png */; };
 		0DC571CD16070CE800A5D17B /* bg_bookshelf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571CB16070CE800A5D17B /* bg_bookshelf@2x.png */; };
 		0DC571E61607148D00A5D17B /* bg_shelf_titlebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DC571E41607148C00A5D17B /* bg_shelf_titlebar.png */; };
@@ -378,6 +384,15 @@
 		0D44CA6915B155AD00400EAD /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = Store/StoreViewController.m; sourceTree = "<group>"; };
 		0D44CA6A15B155AD00400EAD /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = Store/StoreViewController.xib; sourceTree = "<group>"; };
 		0D44CA6E15B15A2200400EAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0D9ED33D16254423007BC9D1 /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Image; sourceTree = "<group>"; };
+		0D9ED34A16254C8A007BC9D1 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
+		0D9ED34C16257118007BC9D1 /* VoicePkgShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoicePkgShelfViewController.h; path = Sanger/Shelf/VoicePkgShelfViewController.h; sourceTree = SOURCE_ROOT; };
+		0D9ED34D16257118007BC9D1 /* VoicePkgShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VoicePkgShelfViewController.m; path = Sanger/Shelf/VoicePkgShelfViewController.m; sourceTree = SOURCE_ROOT; };
+		0D9ED34F16257150007BC9D1 /* VoicePkgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicePkgTableViewController.h; sourceTree = "<group>"; };
+		0D9ED35016257150007BC9D1 /* VoicePkgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicePkgTableViewController.m; sourceTree = "<group>"; };
+		0D9ED35A162575FA007BC9D1 /* VoicePkgShelfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicePkgShelfCell.h; sourceTree = "<group>"; };
+		0D9ED35B162575FA007BC9D1 /* VoicePkgShelfCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicePkgShelfCell.m; sourceTree = "<group>"; };
+		0D9ED35D1625764E007BC9D1 /* VoicePkgShelfCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoicePkgShelfCell.xib; sourceTree = "<group>"; };
 		0DC571CA16070CE800A5D17B /* bg_bookshelf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_bookshelf.png; sourceTree = "<group>"; };
 		0DC571CB16070CE800A5D17B /* bg_bookshelf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_bookshelf@2x.png"; sourceTree = "<group>"; };
 		0DC571E41607148C00A5D17B /* bg_shelf_titlebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_shelf_titlebar.png; sourceTree = "<group>"; };
@@ -1037,6 +1052,15 @@
 			name = Box;
 			sourceTree = "<group>";
 		};
+		0D9ED34916254C8A007BC9D1 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0D9ED34A16254C8A007BC9D1 /* configuration.plist */,
+			);
+			name = Setting;
+			path = Sanger/Resource/Setting;
+			sourceTree = SOURCE_ROOT;
+		};
 		0DC571C516070CCC00A5D17B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -1048,6 +1072,8 @@
 		0DC571C616070CCC00A5D17B /* Imges */ = {
 			isa = PBXGroup;
 			children = (
+				0D9ED34916254C8A007BC9D1 /* Setting */,
+				0D9ED33D16254423007BC9D1 /* Image */,
 				0D2437BD160FE7B000AA4039 /* App */,
 				0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */,
 				0DE515CD1608743300B305A3 /* chuguobibei.png */,
@@ -1113,6 +1139,13 @@
 				0DE719031607FB22001E03F1 /* VoiceShelfViewController.m */,
 				0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */,
 				0DE719041607FB22001E03F1 /* VoiceShelfViewControllerforiPhone.xib */,
+				0D9ED34C16257118007BC9D1 /* VoicePkgShelfViewController.h */,
+				0D9ED34D16257118007BC9D1 /* VoicePkgShelfViewController.m */,
+				0D9ED34F16257150007BC9D1 /* VoicePkgTableViewController.h */,
+				0D9ED35016257150007BC9D1 /* VoicePkgTableViewController.m */,
+				0D9ED35A162575FA007BC9D1 /* VoicePkgShelfCell.h */,
+				0D9ED35B162575FA007BC9D1 /* VoicePkgShelfCell.m */,
+				0D9ED35D1625764E007BC9D1 /* VoicePkgShelfCell.xib */,
 				0DE7190D1608060E001E03F1 /* BelowBottomView.h */,
 				0DE7190E1608060F001E03F1 /* BelowBottomView.m */,
 				0DE7190A160804D6001E03F1 /* VoiceDataCellView.h */,
@@ -1395,6 +1428,9 @@
 				0DF8124A16118CCB00AE415C /* StoreCourceTableViewCell.xib in Resources */,
 				0D3FA7C31613221300229BCB /* StoreCourseTableCellHeader.xib in Resources */,
 				0D3FA7C51613227500229BCB /* starsForeground.png in Resources */,
+				0D9ED33E16254423007BC9D1 /* Image in Resources */,
+				0D9ED34B16254C8A007BC9D1 /* configuration.plist in Resources */,
+				0D9ED35E1625764E007BC9D1 /* VoicePkgShelfCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1486,6 +1522,9 @@
 				0DFEAC47160B164100D32AF6 /* StorePkgDetailTableViewCell.m in Sources */,
 				0DF8124816118CA500AE415C /* StoreCourceTableViewCell.m in Sources */,
 				0D3FA7D9161338DB00229BCB /* StoreDownloadPkg.m in Sources */,
+				0D9ED34E16257119007BC9D1 /* VoicePkgShelfViewController.m in Sources */,
+				0D9ED35116257151007BC9D1 /* VoicePkgTableViewController.m in Sources */,
+				0D9ED35C162575FB007BC9D1 /* VoicePkgShelfCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

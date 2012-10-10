@@ -17,6 +17,7 @@
 @implementation LessonsViewController
 @synthesize scenesName = _scenesName;
 @synthesize pageSegment = _pageSegment;
+@synthesize dataPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -341,11 +342,12 @@
     _courseParser = [[CourseParser alloc] init];
     
 	// Load and parse the books.xml file
-    NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
+    /*NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
     NSString* stringResource = STRING_RESOURCE_DATA;
-    resourcePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
+    resourcePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];*/
+    NSString* resourcePath;
     if (self.scenesName != nil) {
-        resourcePath = [NSString stringWithFormat:@"/%@/%@", resourcePath, self.scenesName];
+        resourcePath = [NSString stringWithFormat:@"/%@/%@", self.dataPath, self.scenesName];
     }
     NSString* indexString = STRING_LESSONS_INDEX_XML;
     _courseParser.resourcePath = resourcePath;

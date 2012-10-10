@@ -14,6 +14,8 @@
 @synthesize scenesLabel = _scenesLabel;
 @synthesize covers;
 @synthesize coverflow;
+@synthesize dataPath;
+@synthesize dataTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -206,6 +208,7 @@
     NSInteger nMod = index % nCount;
     if (nMod < nCount) {
         cover.coverLabel.text = [self.scenesArray objectAtIndex:nMod];
+        cover.scenesTitleLabel.text = self.dataTitle;
     }
 	return cover;
 }
@@ -223,6 +226,7 @@
     NSInteger nMod = nCoverIndex % nCount;
     if (nMod < nCount) {
         LessonsViewController* lesson = [[LessonsViewController alloc] initWithNibName:@"LessonsViewController" bundle:nil];
+        lesson.dataPath = self.dataPath;
         NSString* scenes = [[NSString alloc] initWithString:[self.scenesArray objectAtIndex:nMod]];
         lesson.scenesName = scenes;
         lesson.navigationItem.title = scenes;
@@ -251,13 +255,17 @@
 - (void)loadScenes;
 {
     if (self.scenesArray == nil) {
+        if (self.dataPath == nil) {
+            return;
+        }
         NSMutableArray* array = [[NSMutableArray alloc] init];
+        /*
         NSString* resourcePath = [[NSBundle mainBundle] resourcePath];
         NSString* stringResource = STRING_RESOURCE_DATA;
         resourcePath = [NSString stringWithFormat:@"%@/%@", resourcePath, stringResource];
-        
+        */
         NSFileManager* manager = [[NSFileManager alloc] init];
-        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:resourcePath];
+        NSDirectoryEnumerator *dirEnum = [manager enumeratorAtPath:self.dataPath];
         
         NSString* file = [dirEnum nextObject];
         while (file) {

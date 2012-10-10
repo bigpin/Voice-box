@@ -108,8 +108,8 @@ typedef enum {
         _tempVisibleBookViewCollector = [[NSMutableArray alloc] initWithCapacity:0];
         
         // GestureRecognizer
-        UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
-        [self addGestureRecognizer:longPressGestureRecognizer];
+       /* UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressGesture:)];
+        [self addGestureRecognizer:longPressGestureRecognizer];*/
         
     }
     return self;

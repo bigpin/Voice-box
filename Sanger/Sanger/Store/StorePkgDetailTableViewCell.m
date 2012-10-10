@@ -158,11 +158,11 @@
         // begin download
         [self.downloadButton  setTitle:STRING_DOWNLOADING forState:UIControlStateNormal];
         self.downloadButton.enabled = NO;
+        [self.delegate doDownload];
         /*StoreDownloadPkg* downloadPkg = [[StoreDownloadPkg alloc] init];
         downloadPkg.info = _info;
         [downloadPkg doDownload];*/
     }
-    [self.delegate doDownload];
 }
 
 @end

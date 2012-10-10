@@ -19,13 +19,15 @@
     UILabel* _scenesLabel;
     BOOL bAnimation;
     DayByDayObject* _daybayday;
+    UILabel* _scenesTitle;
 }
 
 @property (nonatomic,retain) TKCoverflowView *coverflow; 
 @property (nonatomic,retain) NSMutableArray *covers;
 @property (nonatomic,retain) NSMutableArray* scenesArray;
 @property (nonatomic,retain) UILabel* scenesLabel;
-
+@property (nonatomic,retain) NSString* dataPath;
+@property (nonatomic,retain) NSString* dataTitle;
 - (void)loadScenes;
 - (void)openScenes:(TKCoverflowView*)coverflowView coverAtIndex:(int)index;
 

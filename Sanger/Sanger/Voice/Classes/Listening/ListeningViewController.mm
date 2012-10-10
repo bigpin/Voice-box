@@ -384,7 +384,7 @@
         }
         
     }
-   ConfigData* configData = [ConfigData sharedSetting];
+   ConfigData* configData = [ConfigData sharedConfigData];
     NSString* teacherfemale1 = configData.nTeacherHeadStyle == 0 ? @"female1.png" :@"female3.png";
     NSString* teachermale1 = configData.nTeacherHeadStyle == 0 ? @"male1.png" :@"male3.png";
     NSString* teacherfemale2 = configData.nTeacherHeadStyle == 0 ? @"female2.png" :@"female4.png";

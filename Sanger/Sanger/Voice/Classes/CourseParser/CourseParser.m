@@ -48,11 +48,14 @@
 - (void)getMirrorRessourcePath
 {
     if (wavePath == nil) {
-        NSRange r = [resourcePath rangeOfString:@"/Data"];
-        NSString* dataPath = [resourcePath substringFromIndex:r.location];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-        NSString *docsDir = [paths objectAtIndex:0]; 
-        wavePath = [[NSString alloc] initWithFormat:@"%@%@%@", docsDir, PATH_USERDATA, dataPath];
+        NSRange r = [resourcePath rangeOfString:STRING_VOICE_PKG_DIR];
+        if (r.length != 0) {
+            NSString* dataPath = [resourcePath substringFromIndex:r.location];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *docsDir = [paths objectAtIndex:0];
+            wavePath = [[NSString alloc] initWithFormat:@"%@/%@", docsDir, dataPath];
+
+        }
     }
 }
 

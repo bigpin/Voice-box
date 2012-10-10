@@ -9,7 +9,7 @@
 #import "SangerViewController.h"
 #import "StoreViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "SettingViewController.h"
 @interface SangerViewController ()
 
 @end
@@ -45,7 +45,7 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     
     // shelf tableView
-    if (_dataShelfViewController == nil) {
+    /*if (_dataShelfViewController == nil) {
         if (IS_IPAD) {
             _dataShelfViewController = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewControllerforiPad" bundle:nil];
 
@@ -53,8 +53,15 @@
             _dataShelfViewController = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewControllerforiPhone" bundle:nil];
 
         }
+        _dataShelfViewController.delegate = (id)self;
         [self.view addSubview:_dataShelfViewController.view];
+    }*/
+    if (_voicePkgShelfViewController == nil) {
+        _voicePkgShelfViewController = [[VoicePkgShelfViewController alloc] init];
+        _voicePkgShelfViewController.delegate = (id)self;
+        [self.view addSubview:_voicePkgShelfViewController.view];
     }
+    
     
     // shadowView
     UIView* shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 53 )];
@@ -121,7 +128,14 @@
 
 - (void)gotoSetting
 {
+    SettingViewController* setting = [[SettingViewController alloc] initWithNibName:@"SettingViewController" bundle:nil];
     
+    NSString* settingTitle = STRING_SETTING_TITLE;
+    setting.title = settingTitle;
+    setting.tabBarItem.title = settingTitle;
+    [self.navigationController pushViewController:setting animated:YES];
+    [setting release];
+
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -140,6 +154,11 @@
     if (_dataShelfViewController != nil) {
         [_dataShelfViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
     }
+}
+
+- (void)openVoiceData:(UIViewController*)controller;
+{
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
