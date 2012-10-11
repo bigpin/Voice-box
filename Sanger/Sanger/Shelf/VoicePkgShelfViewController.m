@@ -26,16 +26,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (_pkgTable == nil) {
+        VoicePkgTableViewController* pkgTable = [[VoicePkgTableViewController alloc] init];
+        
+        pkgTable.delegate = (id)self.delegate;
+        [self.view addSubview:pkgTable.view];
+         _pkgTable = pkgTable;
+    }
 	// Do any additional setup after loading the view.
-    VoicePkgTableViewController* pkgTable = [[VoicePkgTableViewController alloc] init];
-    pkgTable.delegate = (id)self.delegate;
-    [self.view addSubview:pkgTable.view];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)reloadPkgShelf;
+{
+    if (_pkgTable != nil) {
+        [_pkgTable reloadPkgTable];
+    }
 }
 
 @end

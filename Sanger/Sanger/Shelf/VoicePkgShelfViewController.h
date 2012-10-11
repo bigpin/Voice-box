@@ -10,5 +10,9 @@
 #import "VoicePkgTableViewController.h"
 
 @interface VoicePkgShelfViewController : UIViewController
+{
+    VoicePkgTableViewController* _pkgTable;
+}
 @property (nonatomic, assign) id<VoicePkgTableViewControllerDelegate>delegate;
+- (void)reloadPkgShelf;
 @end

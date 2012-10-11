@@ -18,9 +18,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-       // self.backgroundColor = [UIColor greenColor];
+       //self.backgroundColor = [UIColor greenColor];
         // Initialization code
-        _bookCover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 96)];
+        _bookCover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
        // _bookCover.backgroundColor = [UIColor redColor];
         //_bookCover.clipsToBounds = YES;
         /// _bookCover.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

@@ -145,6 +145,10 @@
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    if (_voicePkgShelfViewController != nil) {
+        [_voicePkgShelfViewController reloadPkgShelf];
+    }
+    
     if (_dataShelfViewController != nil) {
         [_dataShelfViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
     }

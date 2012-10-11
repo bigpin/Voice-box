@@ -75,8 +75,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    return 137;
+    return szBookCover.height + 42;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
 	NSInteger nCount = [_pkgArray count];
@@ -244,5 +245,12 @@
 
     }
     
+}
+
+- (void)reloadPkgTable;
+{
+    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+    nCountPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 3 :4;
+    [self.tableView reloadData];
 }
 @end

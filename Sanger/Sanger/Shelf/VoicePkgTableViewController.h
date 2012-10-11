@@ -32,5 +32,5 @@
 }
 @property (nonatomic, assign) id<VoicePkgTableViewControllerDelegate>delegate;
 - (void)loadPkgArray;
-
+- (void)reloadPkgTable;
 @end
