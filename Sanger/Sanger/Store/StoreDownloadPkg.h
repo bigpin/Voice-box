@@ -7,13 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "StoreVoiceDataListParser.h"
+#import "VoicePkgInfoObject.h"
+
+@interface StoreDownloadCourse : NSObject
+{
+    
+}
+@property (nonatomic, retain) DownloadDataPkgCourseInfo* course;
+@property (nonatomic, retain) NSString* pkgURL;
+@property (nonatomic, retain) NSString* pkgPath;
+
+- (void)startDownload;
+- (void)didDownloaded;
+@end
 
 @interface StoreDownloadPkg : NSObject
 {
     NSString* _pkgPath;
 }
-@property (nonatomic, retain) DataPkgInfo* info;
+@property (nonatomic, retain) DownloadDataPkgInfo* info;
 
 - (void)doDownload;
 

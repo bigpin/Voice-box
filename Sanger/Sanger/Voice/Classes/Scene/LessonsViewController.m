@@ -18,6 +18,7 @@
 @synthesize scenesName = _scenesName;
 @synthesize pageSegment = _pageSegment;
 @synthesize dataPath;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -311,13 +312,9 @@
         nPostion = indexPath.row;
     }
     if (nPostion < ([_courseParser.course.lessons count])) {
-        [_courseParser loadLesson:nPostion];
-        Lesson* lesson = (Lesson*)[_courseParser.course.lessons objectAtIndex:nPostion];
-        detailViewController.sentencesArray = lesson.setences;
-        detailViewController.teachersArray = lesson.teachers;
-        detailViewController.wavefile = lesson.wavfile;
-        detailViewController.isbfile = lesson.isbfile;
-        detailViewController.navigationItem.title = lesson.title; 
+        detailViewController.nPositionInCourse = nPostion;
+        detailViewController.courseParser = _courseParser;
+        detailViewController.delegate = (id)self;
         [self.navigationController pushViewController:detailViewController animated:YES];
         [detailViewController release];
     }
@@ -468,4 +465,8 @@
     [setting release];
 }
 
+- (NSString*)getPkgTitle
+{
+    return [self.delegate getPkgTitle];
+}
 @end

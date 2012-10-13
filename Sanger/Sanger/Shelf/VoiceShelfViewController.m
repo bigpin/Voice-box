@@ -94,8 +94,7 @@
     NSString* file = [dirEnum nextObject];
     while (file) {
         NSRange range = [file rangeOfString:@"/" options:NSBackwardsSearch];
-        NSLog(@"%@", file);
-        if (range.location != NSNotFound) {
+         if (range.location != NSNotFound) {
             file = [dirEnum nextObject];
             continue;
         }

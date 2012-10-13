@@ -14,6 +14,7 @@
 @end
 
 @implementation StorePkgDetailViewController
+@synthesize delegate;
 @synthesize info;
 
 + (CGSize)calcTextHeight:(NSString *)str withWidth:(CGFloat)width withFontSize:(CGFloat)fontSize;
@@ -118,7 +119,7 @@
             // lessons 
             NSInteger i = row - 3;
             if (i < [self.info.dataPkgCourseInfoArray count] ) {
-                DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+                DownloadDataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
                 CGSize sz = [StorePkgDetailViewController calcTextHeight:course.title withWidth:self.view.frame.size.width withFontSize:17];
                 return fmaxf(height, sz.height);
             }
@@ -228,7 +229,7 @@
                 {
                     NSInteger i = row - 3;
                     if (i < [self.info.dataPkgCourseInfoArray count] ) {
-                        DataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+                        DownloadDataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
                         cell.textLabel.text = course.title;
                         [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
                         cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -312,15 +313,9 @@
     [super dealloc];
 }
 
-- (void)doDownload
+- (void)doDownload:(DownloadDataPkgInfo*)infom;
 {
-    /* NSFileManager *fm = [NSFileManager defaultManager];
-     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-     NSString *documentDirectory = [paths objectAtIndex:0];
-     documentDirectory = [documentDirectory stringByAppendingString:PATH_ONLINESHOP_FANSHU_TRIGGER];
-     if (![fm fileExistsAtPath:documentDirectory isDirectory:nil])
-     [fm createDirectoryAtPath:documentDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-     */
+    [self.delegate doDownload:infom];
 }
 
 - (void)updateButtonStatus

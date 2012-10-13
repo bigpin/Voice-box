@@ -229,6 +229,7 @@
         lesson.dataPath = self.dataPath;
         NSString* scenes = [[NSString alloc] initWithString:[self.scenesArray objectAtIndex:nMod]];
         lesson.scenesName = scenes;
+        lesson.delegate = (id)self;
         lesson.navigationItem.title = scenes;
         [scenes release];
         [self.navigationController pushViewController:lesson animated:YES];
@@ -275,7 +276,10 @@
                 continue;
             }
             
-            if ([[file pathExtension] length] == 0) {
+            NSDictionary * attributes = [manager attributesOfItemAtPath:[NSString stringWithFormat:@"%@/%@", self.dataPath, file] error:nil];
+            // file size
+            BOOL isDirectory=[[attributes objectForKey:NSFileType] isEqualToString:NSFileTypeDirectory];
+            if ([[file pathExtension] length] == 0 && (isDirectory)) {
                 [array addObject:file];
             }
             file = [dirEnum nextObject];
@@ -284,6 +288,11 @@
         [array release];
         [manager release];
     }
+}
+
+- (NSString*)getPkgTitle;
+{
+    return self.dataTitle;
 }
 
 @end

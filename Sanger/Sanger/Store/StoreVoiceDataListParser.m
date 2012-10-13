@@ -7,48 +7,7 @@
 //
 
 #import "StoreVoiceDataListParser.h"
-
-
-@implementation DataPkgCourseInfo
-
-@synthesize title;
-@synthesize path;
-@synthesize file;
-@synthesize url;
-@synthesize cover;
-@synthesize receivedXMLPath;
-
-- (void)dealloc
-{
-    [self.title release];
-    [self.path release];
-    [self.file release];
-    [self.url release];
-    [self.receivedXMLPath release];
-    [super dealloc];
-}
-@end
-
-@implementation DataPkgInfo
-
-@synthesize receivedCoverImagePath;
-@synthesize title;
-@synthesize count;
-@synthesize coverURL;
-@synthesize url;
-@synthesize intro;
-@synthesize dataPkgCourseInfoArray;
-
-- (void)dealloc
-{
-    [self.title release];
-    [self.coverURL release];
-    [self.url release];
-    [self.intro release];
-    [self.dataPkgCourseInfoArray release];
-    [super dealloc];
-}
-@end
+#import "VoicePkgInfoObject.h"
 
 @implementation StoreVoiceDataListParser
 @synthesize pkgsArray;
@@ -92,7 +51,7 @@
 {
     TBXMLElement* pkg = [TBXML childElementNamed:@"pkg" parentElement:parentElement];
     while (pkg) {
-        DataPkgInfo* pkgInfo = [[DataPkgInfo alloc] init];
+        DownloadDataPkgInfo* pkgInfo = [[DownloadDataPkgInfo alloc] init];
         NSString* title = [TBXML valueOfAttributeNamed:@"title" forElement:pkg];
         pkgInfo.title = title;
         
@@ -117,7 +76,7 @@
         }
         NSMutableArray* pkgCourseArray = [[NSMutableArray alloc] init];
         while (pkgCourseElement) {
-            DataPkgCourseInfo* courseInfo = [[DataPkgCourseInfo alloc] init];
+            DownloadDataPkgCourseInfo* courseInfo = [[DownloadDataPkgCourseInfo alloc] init];
             NSString* title = [TBXML valueOfAttributeNamed:@"title" forElement:pkgCourseElement];
             courseInfo.title = title;
  

@@ -26,7 +26,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setCourseData:(DataPkgCourseInfo*)course withURL:(NSString*)parentURL;
+- (void)setCourseData:(DownloadDataPkgCourseInfo*)course withURL:(NSString*)parentURL;
 {
      _course = course;
     if (_course.receivedXMLPath == nil) {

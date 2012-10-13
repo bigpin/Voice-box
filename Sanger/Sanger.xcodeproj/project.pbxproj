@@ -44,7 +44,6 @@
 		0D279EF615DC8E9E0092874C /* TBXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E7E15DC8E9D0092874C /* TBXML.m */; };
 		0D279EF715DC8E9E0092874C /* Teacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E8015DC8E9D0092874C /* Teacher.m */; };
 		0D279EF815DC8E9E0092874C /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E8215DC8E9D0092874C /* Word.m */; };
-		0D279EF915DC8E9E0092874C /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E8515DC8E9D0092874C /* Database.m */; };
 		0D279EFA15DC8E9E0092874C /* DayByDayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E8815DC8E9D0092874C /* DayByDayObject.m */; };
 		0D279EFB15DC8E9E0092874C /* DaybyDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279E8A15DC8E9D0092874C /* DaybyDayView.m */; };
 		0D279EFC15DC8E9E0092874C /* DaybyDayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D279E8B15DC8E9D0092874C /* DaybyDayView.xib */; };
@@ -102,6 +101,9 @@
 		0D44CA6B15B155AD00400EAD /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D44CA6915B155AD00400EAD /* StoreViewController.m */; };
 		0D44CA6C15B155AD00400EAD /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D44CA6A15B155AD00400EAD /* StoreViewController.xib */; };
 		0D44CA6F15B15A2200400EAD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D44CA6E15B15A2200400EAD /* QuartzCore.framework */; };
+		0D72BAFD1626B20200883E6A /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 0D72BAFC1626B20200883E6A /* Database */; };
+		0D72BB111626C09200883E6A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D72BB101626C09200883E6A /* Database.m */; };
+		0D72BB131626C10200883E6A /* VoicePkgInfoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D72BB121626C10100883E6A /* VoicePkgInfoObject.m */; };
 		0D9ED33E16254423007BC9D1 /* Image in Resources */ = {isa = PBXBuildFile; fileRef = 0D9ED33D16254423007BC9D1 /* Image */; };
 		0D9ED34B16254C8A007BC9D1 /* configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0D9ED34A16254C8A007BC9D1 /* configuration.plist */; };
 		0D9ED34E16257119007BC9D1 /* VoicePkgShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D9ED34D16257118007BC9D1 /* VoicePkgShelfViewController.m */; };
@@ -289,8 +291,6 @@
 		0D279E8015DC8E9D0092874C /* Teacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Teacher.m; sourceTree = "<group>"; };
 		0D279E8115DC8E9D0092874C /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
 		0D279E8215DC8E9D0092874C /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
-		0D279E8415DC8E9D0092874C /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
-		0D279E8515DC8E9D0092874C /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		0D279E8715DC8E9D0092874C /* DayByDayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayByDayObject.h; sourceTree = "<group>"; };
 		0D279E8815DC8E9D0092874C /* DayByDayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayByDayObject.m; sourceTree = "<group>"; };
 		0D279E8915DC8E9D0092874C /* DaybyDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaybyDayView.h; sourceTree = "<group>"; };
@@ -384,6 +384,11 @@
 		0D44CA6915B155AD00400EAD /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = Store/StoreViewController.m; sourceTree = "<group>"; };
 		0D44CA6A15B155AD00400EAD /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = Store/StoreViewController.xib; sourceTree = "<group>"; };
 		0D44CA6E15B15A2200400EAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0D72BAFC1626B20200883E6A /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
+		0D72BB021626B4FD00883E6A /* VoicePkgInfoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoicePkgInfoObject.h; sourceTree = "<group>"; };
+		0D72BB0F1626C09200883E6A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		0D72BB101626C09200883E6A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		0D72BB121626C10100883E6A /* VoicePkgInfoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoicePkgInfoObject.m; sourceTree = "<group>"; };
 		0D9ED33D16254423007BC9D1 /* Image */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Image; sourceTree = "<group>"; };
 		0D9ED34A16254C8A007BC9D1 /* configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configuration.plist; sourceTree = "<group>"; };
 		0D9ED34C16257118007BC9D1 /* VoicePkgShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VoicePkgShelfViewController.h; path = Sanger/Shelf/VoicePkgShelfViewController.h; sourceTree = SOURCE_ROOT; };
@@ -710,7 +715,6 @@
 				0D279E6015DC8E9D0092874C /* Cells */,
 				0D279E6A15DC8E9D0092874C /* Configuration */,
 				0D279E6D15DC8E9D0092874C /* CourseParser */,
-				0D279E8315DC8E9D0092874C /* Database */,
 				0D279E8615DC8E9D0092874C /* DaybyDay */,
 				0D279E8F15DC8E9D0092874C /* Favor */,
 				0D279E9315DC8E9D0092874C /* iPublicUtility */,
@@ -782,15 +786,6 @@
 				0D279E7E15DC8E9D0092874C /* TBXML.m */,
 			);
 			path = TBXML;
-			sourceTree = "<group>";
-		};
-		0D279E8315DC8E9D0092874C /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				0D279E8415DC8E9D0092874C /* Database.h */,
-				0D279E8515DC8E9D0092874C /* Database.m */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		0D279E8615DC8E9D0092874C /* DaybyDay */ = {
@@ -985,6 +980,7 @@
 		0D44CA4315B14C6200400EAD /* Sanger */ = {
 			isa = PBXGroup;
 			children = (
+				0D72BB011626B4FC00883E6A /* Shared */,
 				0DC571CE16070D2000A5D17B /* Shelf */,
 				0D279E1D15DC8D950092874C /* Voice */,
 				0D44CA6715B1551E00400EAD /* Store */,
@@ -1052,6 +1048,17 @@
 			name = Box;
 			sourceTree = "<group>";
 		};
+		0D72BB011626B4FC00883E6A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				0D72BB0F1626C09200883E6A /* Database.h */,
+				0D72BB101626C09200883E6A /* Database.m */,
+				0D72BB021626B4FD00883E6A /* VoicePkgInfoObject.h */,
+				0D72BB121626C10100883E6A /* VoicePkgInfoObject.m */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		0D9ED34916254C8A007BC9D1 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -1064,6 +1071,8 @@
 		0DC571C516070CCC00A5D17B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0D9ED34916254C8A007BC9D1 /* Setting */,
+				0D72BAFC1626B20200883E6A /* Database */,
 				0DC571C616070CCC00A5D17B /* Imges */,
 			);
 			path = Resource;
@@ -1072,7 +1081,6 @@
 		0DC571C616070CCC00A5D17B /* Imges */ = {
 			isa = PBXGroup;
 			children = (
-				0D9ED34916254C8A007BC9D1 /* Setting */,
 				0D9ED33D16254423007BC9D1 /* Image */,
 				0D2437BD160FE7B000AA4039 /* App */,
 				0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */,
@@ -1431,6 +1439,7 @@
 				0D9ED33E16254423007BC9D1 /* Image in Resources */,
 				0D9ED34B16254C8A007BC9D1 /* configuration.plist in Resources */,
 				0D9ED35E1625764E007BC9D1 /* VoicePkgShelfCell.xib in Resources */,
+				0D72BAFD1626B20200883E6A /* Database in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1463,7 +1472,6 @@
 				0D279EF615DC8E9E0092874C /* TBXML.m in Sources */,
 				0D279EF715DC8E9E0092874C /* Teacher.m in Sources */,
 				0D279EF815DC8E9E0092874C /* Word.m in Sources */,
-				0D279EF915DC8E9E0092874C /* Database.m in Sources */,
 				0D279EFA15DC8E9E0092874C /* DayByDayObject.m in Sources */,
 				0D279EFB15DC8E9E0092874C /* DaybyDayView.m in Sources */,
 				0D279EFD15DC8E9E0092874C /* DaybyDayViewController.m in Sources */,
@@ -1525,6 +1533,8 @@
 				0D9ED34E16257119007BC9D1 /* VoicePkgShelfViewController.m in Sources */,
 				0D9ED35116257151007BC9D1 /* VoicePkgTableViewController.m in Sources */,
 				0D9ED35C162575FB007BC9D1 /* VoicePkgShelfCell.m in Sources */,
+				0D72BB111626C09200883E6A /* Database.m in Sources */,
+				0D72BB131626C10200883E6A /* VoicePkgInfoObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1583,7 +1593,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lz";
 				PREBINGDING = NO;
@@ -1605,7 +1615,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = "-lz";
 				PREBINGDING = NO;

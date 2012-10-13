@@ -14,6 +14,12 @@
 
 @class XMLAuthorsViewController;
 
+@protocol LessonsViewControllerDelegate <NSObject>
+
+- (NSString*)getPkgTitle;
+
+@end
+
 @interface LessonsViewController : UITableViewController {
      NSString* _scenesName;
     CourseParser* _courseParser;
@@ -26,6 +32,8 @@
 @property (nonatomic, retain) NSString* scenesName;
 @property (nonatomic, retain) UISegmentedControl* pageSegment;
 @property (nonatomic, retain) NSString* dataPath;
+@property (nonatomic, assign) id<LessonsViewControllerDelegate> delegate;
+
 - (void) loadCourses;
 - (void) loadToolbarItems;
 - (void) onPrevious:(id)sender;

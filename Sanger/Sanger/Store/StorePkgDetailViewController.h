@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StoreVoiceDataListParser.h"
+#import "VoicePkgInfoObject.h"
+@protocol StorePkgDetailViewControllerDelegate <NSObject>
+
+- (void)doDownload:(DownloadDataPkgInfo*)info;
+@end
 
 @interface StorePkgDetailViewController : UITableViewController
 
-@property (nonatomic, retain, readwrite) DataPkgInfo* info;
+@property (nonatomic, retain, readwrite) DownloadDataPkgInfo* info;
+@property (nonatomic, assign) id<StorePkgDetailViewControllerDelegate>delegate;
 
 + (CGSize)calcTextHeight:(NSString *)str withWidth:(CGFloat)width withFontSize:(CGFloat)fontSize;
 

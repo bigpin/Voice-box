@@ -70,7 +70,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setVoiceData:(DataPkgInfo*)info
+- (void)setVoiceData:(DownloadDataPkgInfo*)info
 {
     _info = info;
     self.titleLabel.text = info.title;

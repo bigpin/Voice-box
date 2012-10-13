@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StoreVoiceDataListParser.h"
+#import "VoicePkgInfoObject.h"
 
 typedef enum {
 	STORE_DOWNLOADING_STATUS_None           = 0,
@@ -25,13 +25,13 @@ typedef enum {
 
 @protocol StorePkgDetailTableViewCellDelegate <NSObject>
 
-- (void)doDownload;
+- (void)doDownload:(DownloadDataPkgInfo*)info;
 - (void)updateButtonStatus;
 
 @end
 @interface StorePkgDetailTableViewCell : UITableViewCell
 {
-    DataPkgInfo* _info;
+    DownloadDataPkgInfo* _info;
 
 }
 
@@ -40,7 +40,7 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIButton* downloadButton;
 @property (nonatomic, assign) id<StorePkgDetailTableViewCellDelegate> delegate;
 
-- (void)setVoiceData:(DataPkgInfo*)info;
+- (void)setVoiceData:(DownloadDataPkgInfo*)info;
 - (void)setButtomImage;
 - (IBAction)clickButton:(id)sender;
 @end

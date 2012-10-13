@@ -34,7 +34,6 @@
 - (void) loadCourses:(NSString*)filename;
 - (void) loadMetadata:(TBXMLElement*)element;
 - (void) loadLessons:(TBXMLElement*)element;
-
 // Load in ....xml
 - (void) loadLesson:(NSInteger)lessonindex;
 - (void) loadSentence:(TBXMLElement*)element

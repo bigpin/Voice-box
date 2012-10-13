@@ -7,14 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface VoiceDataPkgObject : NSObject
-
-@property (nonatomic, retain) NSString* dataPath;
-@property (nonatomic, retain) NSString* dataTitle;
-@property (nonatomic, retain) NSString* dataCover;
-@property (nonatomic, retain) NSNumber* dataNumber;
-@end
+#import "VoicePkgInfoObject.h"
 
 @protocol VoicePkgTableViewControllerDelegate <NSObject>
 
@@ -32,5 +25,6 @@
 }
 @property (nonatomic, assign) id<VoicePkgTableViewControllerDelegate>delegate;
 - (void)loadPkgArray;
+- (void)checkPkgfromFolder;
 - (void)reloadPkgTable;
 @end

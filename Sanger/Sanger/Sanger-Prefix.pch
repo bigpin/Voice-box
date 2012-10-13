@@ -15,6 +15,8 @@
 
 #import "VoiceDef.h"
 
+#define NOTIFICATION_DOWNLOADED_VOICE_PKGXML   @"DownloadedVoicePkgXML"
+
 #define STRING_MY_DATA_CENTER @"我的资料库"
 #define STRING_DATA_CENTER @"在线资料"
 #define VALUE_TITLEBAR_COLOR_R 51.0/255.0
@@ -30,10 +32,12 @@
 #define STRING_DATA_SAMPLE_2 @"职场英语"
 #define STRING_LOADINGDATA_WAITING @"正在载入..."
 #define STRING_LOADINGDATA_ERROR @"网络连接错误"
-#define STRING_DOWNLOAD         @"免费"
-#define STRING_DOWNLOADING      @"下载中"
-#define STRING_DOWNLOADED       @"已下载"
+#define STRING_DOWNLOAD         @"收藏"
+#define STRING_DOWNLOADING      @"收藏中"
+#define STRING_DOWNLOADED       @"已收藏"
 #define STRING_INTRO_TITLE      @"内容简介："
 #define STRING_LESSONS_TITLE    @"课程内容："
 
 #define STRING_VOICE_PKG_DIR    @"VoicePkgData"
+#define SUB_DIR_DOCUMENT				@"/Documents/"
+#define SUB_DIR_CACHE                   @"/Caches/"

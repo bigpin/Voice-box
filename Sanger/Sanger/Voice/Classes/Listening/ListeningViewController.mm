@@ -10,6 +10,8 @@
 #import "ListeningViewController.h"
 #import "Sentence.h"
 #import "Teacher.h"
+#import "Lesson.h"
+#import "Course.h"
 #import "UACellBackgroundView.h"
 #import "BubbleCell.h"
 #import "ListeningVolumView.h"
@@ -18,6 +20,8 @@
 #import "isaybio.h"
 #import "ConfigData.h"
 #import "VoiceDef.h"
+#import "GTMHTTPFetcher.h"
+#import "Database.h"
 
 #define LOADINGVIEWTAG      20933
 @implementation ListeningViewController
@@ -34,6 +38,8 @@
 @synthesize wavefile;
 @synthesize player;
 @synthesize isbfile = _isbfile;
+@synthesize courseParser;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -84,6 +90,7 @@
     [resourcePath release];
     [self.player stop];
     [self.player release];
+    [self.courseParser release];
     [super dealloc];
 }
 
@@ -128,6 +135,19 @@
     [self.progressBar addTarget:self action:@selector(onChangingGotoSentence:) forControlEvents:UIControlEventTouchDragInside];
     
     self.progressBar.continuous = NO;
+    
+     
+    //[self downloadLesson];
+    /*
+    Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+   [self.courseParser loadLesson:self.nPositionInCourse];
+    self.sentencesArray = lesson.setences;
+    self.teachersArray = lesson.teachers;
+    self.wavefile = lesson.wavfile;
+    self.isbfile = lesson.isbfile;
+    self.navigationItem.title = lesson.title;
+
+    
     // 解压wave
     NSFileManager* fileMgr = [NSFileManager defaultManager];
     if (![fileMgr fileExistsAtPath:wavefile]) {
@@ -138,7 +158,7 @@
         [self performSelector:@selector(parseWAVFile) withObject:nil afterDelay:2.0];
     } else {
         [self initValue];
-    }
+    }*/
 }
 
 - (void)addLoadingView;
@@ -1041,6 +1061,71 @@
     ePlayStatus = PLAY_STATUS_PAUSING;
     [player pause];
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
+- (void)downloadLesson;
+{
+    Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+    Course* c  = self.courseParser.course;
+    NSLog(@"course title %@", c.title);
+    NSLog(@"resourcepath %@", self.courseParser.resourcePath);
+    NSLog(@"file %@",lesson.file);
+    NSLog(@"path %@",lesson.path);
+    NSLog(@"isbfile %@", lesson.isbfile);
+    NSLog(@"title %@", lesson.title);
+    [self startDownload];
+}
+
+- (void)startDownload;
+{
+    Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+     Database* db = [Database sharedDatabase];
+    Course* c  = self.courseParser.course;
+   
+    VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:[self.delegate getPkgTitle]];
+    if (info == nil) {
+        return;
+    }
+    NSString* xatFile = [lesson.file substringToIndex:[lesson.file length] - 4];
+    xatFile = [xatFile stringByAppendingPathExtension:@"xat"];
+    xatFile = lesson.file;
+    NSString* path = [NSString stringWithFormat:@"%@%@/%@/%@/%@", info.url,[self.delegate getPkgTitle],  c.title, lesson.path,xatFile];
+    
+    NSLog(@"download xat %@", path);
+    NSURL* url = [NSURL URLWithString:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"cover" forHTTPHeaderField:@"User-Agent"];
+    
+    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
+    [fetcher beginFetchWithDelegate:self
+                  didFinishSelector:@selector(fetcher:finishedWithData:error:)];
+    
+    
+}
+
+- (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
+{
+    if (error != nil) {
+        
+    } else {
+        Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+        Course* c  = self.courseParser.course;
+        Database* db = [Database sharedDatabase];
+        VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:c.title];
+        if (info == nil) {
+            return;
+        }
+        //NSLog(info.dataPath);
+        NSFileManager* fileManager = [NSFileManager defaultManager];
+        NSString* xatFile = [lesson.file substringToIndex:[lesson.file length] - 4];
+        xatFile = [xatFile stringByAppendingPathExtension:@"xat"];
+        
+        NSString* path = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, c.title, lesson.path, xatFile];
+        if (![fileManager fileExistsAtPath:path]) {
+            [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        [data writeToFile:path atomically:YES];
+    }
 }
 
 @end

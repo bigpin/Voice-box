@@ -15,6 +15,13 @@
 @end
 
 @implementation SangerViewController
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (_voicePkgShelfViewController != nil) {
+        [_voicePkgShelfViewController reloadPkgShelf];
+    }
+}
 
 - (void)viewDidLoad
 {

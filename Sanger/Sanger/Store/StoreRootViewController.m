@@ -10,6 +10,7 @@
 #import "StoreVoiceDataListParser.h"
 #import "StorePkgTableViewCell.h"
 #import "StorePkgDetailViewController.h"
+#import "StoreDownloadPkg.h"
 
 @interface StoreRootViewController ()
 
@@ -111,7 +112,7 @@
     }
     NSInteger i = indexPath.row;// - 1;
     if (i < [pkgArray count]) {
-        DataPkgInfo* info = [pkgArray objectAtIndex:i];
+        DownloadDataPkgInfo* info = [pkgArray objectAtIndex:i];
         [cell setVoiceData:info];
    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -165,10 +166,11 @@
     // Navigation logic may go here. Create and push another view controller.
     
     StorePkgDetailViewController *detailViewController = [[StorePkgDetailViewController alloc] initWithStyle:UITableViewStylePlain];
+    detailViewController.delegate = (id)self;
      // ...
     NSInteger i = indexPath.row;// - 1;
     if (i < [pkgArray count]) {
-        DataPkgInfo* info = [pkgArray objectAtIndex:i];
+        DownloadDataPkgInfo* info = [pkgArray objectAtIndex:i];
         detailViewController.info = info;
     }
      // Pass the selected object to the new view controller.
@@ -178,4 +180,10 @@
      
 }
 
+- (void)doDownload:(DownloadDataPkgInfo*)info
+{
+    StoreDownloadPkg* downloadPkg = [[StoreDownloadPkg alloc] init];
+    downloadPkg.info = info;
+    [downloadPkg doDownload];
+}
 @end

@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "StoreVoiceDataListParser.h"
+#import "VoicePkgInfoObject.h"
 
 @interface StoreCourceTableViewCell : UITableViewCell
 {
-    DataPkgCourseInfo* _course;
+    DownloadDataPkgCourseInfo* _course;
 }
 
-- (void)setCourseData:(DataPkgCourseInfo*)course withURL:(NSString*)parentURL;
+- (void)setCourseData:(DownloadDataPkgCourseInfo*)course withURL:(NSString*)parentURL;
 
 @end

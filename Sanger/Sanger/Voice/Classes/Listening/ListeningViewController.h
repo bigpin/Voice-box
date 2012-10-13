@@ -10,6 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import "ListeningToolbar.h"
 #import "SettingData.h"
+#import "CourseParser.h"
+
 
 #define VOLUMNVIEW_TAG  50001
 
@@ -26,6 +28,11 @@ typedef enum {
 	PLAY_STATUS_PAUSING,
 	PLAY_STATUS_PAUSING_END
 } PLAY_STATUS;
+@protocol ListeningViewControllerDelegate <NSObject>
+
+- (NSString*)getPkgTitle;
+
+@end
 
 @interface ListeningViewController : UIViewController {
     NSMutableArray*                 _sentencesArray;
@@ -78,6 +85,9 @@ typedef enum {
 @property (nonatomic, retain) NSString* isbfile;
 @property (nonatomic, retain) AVAudioPlayer* player;
 
+@property (nonatomic, assign) NSInteger nPositionInCourse;
+@property (nonatomic, retain) CourseParser* courseParser;
+@property (nonatomic, assign) id<ListeningViewControllerDelegate>delegate;
 - (void)initMembers;
 - (void)initValue;
 - (void)parseWAVFile;
@@ -101,4 +111,6 @@ typedef enum {
 - (void)playfromCurrentPos;
 - (void)pauseintime;
 - (void)setStatusPause;
+- (void)downloadLesson;
+
 @end

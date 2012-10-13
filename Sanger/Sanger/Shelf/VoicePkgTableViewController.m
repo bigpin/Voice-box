@@ -9,16 +9,11 @@
 #import "VoicePkgTableViewController.h"
 #import "VoicePkgShelfCell.h"
 #import "ScenesCoverViewController.h"
+#import "Database.h"
+
 #define DEFAULT_TABLEVIEWHEITHT_IPHONE 116
 #define DEFAULT_TABLEVIEWHEITHT_IPAD 220
 #define DEFAULT_BOOKCOVERCOUNT	3
-
-@implementation VoiceDataPkgObject
-@synthesize  dataPath;
-@synthesize  dataTitle;
-@synthesize  dataCover;
-@synthesize dataNumber;
-@end
 
 @interface VoicePkgTableViewController ()
 
@@ -42,11 +37,15 @@
 
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
  	self.tableView.rowHeight = IS_IPAD ? DEFAULT_TABLEVIEWHEITHT_IPAD : DEFAULT_TABLEVIEWHEITHT_IPHONE;
-	NSInteger bookCoverWidth = IS_IPAD ? 135 :70;
-	NSInteger bookCoverHeight = IS_IPAD ? 185 : 95;
+	NSInteger bookCoverWidth = IS_IPAD ? 83 :70;
+	NSInteger bookCoverHeight = IS_IPAD ? 100 : 95;
     self.view.backgroundColor = [UIColor clearColor];
 	szBookCover = CGSizeMake(bookCoverWidth, bookCoverHeight);
-	nCountPerRow = DEFAULT_BOOKCOVERCOUNT;
+     if (IS_IPAD) {
+        nCountPerRow = 4 ;
+    } else {
+        nCountPerRow = 3 ;
+    }
 	nDY = IS_IPAD ? 20 : 15;
     [self loadPkgArray];
    // Uncomment the following line to preserve selection between presentations.
@@ -122,7 +121,6 @@
 		if (index < [_pkgArray count]) {
             VoicePkgShelfCell* cover = [[VoicePkgShelfCell alloc] initWithFrame:CGRectMake(i * szBookCover.width + (i + 1) * dx, dy, szBookCover.width, szBookCover.height)];
 			[cell.contentView addSubview:cover];
-			NSLog(@"index %d", index);
             cover.index = index;
 			VoiceDataPkgObject* pkg = [_pkgArray objectAtIndex:index];
             [cover setBookCover:[UIImage imageWithContentsOfFile:pkg.dataCover]];
@@ -190,9 +188,15 @@
      */
 }
 
-- (void)loadPkgArray;
+- (void)loadPkgArray
 {
-    NSFileManager *fm = [NSFileManager defaultManager];
+    Database* db = [Database sharedDatabase];
+    _pkgArray = [db loadVoicePkgInfo];
+}
+
+- (void)checkPkgfromFolder;
+{
+     NSFileManager *fm = [NSFileManager defaultManager];
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
 	NSString *documentDirectory = [paths objectAtIndex:0];
 	if (![fm fileExistsAtPath:documentDirectory isDirectory:nil])
@@ -205,12 +209,14 @@
         [fm createDirectoryAtPath:documentDirectory withIntermediateDirectories:YES attributes:nil error:nil];
     
     NSMutableArray* array = [[NSMutableArray alloc] init];
+    
     NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath:documentDirectory];
+    [dirEnum skipDescendants];
     NSString* file = [dirEnum nextObject];
     while (file) {
-        NSRange range = [file rangeOfString:@"/" options:NSBackwardsSearch];
         NSLog(@"%@", file);
-        if (range.location != NSNotFound) {
+        NSRange range = [file rangeOfString:@"/" options:NSBackwardsSearch];
+          if (range.location != NSNotFound) {
             file = [dirEnum nextObject];
             continue;
         }
@@ -250,7 +256,18 @@
 - (void)reloadPkgTable;
 {
     UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
-    nCountPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 3 :4;
+    if (IS_IPAD) {
+        nCountPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 4 :6;
+    } else {
+        nCountPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 3 :4;
+
+    }
+    if (_pkgArray != nil) {
+        [_pkgArray release];
+        _pkgArray = nil;
+        Database* db = [Database sharedDatabase];
+        _pkgArray = [db loadVoicePkgInfo];
+    }
     [self.tableView reloadData];
 }
 @end

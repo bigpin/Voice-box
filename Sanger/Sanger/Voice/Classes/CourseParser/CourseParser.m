@@ -140,6 +140,7 @@
 	}
 }
 
+
 - (void)loadLesson:(NSInteger)lessonindex
 {
     Lesson* lesson = [course.lessons objectAtIndex:lessonindex];
@@ -152,6 +153,7 @@
 		// load file
         NSString* fullFilename = [resourcePath stringByAppendingPathComponent:lesson.path];
         fullFilename = [fullFilename stringByAppendingPathComponent:lesson.file];
+    
        // NSLog(@"%@", fullFilename);
         
         // 解压xml文件

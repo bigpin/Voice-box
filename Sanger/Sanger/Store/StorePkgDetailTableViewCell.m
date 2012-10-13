@@ -9,6 +9,7 @@
 #import "StorePkgDetailTableViewCell.h"
 #import "GTMHTTPFetcher.h"
 #import "StoreDownloadPkg.h"
+#import "Database.h"
 
 @implementation DetailCustomBackgroundView
 @synthesize bUpToDown;
@@ -94,6 +95,9 @@
 
 - (void)setButtomImage
 {
+	NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+	[center addObserver:self selector:@selector(didDownloadedXML:) name:NOTIFICATION_DOWNLOADED_VOICE_PKGXML object:nil];
+
     [self.downloadButton setTitle:STRING_DOWNLOAD forState:UIControlStateNormal];
     UIImage *greenButtonImage = [UIImage imageNamed:@"buttonblue_normal.png"];
     UIImage *stretchableGreenButton = [greenButtonImage stretchableImageWithLeftCapWidth:6 topCapHeight:6];
@@ -104,9 +108,15 @@
     [self.downloadButton setBackgroundImage:stretchabledarkGreenButton forState:UIControlStateHighlighted];
 }
 
-- (void)setVoiceData:(DataPkgInfo*)info
+- (void)setVoiceData:(DownloadDataPkgInfo*)info
 {
     [self setButtomImage];
+    Database* db = [Database sharedDatabase];
+    if ([db loadVoicePkgInfoByTitle:info.title] != nil) {
+        [self.downloadButton setTitle:STRING_DOWNLOADED forState:UIControlStateNormal];
+        [self.downloadButton setEnabled:NO];
+    }
+    
     _info = info;
     self.titleLabel.text = info.title;
      if (info.receivedCoverImagePath == nil) {
@@ -158,11 +168,19 @@
         // begin download
         [self.downloadButton  setTitle:STRING_DOWNLOADING forState:UIControlStateNormal];
         self.downloadButton.enabled = NO;
-        [self.delegate doDownload];
+        [self.delegate doDownload:_info];
         /*StoreDownloadPkg* downloadPkg = [[StoreDownloadPkg alloc] init];
         downloadPkg.info = _info;
         [downloadPkg doDownload];*/
     }
 }
 
+- (void)didDownloadedXML:(NSNotification *)aNotification
+{
+	NSString *infoTitle = [aNotification object];
+    if ([infoTitle isEqualToString:_info.title]) {
+        [self.downloadButton setTitle:STRING_DOWNLOADED forState:UIControlStateNormal];
+        [self.downloadButton setEnabled:NO];
+    }
+}
 @end
