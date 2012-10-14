@@ -69,6 +69,8 @@ typedef enum {
     NSInteger                       nLastScrollPos;
     BOOL                            bInit;
     BOOL                            bParseWAV;
+    BOOL                            _bDownloadedXAT;
+    BOOL                            _bDownloadedISB;
 }
 
 @property (nonatomic, retain) NSMutableArray* sentencesArray;
@@ -91,8 +93,12 @@ typedef enum {
 - (void)initMembers;
 - (void)initValue;
 - (void)parseWAVFile;
+- (void)addWaitingView:(NSInteger)tag withText:(NSString*)text withAnimation:(BOOL)animated;
 - (void)addLoadingView;
 - (void)removeLoadingView;
+- (void)addDownloadingView;
+- (void)removeDownloadingView;
+- (void)addDownloadingFailedView;
 - (IBAction)onPrevious:(id)sender;
 - (IBAction)onNext:(id)sender;
 - (IBAction)onOther:(id)sender;
@@ -111,6 +117,7 @@ typedef enum {
 - (void)playfromCurrentPos;
 - (void)pauseintime;
 - (void)setStatusPause;
-- (void)downloadLesson;
+- (BOOL)downloadLesson;
+- (void)displayLesson;
 
 @end

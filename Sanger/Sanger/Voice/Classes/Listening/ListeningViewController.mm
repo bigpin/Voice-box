@@ -24,6 +24,7 @@
 #import "Database.h"
 
 #define LOADINGVIEWTAG      20933
+#define DOWNLOADINGVIEWTAG  20936
 @implementation ListeningViewController
 @synthesize sentencesArray = _sentencesArray;
 @synthesize teachersArray = _teachersArray;
@@ -107,6 +108,8 @@
 - (void)initMembers;
 {
     NSString* backString = STRING_BACK;
+    _bDownloadedXAT = NO;
+    _bDownloadedISB = NO;
     [self.sentencesTableView setBackgroundView:nil];
     [self.sentencesTableView setBackgroundView:[[[UIView alloc] init] autorelease]];
     [self.sentencesTableView setBackgroundColor:UIColor.clearColor];
@@ -136,17 +139,26 @@
     
     self.progressBar.continuous = NO;
     
-     
-    //[self downloadLesson];
-    /*
+    
+    if (![self downloadLesson]) {
+        return;
+    }
+
+    if (_bDownloadedISB && _bDownloadedXAT) {
+        [self displayLesson];
+    }
+}
+
+- (void)displayLesson;
+{
     Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
-   [self.courseParser loadLesson:self.nPositionInCourse];
+    [self.courseParser loadLesson:self.nPositionInCourse];
     self.sentencesArray = lesson.setences;
     self.teachersArray = lesson.teachers;
     self.wavefile = lesson.wavfile;
     self.isbfile = lesson.isbfile;
     self.navigationItem.title = lesson.title;
-
+    
     
     // 解压wave
     NSFileManager* fileMgr = [NSFileManager defaultManager];
@@ -158,24 +170,35 @@
         [self performSelector:@selector(parseWAVFile) withObject:nil afterDelay:2.0];
     } else {
         [self initValue];
-    }*/
+    }
 }
 
-- (void)addLoadingView;
+- (void)addWaitingView:(NSInteger)tag withText:(NSString*)text withAnimation:(BOOL)animated;
 {
     UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 140, 80)];
     loadingView.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5];
     loadingView.layer.cornerRadius = 8;
-    loadingView.tag = LOADINGVIEWTAG;
+    loadingView.tag = tag;
     loadingView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin |UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     UIActivityIndicatorView* activeView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [activeView startAnimating];
     activeView.center = CGPointMake(loadingView.center.x, loadingView.center.y - 10) ;
     [loadingView addSubview:activeView];
+    if (animated) {
+        [activeView startAnimating];
+    } else {
+        [activeView stopAnimating];
+    }
     [activeView release];
-    UILabel* loadingText = [[UILabel alloc] initWithFrame:CGRectMake(0, loadingView.frame.size.height - 30, loadingView.frame.size.width, 20)];
+
+    CGRect rcLoadingText;
+    if (animated) {
+        rcLoadingText = CGRectMake(0, loadingView.frame.size.height - 30, loadingView.frame.size.width, 20);
+    } else {
+        rcLoadingText = CGRectMake(0, (loadingView.frame.size.height - 20) / 2, loadingView.frame.size.width, 20);
+    }
+    UILabel* loadingText = [[UILabel alloc] initWithFrame:rcLoadingText];
     loadingText.textColor = [UIColor whiteColor];
-    loadingText.text = STRING_LOADING_TEXT;
+    loadingText.text = text;
     loadingText.font = [UIFont systemFontOfSize:14];
     loadingText.backgroundColor = [UIColor clearColor];
     loadingText.textAlignment  = UITextAlignmentCenter;
@@ -184,6 +207,11 @@
     loadingView.center = self.view.center;
     [self.view addSubview:loadingView];
     [loadingView release];
+
+}
+- (void)addLoadingView;
+{
+    [self addWaitingView:LOADINGVIEWTAG withText:STRING_LOADING_TEXT withAnimation:YES];
 }
 
 - (void)removeLoadingView;
@@ -192,6 +220,31 @@
     if (loadingView != nil) {
         [loadingView removeFromSuperview];
     }
+}
+
+- (void)addDownloadingView
+{
+    self.sentencesTableView.hidden = YES;
+    [self.navigationItem setHidesBackButton:YES animated:YES];
+   [self removeDownloadingView];
+    [self addWaitingView:DOWNLOADINGVIEWTAG withText:STRING_DOWNLOADING_TEXT withAnimation:YES];
+
+}
+
+- (void)removeDownloadingView
+{
+    UIView* loadingView = [self.view viewWithTag:DOWNLOADINGVIEWTAG];
+    if (loadingView != nil) {
+        [loadingView removeFromSuperview];
+    }
+
+}
+
+- (void)addDownloadingFailedView;
+{
+    self.sentencesTableView.hidden = NO;
+    [self.navigationItem setHidesBackButton:NO animated:YES];
+    [self addWaitingView:DOWNLOADINGVIEWTAG withText:STRING_DOWNLOADING_FAILED_TEXT withAnimation:NO];
 }
 
 - (void)viewDidLoad
@@ -1063,68 +1116,114 @@
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
-- (void)downloadLesson;
+- (BOOL)downloadLesson;
 {
+    return NO;
     Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+    Database* db = [Database sharedDatabase];
     Course* c  = self.courseParser.course;
-    NSLog(@"course title %@", c.title);
-    NSLog(@"resourcepath %@", self.courseParser.resourcePath);
-    NSLog(@"file %@",lesson.file);
-    NSLog(@"path %@",lesson.path);
-    NSLog(@"isbfile %@", lesson.isbfile);
-    NSLog(@"title %@", lesson.title);
-    [self startDownload];
-}
-
-- (void)startDownload;
-{
-    Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
-     Database* db = [Database sharedDatabase];
-    Course* c  = self.courseParser.course;
-   
+    
     VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:[self.delegate getPkgTitle]];
     if (info == nil) {
-        return;
+        return NO;
     }
-    NSString* xatFile = [lesson.file substringToIndex:[lesson.file length] - 4];
-    xatFile = [xatFile stringByAppendingPathExtension:@"xat"];
-    xatFile = lesson.file;
-    NSString* path = [NSString stringWithFormat:@"%@%@/%@/%@/%@", info.url,[self.delegate getPkgTitle],  c.title, lesson.path,xatFile];
     
-    NSLog(@"download xat %@", path);
-    NSURL* url = [NSURL URLWithString:path];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"cover" forHTTPHeaderField:@"User-Agent"];
+    NSMutableDictionary* dic = [[[NSMutableDictionary alloc] init] autorelease];
+    NSFileManager* fileManager = [NSFileManager defaultManager];
     
-    GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
-    [fetcher beginFetchWithDelegate:self
-                  didFinishSelector:@selector(fetcher:finishedWithData:error:)];
+    [dic setObject:lesson.file forKey:@"lessonFile"];
+    [dic setObject:info.dataPath forKey:@"dataPath"];
+    [dic setObject:c.title forKey:@"title"];
+    [dic setObject:lesson.path forKey:@"lessonPath"];
+
+    NSString* dataFile = [lesson.file substringToIndex:[lesson.file length] - 4];
+    {
+        NSString* xatFile = [dataFile stringByAppendingPathExtension:@"xat"];
+        NSString* xatURLpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, xatFile];
+        
+        NSString* xatDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, c.title, lesson.path, xatFile];
+        NSLog(@"xatURLPath:  %@", xatURLpath);
+        NSLog(@"xatDataPath:  %@", xatDatafile);
+     
+        
+      if (![fileManager fileExistsAtPath:xatDatafile]) {
+            NSURL* url = [NSURL URLWithString:xatURLpath];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+            [request setValue:@"xat" forHTTPHeaderField:@"User-Agent"];
+           [dic setObject:@"xat" forKey:@"fileType"];
+            GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
+            fetcher.userData = dic;
+            [fetcher beginFetchWithDelegate:self
+                          didFinishSelector:@selector(fetcher:finishedWithData:error:)];
+           
+           _bDownloadedXAT = NO;
+       } else {
+           _bDownloadedXAT = YES;
+       }
+    }
     
+    NSString* isbFile = [dataFile stringByAppendingPathExtension:@"isb"];
+    NSString* isbpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, isbFile];
+    NSString* isbDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, c.title, lesson.path, isbFile];
+    NSLog(@"isbPath:  %@", isbpath);
+    NSLog(@"isbDataPath:  %@", isbDatafile);
+    if (![fileManager fileExistsAtPath:isbDatafile]) {
+        NSURL* url = [NSURL URLWithString:isbpath];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [request setValue:@"isb" forHTTPHeaderField:@"User-Agent"];
+        [dic setObject:@"isb" forKey:@"fileType"];
+        GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
+        fetcher.userData = dic;
+        [fetcher beginFetchWithDelegate:self
+                      didFinishSelector:@selector(fetcher:finishedWithData:error:)];
+        _bDownloadedISB = NO;
+        
+    } else {
+        _bDownloadedISB = YES;
+    }
     
+    if (!_bDownloadedISB || !_bDownloadedXAT) {
+        [self addDownloadingView];
+    }
+    return YES;
 }
 
 - (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
 {
     if (error != nil) {
-        
+        [self removeDownloadingView];
+        [self addDownloadingFailedView];
     } else {
-        Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
-        Course* c  = self.courseParser.course;
-        Database* db = [Database sharedDatabase];
-        VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:c.title];
-        if (info == nil) {
-            return;
-        }
-        //NSLog(info.dataPath);
-        NSFileManager* fileManager = [NSFileManager defaultManager];
-        NSString* xatFile = [lesson.file substringToIndex:[lesson.file length] - 4];
-        xatFile = [xatFile stringByAppendingPathExtension:@"xat"];
         
-        NSString* path = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, c.title, lesson.path, xatFile];
+        NSMutableDictionary* dic = fecther.userData;
+        NSFileManager* fileManager = [NSFileManager defaultManager];
+        NSString* lessonPath = [dic objectForKey:@"lessonPath"];
+        NSString* dataPath = [dic objectForKey:@"dataPath"];
+        NSString* courseTitle = [dic objectForKey:@"title"];
+        NSString* lessonFile = [dic objectForKey:@"lessonFile"];
+        NSString* xatFile = [lessonFile substringToIndex:[lessonFile length] - 4];
+        
+        NSString* fileType = [dic objectForKey:@"fileType"];
+        if ([fileType isEqualToString:@"xat"]) {
+            xatFile = [xatFile stringByAppendingPathExtension:@"xat"];
+            _bDownloadedXAT = YES;
+         } else if ([fileType isEqualToString:@"isb"]) {
+            xatFile = [xatFile stringByAppendingPathExtension:@"isb"];
+             _bDownloadedISB = YES;
+        }
+        NSString* path = [NSString stringWithFormat:@"%@/%@/%@",dataPath, courseTitle, lessonPath];
+        
         if (![fileManager fileExistsAtPath:path]) {
             [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
         }
-        [data writeToFile:path atomically:YES];
+         NSString* filePath = [NSString stringWithFormat:@"%@/%@", path, xatFile];
+        NSLog(@"write path: %@", filePath);
+        [data writeToFile:filePath atomically:YES];
+        
+        if (_bDownloadedISB && _bDownloadedXAT) {
+            [self removeDownloadingView];
+            [self displayLesson];
+        }
     }
 }
 
