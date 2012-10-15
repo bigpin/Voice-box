@@ -59,7 +59,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:VALUE_TITLEBAR_COLOR_R green:VALUE_TITLEBAR_COLOR_G blue:VALUE_TITLEBAR_COLOR_B alpha:1.0];
 
     
-    NSURL* url = [NSURL URLWithString:@"http://hd2002105.ourhost.cn/index_android.xml"];
+    NSURL* url = [NSURL URLWithString:STRING_STORE_URL_ADDRESS];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"MyApp" forHTTPHeaderField:@"User-Agent"];
     

@@ -169,6 +169,8 @@
         [self.navigationItem setHidesBackButton:YES animated:YES];
         [self performSelector:@selector(parseWAVFile) withObject:nil afterDelay:2.0];
     } else {
+        self.sentencesTableView.hidden = NO;
+        [self.navigationItem setHidesBackButton:NO animated:YES];
         [self initValue];
     }
 }
@@ -1118,10 +1120,8 @@
 
 - (BOOL)downloadLesson;
 {
-    return NO;
     Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
     Database* db = [Database sharedDatabase];
-    Course* c  = self.courseParser.course;
     
     VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:[self.delegate getPkgTitle]];
     if (info == nil) {
@@ -1133,7 +1133,7 @@
     
     [dic setObject:lesson.file forKey:@"lessonFile"];
     [dic setObject:info.dataPath forKey:@"dataPath"];
-    [dic setObject:c.title forKey:@"title"];
+    [dic setObject:[self.delegate getCourseTitle] forKey:@"title"];
     [dic setObject:lesson.path forKey:@"lessonPath"];
 
     NSString* dataFile = [lesson.file substringToIndex:[lesson.file length] - 4];
@@ -1141,7 +1141,7 @@
         NSString* xatFile = [dataFile stringByAppendingPathExtension:@"xat"];
         NSString* xatURLpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, xatFile];
         
-        NSString* xatDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, c.title, lesson.path, xatFile];
+        NSString* xatDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, [self.delegate getCourseTitle], lesson.path, xatFile];
         NSLog(@"xatURLPath:  %@", xatURLpath);
         NSLog(@"xatDataPath:  %@", xatDatafile);
      
@@ -1150,9 +1150,10 @@
             NSURL* url = [NSURL URLWithString:xatURLpath];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setValue:@"xat" forHTTPHeaderField:@"User-Agent"];
-           [dic setObject:@"xat" forKey:@"fileType"];
+          NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
+           [userDic setObject:@"xat" forKey:@"fileType"];
             GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
-            fetcher.userData = dic;
+            fetcher.userData = userDic;
             [fetcher beginFetchWithDelegate:self
                           didFinishSelector:@selector(fetcher:finishedWithData:error:)];
            
@@ -1164,16 +1165,17 @@
     
     NSString* isbFile = [dataFile stringByAppendingPathExtension:@"isb"];
     NSString* isbpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, isbFile];
-    NSString* isbDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, c.title, lesson.path, isbFile];
+    NSString* isbDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, [self.delegate getCourseTitle], lesson.path, isbFile];
     NSLog(@"isbPath:  %@", isbpath);
     NSLog(@"isbDataPath:  %@", isbDatafile);
     if (![fileManager fileExistsAtPath:isbDatafile]) {
         NSURL* url = [NSURL URLWithString:isbpath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setValue:@"isb" forHTTPHeaderField:@"User-Agent"];
-        [dic setObject:@"isb" forKey:@"fileType"];
         GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
-        fetcher.userData = dic;
+        NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
+        [userDic setObject:@"isb" forKey:@"fileType"];
+        fetcher.userData = userDic;
         [fetcher beginFetchWithDelegate:self
                       didFinishSelector:@selector(fetcher:finishedWithData:error:)];
         _bDownloadedISB = NO;

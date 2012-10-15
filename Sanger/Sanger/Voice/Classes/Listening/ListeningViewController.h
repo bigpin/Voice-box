@@ -31,6 +31,7 @@ typedef enum {
 @protocol ListeningViewControllerDelegate <NSObject>
 
 - (NSString*)getPkgTitle;
+- (NSString*)getCourseTitle;
 
 @end
 
@@ -90,6 +91,7 @@ typedef enum {
 @property (nonatomic, assign) NSInteger nPositionInCourse;
 @property (nonatomic, retain) CourseParser* courseParser;
 @property (nonatomic, assign) id<ListeningViewControllerDelegate>delegate;
+
 - (void)initMembers;
 - (void)initValue;
 - (void)parseWAVFile;

@@ -469,4 +469,9 @@
 {
     return [self.delegate getPkgTitle];
 }
+
+- (NSString*)getCourseTitle;
+{
+    return self.scenesName;
+}
 @end
