@@ -266,7 +266,7 @@
 
 - (void)reloadPkgTable;
 {
-    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
+    UIInterfaceOrientation orientation = [self interfaceOrientation];
     if (IS_IPAD) {
         nCountPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 4 :6;
     } else {

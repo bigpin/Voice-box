@@ -29,7 +29,7 @@
         
         [self addSubview:_bookCover];
         
-        _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_bookCover.frame.origin.x - 15, frame.origin.y - 28, 28, 28)];
+        _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_bookCover.frame.origin.x - 10, frame.origin.y - 28, 28, 28)];
         
         [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_delete.png"]] forState:UIControlStateNormal];
         [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_active.png"]] forState:UIControlStateSelected];
