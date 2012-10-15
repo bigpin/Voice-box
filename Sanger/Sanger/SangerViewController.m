@@ -64,6 +64,7 @@
         _voicePkgShelfViewController = [[VoicePkgShelfViewController alloc] init];
         _voicePkgShelfViewController.delegate = (id)self;
         [self.view addSubview:_voicePkgShelfViewController.view];
+        _voicePkgShelfViewController.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
     }
     
     

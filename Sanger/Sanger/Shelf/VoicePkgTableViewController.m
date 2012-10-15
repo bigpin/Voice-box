@@ -41,11 +41,11 @@
     //singleOne.delegate = self;
     [self.view addGestureRecognizer:singleOne];
     [singleOne release];
-
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
  	self.tableView.rowHeight = IS_IPAD ? DEFAULT_TABLEVIEWHEITHT_IPAD : DEFAULT_TABLEVIEWHEITHT_IPHONE;
 	NSInteger bookCoverWidth = IS_IPAD ? 83 :70;
 	NSInteger bookCoverHeight = IS_IPAD ? 100 : 95;
+    _ySpace = IS_IPAD ? 44.0f :5.0f;
     self.view.backgroundColor = [UIColor clearColor];
 	szBookCover = CGSizeMake(bookCoverWidth, bookCoverHeight);
      if (IS_IPAD) {
@@ -56,7 +56,7 @@
 	nDY = IS_IPAD ? 20 : 15;
     _bEdit = NO;
     [self loadPkgArray];
-   // Uncomment the following line to preserve selection between presentations.
+    // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -89,9 +89,9 @@
     // Return the number of rows in the section.
 	NSInteger nCount = [_pkgArray count];
 	if ((nCount % nCountPerRow) == 0) {
-		return nCount / nCountPerRow;
+		return (nCount / nCountPerRow) + 2;
 	} else {
-		return ((nCount / nCountPerRow) + 1);
+		return ((nCount / nCountPerRow) + 3);
 	}
 }
 
@@ -123,7 +123,7 @@
 	
 	
 	CGFloat dx = (self.view.bounds.size.width - nCountPerRow * szBookCover.width)/ (CGFloat)(nCountPerRow + 1);
-	CGFloat dy = self.tableView.rowHeight - szBookCover.height;// - nDY;
+	CGFloat dy = _ySpace;//self.tableView.rowHeight - szBookCover.height;// - nDY;
 	for (NSInteger i = 0; i < nCountPerRow; i ++) {
 		NSInteger index = (nCountPerRow * nRow) + i;
 		if (index < [_pkgArray count]) {

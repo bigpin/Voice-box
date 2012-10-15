@@ -31,6 +31,7 @@
         
         pkgTable.delegate = (id)self.delegate;
         [self.view addSubview:pkgTable.view];
+        pkgTable.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
          _pkgTable = pkgTable;
         NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
         [center addObserver:self selector:@selector(addNewPkg:) name:NOTIFICATION_DOWNLOADED_VOICE_PKGXML object:nil];

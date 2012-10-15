@@ -70,7 +70,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [pkgArray count];// + 1;
+    return [pkgArray count] + 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -98,25 +98,33 @@
     }
     
     */
-    StorePkgTableViewCell *cell = (StorePkgTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = (StorePkgTableViewCell*)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
+    NSInteger i = indexPath.row;// - 1;
     if (!cell) {
-        NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StorePkgTableViewCell" owner:self options:NULL];
-        if ([array count] > 0) {
-            cell = (StorePkgTableViewCell*)[array objectAtIndex:0];
-            CustomBackgroundView* backView = [[CustomBackgroundView alloc] init];
-            cell.backgroundView = backView;
-            [backView release];
+        if (i < [pkgArray count]) {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StorePkgTableViewCell" owner:self options:NULL];
+            if ([array count] > 0) {
+                cell = (StorePkgTableViewCell*)[array objectAtIndex:0];
+                CustomBackgroundView* backView = [[CustomBackgroundView alloc] init];
+                cell.backgroundView = backView;
+                [backView release];
+            }
+        } else {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"lastCell"] autorelease];
         }
     }
-    NSInteger i = indexPath.row;// - 1;
     if (i < [pkgArray count]) {
         DownloadDataPkgInfo* info = [pkgArray objectAtIndex:i];
-        [cell setVoiceData:info];
+        if ([cell isKindOfClass:[StorePkgTableViewCell class]]) {
+            StorePkgTableViewCell* pkgCell = (StorePkgTableViewCell*)cell;
+            [pkgCell setVoiceData:info];
+
+        }
+         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 

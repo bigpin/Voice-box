@@ -21,6 +21,7 @@
 	CGSize szBookCover;
 	NSInteger nCountPerRow;
 	NSInteger nDY;
+    CGFloat _ySpace;
 	UIImage *backgroundImage;
     NSMutableArray* _pkgArray;
     BOOL _bEdit;

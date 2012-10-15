@@ -22,14 +22,14 @@
        //self.backgroundColor = [UIColor greenColor];
         // Initialization code
         _bookCover = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
-       // _bookCover.backgroundColor = [UIColor redColor];
+        _bookCover.backgroundColor = [UIColor redColor];
         //_bookCover.clipsToBounds = YES;
         /// _bookCover.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         _bookCover.layer.masksToBounds = YES;
         
         [self addSubview:_bookCover];
-        
-        _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_bookCover.frame.origin.x - 10, frame.origin.y - 28, 28, 28)];
+        CGFloat ySpace = IS_IPAD ? frame.origin.y - 56 : - 5;
+        _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_bookCover.frame.origin.x - 10, ySpace, 28, 28)];
         
         [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_delete.png"]] forState:UIControlStateNormal];
         [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_active.png"]] forState:UIControlStateSelected];
@@ -47,7 +47,7 @@
         [self addSubview:_shadowImageView];
         
         
-        _label = [[UILabel alloc] initWithFrame:CGRectMake(0, _bookCover.frame.size.height + 4, frame.size.width, 20)];
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(-30, _bookCover.frame.size.height + 4, frame.size.width + 60, 20)];
         _label.textAlignment = UITextAlignmentCenter;
         _label.backgroundColor = [UIColor clearColor];
         _label.textColor = [UIColor whiteColor];
