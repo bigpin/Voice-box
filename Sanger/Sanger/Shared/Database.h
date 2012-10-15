@@ -37,6 +37,7 @@
 // return VoiceDataPkgObject object
 - (NSMutableArray*)loadVoicePkgInfo;
 - (VoiceDataPkgObjectFullInfo*)loadVoicePkgInfoByTitle:(NSString*)title;
+- (BOOL)deleteVoicePkgInfoByTitle:(NSString*)title;
 - (NSString*)getAbsolutelyPath:(NSString*)path;
 
 @end

@@ -86,6 +86,10 @@
 		0D279F2215DC8E9E0092874C /* libIsaybEncrypt.d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ED315DC8E9D0092874C /* libIsaybEncrypt.d.a */; };
 		0D279F2315DC8E9E0092874C /* libIsaybEncrypt.s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ED415DC8E9D0092874C /* libIsaybEncrypt.s.a */; };
 		0D3A26CC15FF1A8900F52D43 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3A26CA15FF1A8900F52D43 /* libMobClickLibrary.a */; };
+		0D3C285E162C05650019F052 /* btn_delete_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C285A162C05640019F052 /* btn_delete_active.png */; };
+		0D3C285F162C05650019F052 /* btn_delete_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C285B162C05640019F052 /* btn_delete_active@2x.png */; };
+		0D3C2860162C05650019F052 /* btn_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C285C162C05650019F052 /* btn_delete.png */; };
+		0D3C2861162C05650019F052 /* btn_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3C285D162C05650019F052 /* btn_delete@2x.png */; };
 		0D3FA7C31613221300229BCB /* StoreCourseTableCellHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D3FA7C21613221300229BCB /* StoreCourseTableCellHeader.xib */; };
 		0D3FA7C51613227500229BCB /* starsForeground.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D3FA7C41613227500229BCB /* starsForeground.png */; };
 		0D3FA7D9161338DB00229BCB /* StoreDownloadPkg.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D3FA7D8161338DA00229BCB /* StoreDownloadPkg.m */; };
@@ -362,6 +366,10 @@
 		0D279F2E15DC8F070092874C /* VoiceDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VoiceDef.h; sourceTree = "<group>"; };
 		0D3A26CA15FF1A8900F52D43 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		0D3A26CB15FF1A8900F52D43 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		0D3C285A162C05640019F052 /* btn_delete_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_delete_active.png; sourceTree = "<group>"; };
+		0D3C285B162C05640019F052 /* btn_delete_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_delete_active@2x.png"; sourceTree = "<group>"; };
+		0D3C285C162C05650019F052 /* btn_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_delete.png; sourceTree = "<group>"; };
+		0D3C285D162C05650019F052 /* btn_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_delete@2x.png"; sourceTree = "<group>"; };
 		0D3FA7C21613221300229BCB /* StoreCourseTableCellHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCourseTableCellHeader.xib; sourceTree = "<group>"; };
 		0D3FA7C41613227500229BCB /* starsForeground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = starsForeground.png; sourceTree = "<group>"; };
 		0D3FA7D7161338DA00229BCB /* StoreDownloadPkg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreDownloadPkg.h; path = Store/StoreDownloadPkg.h; sourceTree = "<group>"; };
@@ -1095,6 +1103,10 @@
 		0DC571C716070CCC00A5D17B /* Shelf */ = {
 			isa = PBXGroup;
 			children = (
+				0D3C285A162C05640019F052 /* btn_delete_active.png */,
+				0D3C285B162C05640019F052 /* btn_delete_active@2x.png */,
+				0D3C285C162C05650019F052 /* btn_delete.png */,
+				0D3C285D162C05650019F052 /* btn_delete@2x.png */,
 				0DC687BE16084EBC0094C82A /* mask_book.png */,
 				0DC687BF16084EBC0094C82A /* mask_book@2x.png */,
 				0DC687C016084EBC0094C82A /* mask_book@2x~iphone.png */,
@@ -1440,6 +1452,10 @@
 				0D9ED34B16254C8A007BC9D1 /* configuration.plist in Resources */,
 				0D9ED35E1625764E007BC9D1 /* VoicePkgShelfCell.xib in Resources */,
 				0D72BAFD1626B20200883E6A /* Database in Resources */,
+				0D3C285E162C05650019F052 /* btn_delete_active.png in Resources */,
+				0D3C285F162C05650019F052 /* btn_delete_active@2x.png in Resources */,
+				0D3C2860162C05650019F052 /* btn_delete.png in Resources */,
+				0D3C2861162C05650019F052 /* btn_delete@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

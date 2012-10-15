@@ -15,7 +15,10 @@
 
 #import "VoiceDef.h"
 
-#define NOTIFICATION_DOWNLOADED_VOICE_PKGXML   @"DownloadedVoicePkgXML"
+#define NOTIFICATION_DOWNLOADED_VOICE_PKGXML   @"DownloadedVoicePkgXMLNotification"
+
+#define NOTIFICATION_EDIT_VOICE_PKG @"EditPkgNotification"
+
 #define STRING_STORE_URL_ADDRESS @"http://hd2002105.ourhost.cn/index_ios.xml"
 #define STRING_MY_DATA_CENTER @"我的资料库"
 #define STRING_DATA_CENTER @"在线资料"
@@ -37,6 +40,12 @@
 #define STRING_DOWNLOADED       @"已收藏"
 #define STRING_INTRO_TITLE      @"内容简介："
 #define STRING_LESSONS_TITLE    @"课程内容："
+#define STRING_DELETE           @"删除"
+#define STRING_UNDO             @"返回"
+#define STRING_DELETEBOOK_ALERT_MESSAGE @"您确定要删除收藏的资料吗?"
+#define STRING_DELETEBOOK_ALERT_TITLE   @"删除资料"
+#define STRING_DELETEBOOK_BUTTON_CONFIRM @"确认"
+#define STRING_DELETEBOOK_BUTTON_CANCEL @"取消"
 
 #define STRING_VOICE_PKG_DIR    @"VoicePkgData"
 #define SUB_DIR_DOCUMENT				@"/Documents/"

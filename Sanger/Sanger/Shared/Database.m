@@ -281,6 +281,28 @@ static Database* _database;
 	return [info autorelease];
 
 }
+
+- (BOOL)deleteVoicePkgInfoByTitle:(NSString*)title;
+{
+    BOOL bOK = YES;
+	[databaseLock lock];
+	sqlite3_stmt *statement;
+    NSString  *sql =[[NSString alloc] initWithFormat:@"DELETE FROM %@ WHERE %@ = '%@'", STRING_DB_TABLENAME_VOICE_PKG, STRING_DB_VOICE_PKG_TITLE, title];
+	int success = sqlite3_prepare_v2((sqlite3 *)_database, [sql UTF8String], -1, &statement, NULL);
+    if (success == SQLITE_OK) {
+		success = sqlite3_step(statement);
+		if (success == SQLITE_ERROR) {
+			bOK = NO;
+		}
+    } else {
+		bOK = NO;
+	}
+	sqlite3_finalize(statement);
+	[sql release];
+	[databaseLock unlock];
+	return bOK;
+
+}
 - (NSString*)getPathRelative:(NSString*)path;
 {
 	if (path == nil) {

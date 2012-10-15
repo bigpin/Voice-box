@@ -14,5 +14,7 @@
     VoicePkgTableViewController* _pkgTable;
 }
 @property (nonatomic, assign) id<VoicePkgTableViewControllerDelegate>delegate;
+
 - (void)reloadPkgShelf;
+- (void)addNewPkg:(id)object;
 @end

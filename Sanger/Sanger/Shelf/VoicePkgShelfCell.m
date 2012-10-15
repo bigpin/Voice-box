@@ -13,6 +13,7 @@
 @synthesize pkgImageView ;
 @synthesize pkgTitle;
 @synthesize index;
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -28,6 +29,17 @@
         
         [self addSubview:_bookCover];
         
+        _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_bookCover.frame.origin.x - 15, frame.origin.y - 28, 28, 28)];
+        
+        [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_delete.png"]] forState:UIControlStateNormal];
+        [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_active.png"]] forState:UIControlStateSelected];
+       
+        [_deleteButton addTarget:self action:@selector(deleteCourcePkg:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_deleteButton];
+        
+        [_deleteButton release];
+        [_deleteButton setHidden:YES];
+        _bEdit = NO;
         _shadowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(-15, -22, frame.size.width + 26, frame.size.height + 42)];
         _shadowImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", @"mask_book.png"]];
         _shadowImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
@@ -42,8 +54,10 @@
         [_label setFont:[UIFont systemFontOfSize:12]];
         _label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_label];
-        
-        
+        _bEdit = NO;
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(editPkg:) name:NOTIFICATION_EDIT_VOICE_PKG object:nil];
+
         //[self addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return self;
@@ -62,6 +76,8 @@
 {
     [self.pkgImageView release];
     [self.pkgTitle release];
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self name:NOTIFICATION_EDIT_VOICE_PKG object:nil];
     [super dealloc];
 }
 
@@ -76,4 +92,23 @@
     _label.text = text;
 }
 
+- (void)showEditBar:(BOOL)bShow;
+{
+    [_deleteButton setHidden:!bShow];
+ }
+
+- (void)editPkg:(NSNotification*)aNotification;
+{
+	NSNumber *numState = [aNotification object];
+    if (numState == nil) {
+        return;
+    }
+    BOOL edit = [numState boolValue];
+    [self showEditBar:edit];
+}
+
+- (void)deleteCourcePkg:(id)sender;
+{
+    [self.delegate deletePkg:self];
+}
 @end

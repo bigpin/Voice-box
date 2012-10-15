@@ -18,9 +18,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (_voicePkgShelfViewController != nil) {
-        [_voicePkgShelfViewController reloadPkgShelf];
-    }
 }
 
 - (void)viewDidLoad
@@ -39,7 +36,7 @@
     
     NSString* settingResouce = @"icon_setting.png";
     NSString* settingimagePath = [NSString stringWithFormat:@"%@/%@", resourcePath, settingResouce];
-   UIImage* settingImage = [UIImage imageWithContentsOfFile:settingimagePath];
+    UIImage* settingImage = [UIImage imageWithContentsOfFile:settingimagePath];
     UIBarButtonItem* setting = [[UIBarButtonItem alloc] initWithImage:settingImage style:UIBarButtonItemStyleBordered target:self action:@selector(gotoSetting)];
     
     self.navigationItem.leftBarButtonItem = setting;

@@ -32,6 +32,9 @@
         pkgTable.delegate = (id)self.delegate;
         [self.view addSubview:pkgTable.view];
          _pkgTable = pkgTable;
+        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+        [center addObserver:self selector:@selector(addNewPkg:) name:NOTIFICATION_DOWNLOADED_VOICE_PKGXML object:nil];
+       
     }
 	// Do any additional setup after loading the view.
 }
@@ -49,4 +52,10 @@
     }
 }
 
+- (void)addNewPkg:(id)object;
+{
+    if (_pkgTable != nil) {
+        [_pkgTable reloadPkgTable];
+    }
+}
 @end

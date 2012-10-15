@@ -7,9 +7,9 @@
 //
 
 #import "VoicePkgTableViewController.h"
-#import "VoicePkgShelfCell.h"
 #import "ScenesCoverViewController.h"
 #import "Database.h"
+
 
 #define DEFAULT_TABLEVIEWHEITHT_IPHONE 116
 #define DEFAULT_TABLEVIEWHEITHT_IPAD 220
@@ -35,6 +35,13 @@
 {
     [super viewDidLoad];
 
+    UITapGestureRecognizer *singleOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTappedBackground:)];
+    singleOne.numberOfTouchesRequired = 1; // Touch count
+    singleOne.numberOfTapsRequired = 1;    // tap count
+    //singleOne.delegate = self;
+    [self.view addGestureRecognizer:singleOne];
+    [singleOne release];
+
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
  	self.tableView.rowHeight = IS_IPAD ? DEFAULT_TABLEVIEWHEITHT_IPAD : DEFAULT_TABLEVIEWHEITHT_IPHONE;
 	NSInteger bookCoverWidth = IS_IPAD ? 83 :70;
@@ -47,6 +54,7 @@
         nCountPerRow = 3 ;
     }
 	nDY = IS_IPAD ? 20 : 15;
+    _bEdit = NO;
     [self loadPkgArray];
    // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -125,7 +133,10 @@
 			VoiceDataPkgObject* pkg = [_pkgArray objectAtIndex:index];
             [cover setBookCover:[UIImage imageWithContentsOfFile:pkg.dataCover]];
             [cover setText:pkg.dataTitle];
-			[cover addTarget:self action:@selector(openSences:) forControlEvents:UIControlEventTouchDown];
+            [cover showEditBar:_bEdit];
+            cover.delegate = (id)self;
+            [self addAction:cover];
+			//[cover addTarget:self action:@selector(openSences:) forControlEvents:UIControlEventTouchDown];
 			[cover release];
 		}
 		//[cover setImage:coverimage forState:UIControlStateNormal];
@@ -269,5 +280,80 @@
         _pkgArray = [db loadVoicePkgInfo];
     }
     [self.tableView reloadData];
+}
+
+- (void)addAction:(VoicePkgShelfCell*)cell;
+{
+    UITapGestureRecognizer *singleOne = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapped:)];
+    singleOne.numberOfTouchesRequired = 1; // Touch count
+    singleOne.numberOfTapsRequired = 1;    // tap count
+    //singleOne.delegate = self;
+    [cell addGestureRecognizer:singleOne];
+    [singleOne release];
+    
+    // Long tap
+    UILongPressGestureRecognizer* longSingleTapRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+    longSingleTapRecognizer.numberOfTouchesRequired = 1;
+    [cell addGestureRecognizer:longSingleTapRecognizer];
+    [longSingleTapRecognizer release];
+}
+
+- (void)singleTapped:(UITapGestureRecognizer*)recognizer
+{
+    if (!_bEdit) {
+        VoicePkgShelfCell* cell = (VoicePkgShelfCell*)recognizer.view;
+        [self openSences:cell];
+    }
+}
+
+- (void)singleTappedBackground:(UITapGestureRecognizer*)recognizer
+{
+    if (_bEdit) {
+        _bEdit = NO;
+ 		[[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_EDIT_VOICE_PKG object: [NSNumber numberWithBool:NO]];
+    }
+}
+
+- (void)longPressed:(UILongPressGestureRecognizer*)recognizer
+{
+   // VoicePkgShelfCell* cell = (VoicePkgShelfCell*)recognizer.view;
+    if (!_bEdit) {
+        _bEdit = YES;
+		[[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_EDIT_VOICE_PKG object: [NSNumber numberWithBool:YES]];
+    }
+}
+
+- (void)deletePkg:(VoicePkgShelfCell*)cell;
+{
+    NSInteger index = cell.index;
+    _deleteObject = [_pkgArray objectAtIndex:index];
+	NSString *message = [NSString stringWithFormat:@"%@",STRING_DELETEBOOK_ALERT_MESSAGE];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:STRING_DELETEBOOK_ALERT_TITLE
+													message:message
+												   delegate:self
+										  cancelButtonTitle:STRING_DELETEBOOK_BUTTON_CONFIRM otherButtonTitles:STRING_DELETEBOOK_BUTTON_CANCEL, nil];
+	[alert show];
+	[alert release];
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        // confirm
+        Database* db = [Database sharedDatabase];
+        VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:_deleteObject.dataTitle];
+        if (info != nil) {
+            NSFileManager* fm = [NSFileManager defaultManager];
+            [fm removeItemAtPath:info.dataPath error:nil];
+        }
+
+        [db deleteVoicePkgInfoByTitle:_deleteObject.dataTitle];
+        [self reloadPkgTable];
+    } else {
+        // cancel
+    }
+    _deleteObject = nil;
+
 }
 @end

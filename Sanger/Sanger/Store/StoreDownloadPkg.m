@@ -88,9 +88,6 @@
     if (self.info.receivedCoverImagePath != nil) {
         [fm copyItemAtPath:self.info.receivedCoverImagePath toPath:coverPath error:nil];
     }
-    // insert info to database
-    Database* db = [Database sharedDatabase];
-    [db insertVoicePkgInfo:self.info];
     for (NSInteger i = 0; i < [self.info.dataPkgCourseInfoArray count]; i++) {
         DownloadDataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
         NSString* courseFile = [NSString stringWithFormat:@"%@/%@", _pkgPath, course.title];
@@ -106,7 +103,10 @@
         downloadCourse.course = course;
         [downloadCourse startDownload];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DOWNLOADED_VOICE_PKGXML object:self.info.title];
+    // insert info to database
+    Database* db = [Database sharedDatabase];
+    [db insertVoicePkgInfo:self.info];
+   [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_DOWNLOADED_VOICE_PKGXML object:self.info.title];
 
 }
 
