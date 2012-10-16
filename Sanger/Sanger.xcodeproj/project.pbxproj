@@ -80,8 +80,6 @@
 		0D279F1C15DC8E9E0092874C /* SettingTrainingModeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D279EC715DC8E9D0092874C /* SettingTrainingModeCell.xib */; };
 		0D279F1D15DC8E9E0092874C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D279EC915DC8E9D0092874C /* SettingViewController.m */; };
 		0D279F1E15DC8E9E0092874C /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D279ECA15DC8E9D0092874C /* SettingViewController.xib */; };
-		0D279F1F15DC8E9E0092874C /* libisaybio.d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ECD15DC8E9D0092874C /* libisaybio.d.a */; };
-		0D279F2015DC8E9E0092874C /* libisaybio.s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ECE15DC8E9D0092874C /* libisaybio.s.a */; };
 		0D279F2115DC8E9E0092874C /* WaveFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0D279ECF15DC8E9D0092874C /* WaveFile.cpp */; };
 		0D279F2215DC8E9E0092874C /* libIsaybEncrypt.d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ED315DC8E9D0092874C /* libIsaybEncrypt.d.a */; };
 		0D279F2315DC8E9E0092874C /* libIsaybEncrypt.s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D279ED415DC8E9D0092874C /* libIsaybEncrypt.s.a */; };
@@ -192,6 +190,7 @@
 		0DFEAC55160B1DE000D32AF6 /* greenButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC51160B1DDF00D32AF6 /* greenButton@2x.png */; };
 		0DFEAC56160B1DE000D32AF6 /* greenButtonActivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC52160B1DE000D32AF6 /* greenButtonActivated.png */; };
 		0DFEAC57160B1DE000D32AF6 /* greenButtonActivated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC53160B1DE000D32AF6 /* greenButtonActivated@2x.png */; };
+		0DFEF467162CF941008820AB /* libisaybio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DFEF466162CF941008820AB /* libisaybio.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,8 +355,6 @@
 		0D279EC915DC8E9D0092874C /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		0D279ECA15DC8E9D0092874C /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		0D279ECC15DC8E9D0092874C /* isaybio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = isaybio.h; sourceTree = "<group>"; };
-		0D279ECD15DC8E9D0092874C /* libisaybio.d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libisaybio.d.a; sourceTree = "<group>"; };
-		0D279ECE15DC8E9D0092874C /* libisaybio.s.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libisaybio.s.a; sourceTree = "<group>"; };
 		0D279ECF15DC8E9D0092874C /* WaveFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WaveFile.cpp; sourceTree = "<group>"; };
 		0D279ED015DC8E9D0092874C /* WaveFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveFile.h; sourceTree = "<group>"; };
 		0D279ED215DC8E9D0092874C /* IsaybEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaybEncrypt.h; sourceTree = "<group>"; };
@@ -519,6 +516,7 @@
 		0DFEAC51160B1DDF00D32AF6 /* greenButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenButton@2x.png"; sourceTree = "<group>"; };
 		0DFEAC52160B1DE000D32AF6 /* greenButtonActivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenButtonActivated.png; sourceTree = "<group>"; };
 		0DFEAC53160B1DE000D32AF6 /* greenButtonActivated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenButtonActivated@2x.png"; sourceTree = "<group>"; };
+		0DFEF466162CF941008820AB /* libisaybio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libisaybio.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,11 +542,10 @@
 				0D279ED615DC8E9D0092874C /* libGoogleAdMobAds.a in Frameworks */,
 				0D279EDA15DC8E9E0092874C /* libDomob.a in Frameworks */,
 				0D279EE815DC8E9E0092874C /* libAdMoGo.a in Frameworks */,
-				0D279F1F15DC8E9E0092874C /* libisaybio.d.a in Frameworks */,
-				0D279F2015DC8E9E0092874C /* libisaybio.s.a in Frameworks */,
 				0D279F2215DC8E9E0092874C /* libIsaybEncrypt.d.a in Frameworks */,
 				0D279F2315DC8E9E0092874C /* libIsaybEncrypt.s.a in Frameworks */,
 				0D3A26CC15FF1A8900F52D43 /* libMobClickLibrary.a in Frameworks */,
+				0DFEF467162CF941008820AB /* libisaybio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,9 +913,8 @@
 		0D279ECB15DC8E9D0092874C /* WaveDecode */ = {
 			isa = PBXGroup;
 			children = (
+				0DFEF466162CF941008820AB /* libisaybio.a */,
 				0D279ECC15DC8E9D0092874C /* isaybio.h */,
-				0D279ECD15DC8E9D0092874C /* libisaybio.d.a */,
-				0D279ECE15DC8E9D0092874C /* libisaybio.s.a */,
 				0D279ECF15DC8E9D0092874C /* WaveFile.cpp */,
 				0D279ED015DC8E9D0092874C /* WaveFile.h */,
 			);
@@ -1596,7 +1592,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = armv7;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1622,7 +1618,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = armv7;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -1645,6 +1641,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sanger/Sanger-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1676,10 +1673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = armv7;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sanger/Sanger-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
