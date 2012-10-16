@@ -729,7 +729,6 @@
             // scroll to cell
             
             bAlReadyPaused = YES;
-            NSLog(@"highlightCell");
             [self highlightCell:nCurrentIndex];
             NSInteger nLast = nPosition;
             nPosition = nCurrentIndex;
@@ -853,7 +852,6 @@
 
 - (void)continueReading
 {
-    NSLog(@"continueReading :Postion %d", nPosition);
     if (ePlayStatus == PLAY_STATUS_PLAYING) {
         if (nLesson == PLAY_SENTENCE) {
             if (nCurrentReadingCount != settingData.nReadingCount) {
@@ -1142,8 +1140,8 @@
         NSString* xatURLpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, xatFile];
         
         NSString* xatDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, [self.delegate getCourseTitle], lesson.path, xatFile];
-        NSLog(@"xatURLPath:  %@", xatURLpath);
-        NSLog(@"xatDataPath:  %@", xatDatafile);
+        V_NSLog(@"xatURLPath:  %@", xatURLpath);
+        V_NSLog(@"xatDataPath:  %@", xatDatafile);
      
         
       if (![fileManager fileExistsAtPath:xatDatafile]) {
@@ -1166,8 +1164,8 @@
     NSString* isbFile = [dataFile stringByAppendingPathExtension:@"isb"];
     NSString* isbpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, isbFile];
     NSString* isbDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, [self.delegate getCourseTitle], lesson.path, isbFile];
-    NSLog(@"isbPath:  %@", isbpath);
-    NSLog(@"isbDataPath:  %@", isbDatafile);
+    V_NSLog(@"isbPath:  %@", isbpath);
+    V_NSLog(@"isbDataPath:  %@", isbDatafile);
     if (![fileManager fileExistsAtPath:isbDatafile]) {
         NSURL* url = [NSURL URLWithString:isbpath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -1219,7 +1217,7 @@
             [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
         }
          NSString* filePath = [NSString stringWithFormat:@"%@/%@", path, xatFile];
-        NSLog(@"write path: %@", filePath);
+        V_NSLog(@"write path: %@", filePath);
         [data writeToFile:filePath atomically:YES];
         
         if (_bDownloadedISB && _bDownloadedXAT) {

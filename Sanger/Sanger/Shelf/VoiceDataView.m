@@ -78,8 +78,8 @@
 
 - (void)setFrame:(CGRect)frame
 {
-    NSLog(@"%f %f %f %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
-    NSLog(@"_bookCover %f %f %f %f", _bookCover.frame.origin.x, _bookCover.frame.origin.y, _bookCover.frame.size.width, _bookCover.frame.size.height);
+    V_NSLog(@"%f %f %f %f", frame.origin.x, frame.origin.y, frame.size.width, frame.size.height);
+    V_NSLog(@"_bookCover %f %f %f %f", _bookCover.frame.origin.x, _bookCover.frame.origin.y, _bookCover.frame.size.width, _bookCover.frame.size.height);
    // _bookCover.frame = _shadowImageView.frame;
     //_shadowImageView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height - 20);
     //_label.frame  = CGRectMake(0, _bookCover.frame.size.height - 20, frame.size.width, 20);

@@ -225,7 +225,7 @@
     [dirEnum skipDescendants];
     NSString* file = [dirEnum nextObject];
     while (file) {
-        NSLog(@"%@", file);
+        V_NSLog(@"%@", file);
         NSRange range = [file rangeOfString:@"/" options:NSBackwardsSearch];
           if (range.location != NSNotFound) {
             file = [dirEnum nextObject];
@@ -346,6 +346,14 @@
         if (info != nil) {
             NSFileManager* fm = [NSFileManager defaultManager];
             [fm removeItemAtPath:info.dataPath error:nil];
+            
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *docsDir = [paths objectAtIndex:0];
+            NSString *waveDir = [NSString stringWithFormat:@"%@/%@/%@", docsDir, STRING_VOICE_PKG_DIR,_deleteObject.dataTitle];
+             if ([fm fileExistsAtPath:waveDir]) {
+                [fm removeItemAtPath:waveDir error:nil];
+            }
+
         }
 
         [db deleteVoicePkgInfoByTitle:_deleteObject.dataTitle];

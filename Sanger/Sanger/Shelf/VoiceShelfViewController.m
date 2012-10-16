@@ -180,19 +180,19 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    NSLog(@"will rotate from %u to %u", [[UIDevice currentDevice] orientation], toInterfaceOrientation);
+    V_NSLog(@"will rotate from %u to %u", [[UIDevice currentDevice] orientation], toInterfaceOrientation);
     // TODO:only set orientation change flag when protrait to landscape and reverse
     [_bookShelfView oritationChangeReloadData];
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    NSLog(@"will animate rotate");
-    NSLog(@"bookShelfViewFrame:%@", NSStringFromCGRect(_bookShelfView.frame));
+    V_NSLog(@"will animate rotate");
+    V_NSLog(@"bookShelfViewFrame:%@", NSStringFromCGRect(_bookShelfView.frame));
  }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    NSLog(@"didRotate");
-    NSLog(@"bookShelfViewFrame:%@", NSStringFromCGRect(_bookShelfView.frame));
+    V_NSLog(@"didRotate");
+    V_NSLog(@"bookShelfViewFrame:%@", NSStringFromCGRect(_bookShelfView.frame));
 }
 
 #pragma mark GSBookShelfViewDataSource
@@ -366,10 +366,10 @@
 
 - (void)bookViewClicked:(UIButton *)button {
     VoiceDataView *bookView = (VoiceDataView *)button;
-    NSLog(@"click : %d",bookView.index);
+    V_NSLog(@"click : %d",bookView.index);
     VoiceDataPkg* pkg = [_bookArray objectAtIndex:bookView.index];
-    NSLog(@"click pkg: %@", pkg.dataTitle);
-    NSLog(@"click pkg number: %d", [pkg.dataNumber intValue]);
+    V_NSLog(@"click pkg: %@", pkg.dataTitle);
+    V_NSLog(@"click pkg number: %d", [pkg.dataNumber intValue]);
  
     if (_editMode) {
         NSNumber *status = [NSNumber numberWithInt:bookView.selected];

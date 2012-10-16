@@ -15,6 +15,12 @@
 
 #import "VoiceDef.h"
 
+#ifdef _DEBUG
+#define V_NSLog(format, ...)		NSLog(format, ##__VA_ARGS__)
+#else
+#define V_NSLog(format, ...)
+#endif
+
 #define NOTIFICATION_DOWNLOADED_VOICE_PKGXML   @"DownloadedVoicePkgXMLNotification"
 
 #define NOTIFICATION_EDIT_VOICE_PKG @"EditPkgNotification"

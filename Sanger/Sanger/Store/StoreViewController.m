@@ -98,8 +98,8 @@
 
 - (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
 {
-    NSLog(@"fecther : %@", [fecther description]);
-    NSLog(@"error : %@", [error description]);
+    V_NSLog(@"fecther : %@", [fecther description]);
+    V_NSLog(@"error : %@", [error description]);
     if (error != nil) {
         [StoreNetworkConnectionView stopAnimation:STRING_LOADINGDATA_ERROR withSuperView:self.view];
 

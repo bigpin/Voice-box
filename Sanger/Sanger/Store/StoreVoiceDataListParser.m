@@ -30,7 +30,7 @@
             TBXMLElement * pkgs = [TBXML childElementNamed:@"pkgs" parentElement:body];
             if (pkgs) {
                 NSString* countText = [TBXML valueOfAttributeNamed:@"count" forElement:pkgs];
-                NSLog(@"pkgs count: %d", [countText intValue]);
+                V_NSLog(@"pkgs count: %d", [countText intValue]);
                 NSMutableArray* array = [[NSMutableArray alloc] init];
                 [self loadPkgs:pkgs withArray:array];
                 self.pkgsArray = array;

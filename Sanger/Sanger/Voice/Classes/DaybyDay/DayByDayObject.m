@@ -116,7 +116,7 @@
     }
     DayParser* parser = [[DayParser alloc] init];
     [parser loadData:dayPath];
-    NSLog(@"file: %d, sentence: %d", nFileListIndex, nSentenceIndex);
+    V_NSLog(@"file: %d, sentence: %d", nFileListIndex, nSentenceIndex);
     if (nSentenceIndex < [parser.everydaySentences count]) 
     {
         NSMutableDictionary* dic = [parser.everydaySentences objectAtIndex:nSentenceIndex];

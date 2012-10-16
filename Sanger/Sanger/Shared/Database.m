@@ -53,9 +53,9 @@ static Database* _database;
         }
         int openResult = sqlite3_open([sqlitePath UTF8String], (sqlite3 **)(&_database));
 		if (openResult == SQLITE_OK) {
-            NSLog(@"%@", @"sqlite3_open ok");
+            V_NSLog(@"%@", @"sqlite3_open ok");
  		} else {
-            NSLog(@"%@", @"sqlite3_open failed");
+            V_NSLog(@"%@", @"sqlite3_open failed");
            
         }
 		databaseLock = [[NSLock alloc] init];
@@ -189,12 +189,12 @@ static Database* _database;
 		sqlite3_finalize(statement);
 		[databaseLock unlock];
 		if (success == SQLITE_ERROR) {
-			NSLog(@"Error: failed to %@", @"insertVoicePkgInfo");
+			V_NSLog(@"Error: failed to %@", @"insertVoicePkgInfo");
 			return NO;
 		}
 	} else {
 		[databaseLock unlock];
-		NSLog(@"Error: failed to %@", @"insertVoicePkgInfo");
+		V_NSLog(@"Error: failed to %@", @"insertVoicePkgInfo");
 		return NO;
 	}
     
