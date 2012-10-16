@@ -191,6 +191,8 @@
 		0DFEAC56160B1DE000D32AF6 /* greenButtonActivated.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC52160B1DE000D32AF6 /* greenButtonActivated.png */; };
 		0DFEAC57160B1DE000D32AF6 /* greenButtonActivated@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC53160B1DE000D32AF6 /* greenButtonActivated@2x.png */; };
 		0DFEF467162CF941008820AB /* libisaybio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DFEF466162CF941008820AB /* libisaybio.a */; };
+		0DFEF57D162D3578008820AB /* DaybyDay in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEF57C162D3578008820AB /* DaybyDay */; };
+		0DFEF57F162D35EF008820AB /* daydetail.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEF57E162D35EF008820AB /* daydetail.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -517,6 +519,8 @@
 		0DFEAC52160B1DE000D32AF6 /* greenButtonActivated.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenButtonActivated.png; sourceTree = "<group>"; };
 		0DFEAC53160B1DE000D32AF6 /* greenButtonActivated@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenButtonActivated@2x.png"; sourceTree = "<group>"; };
 		0DFEF466162CF941008820AB /* libisaybio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libisaybio.a; sourceTree = "<group>"; };
+		0DFEF57C162D3578008820AB /* DaybyDay */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DaybyDay; sourceTree = "<group>"; };
+		0DFEF57E162D35EF008820AB /* daydetail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = daydetail.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -555,6 +559,7 @@
 		0D2437BD160FE7B000AA4039 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				0DFEF57E162D35EF008820AB /* daydetail.png */,
 				0D2437BE160FE7B000AA4039 /* Default-568h@2x.png */,
 			);
 			path = App;
@@ -1075,6 +1080,7 @@
 		0DC571C516070CCC00A5D17B /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0DFEF57C162D3578008820AB /* DaybyDay */,
 				0D9ED34916254C8A007BC9D1 /* Setting */,
 				0D72BAFC1626B20200883E6A /* Database */,
 				0DC571C616070CCC00A5D17B /* Imges */,
@@ -1452,6 +1458,8 @@
 				0D3C285F162C05650019F052 /* btn_delete_active@2x.png in Resources */,
 				0D3C2860162C05650019F052 /* btn_delete.png in Resources */,
 				0D3C2861162C05650019F052 /* btn_delete@2x.png in Resources */,
+				0DFEF57D162D3578008820AB /* DaybyDay in Resources */,
+				0DFEF57F162D35EF008820AB /* daydetail.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
