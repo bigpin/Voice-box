@@ -29,6 +29,7 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* moreItem;
 
 - (void)loadToolbar:(id)delegate;
+- (void)enableToolbar:(BOOL)enable;
 //- (void)loadItems:(id)delegate;
 //- (void)loadMoreItems:(id)delegate;
 @end

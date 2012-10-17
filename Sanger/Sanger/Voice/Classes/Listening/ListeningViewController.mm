@@ -133,14 +133,16 @@
     UIImage* imageTrack = [UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/slider-track-right.png", resourcePath]];
     [self.progressBar setMaximumTrackImage:imageTrack forState:UIControlStateNormal];
     [self.progressBar setMinimumTrackImage:imageTrack forState:UIControlStateNormal];
-    [self.progressBar setMaximumValue:[_sentencesArray count]];
+    NSInteger maxValue = [_sentencesArray count];
+    maxValue = maxValue == 0? 1: maxValue;
+    [self.progressBar setMaximumValue:maxValue];
     [self.progressBar setMinimumValue:1];
     [self.progressBar addTarget:self action:@selector(onGotoSentence:) forControlEvents:UIControlEventTouchUpInside];
     [self.progressBar addTarget:self action:@selector(onChangingGotoSentence:) forControlEvents:UIControlEventTouchDragInside];
     
-    self.progressBar.continuous = NO;
-    
-    
+    self.progressBar.continuous = YES;
+    self.progressBar.enabled = NO;
+    [self.listeningToolbar enableToolbar:NO];
     if (![self downloadLesson]) {
         return;
     }
@@ -173,6 +175,11 @@
         self.sentencesTableView.hidden = NO;
         [self.navigationItem setHidesBackButton:NO animated:YES];
         [self initValue];
+        NSInteger maxValue = [_sentencesArray count];
+        [self.progressBar setMaximumValue:maxValue];
+        [self.progressBar setMinimumValue:1];
+        self.progressBar.enabled = YES;
+        [self.listeningToolbar enableToolbar:YES];
     }
 }
 
@@ -312,6 +319,11 @@
     bParseWAV = NO;
     [self.sentencesTableView reloadData];
     self.sentencesTableView.hidden = NO;
+    NSInteger maxValue = [_sentencesArray count];
+    [self.progressBar setMaximumValue:maxValue];
+    [self.progressBar setMinimumValue:1];
+    [self.listeningToolbar enableToolbar:YES];
+    self.progressBar.enabled = YES;
 }
 
 - (void)viewDidUnload

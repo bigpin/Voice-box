@@ -97,6 +97,14 @@
     [self setItems:items animated:YES];
     [items release];
 }
+
+- (void)enableToolbar:(BOOL)enable;
+{
+    self.previousItem.enabled = enable;
+    self.playItem.enabled = enable;
+    self.nextItem.enabled = enable;
+    self.settingItem.enabled = enable;
+}
     
 /*- (void)loadItems:(id)delegate;
 {
@@ -270,4 +278,5 @@
     
 }
 */
+
 @end
