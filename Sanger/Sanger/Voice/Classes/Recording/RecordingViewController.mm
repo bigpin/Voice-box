@@ -539,7 +539,8 @@ char *OSTypeToStr(char *buf, OSType t)
         [header setBackgroundColor:[UIColor clearColor]];
         MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:IS_IPAD? Ad_748X60: Ad_320X40];
         adBanner.frame = CGRectMake((self.view.bounds.size.width - adBanner.frame.size.width)/2, 0, adBanner.frame.size.width, adBanner.frame.size.height);
-        //设置广告轮显方式
+        adBanner.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin ;
+       //设置广告轮显方式
         [header addSubview:adBanner];
         [adBanner release];
         return header;

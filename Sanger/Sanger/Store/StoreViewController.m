@@ -115,7 +115,7 @@
             StoreRootViewController* rootViewController = [[StoreRootViewController alloc] init];
             rootViewController.pkgArray = dataParser.pkgsArray;
             rootViewController.delegate = (id)self;
-            CGRect rc = rootViewController.view.frame;
+            CGRect rc = self.view.frame;
             rootViewController.view.frame = CGRectMake(0, 0, rc.size.width, rc.size.height);
             rootViewController.view.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
            [self.view addSubview:rootViewController.view];
