@@ -89,9 +89,9 @@
    	//return @"bb0bf739cd8f4bbabb74bbaa9d2768bf"; //测试用ID
 
     if (IS_IPAD) {
-        return @"df727527fbbb4f30823e1600f0c3aded";
+        return @"6fc4e33e5a9c45858e85b65341e53203";
     } else {
-        return @"04a87505be9c4a45aad6c2ef9febdec9"; 
+        return @"fef5ad82ad524b40a4abba64077d5489"; 
     }
     //此字符串为您的App在芒果上的唯一标识
 }
