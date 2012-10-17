@@ -24,14 +24,14 @@
 	<key>UITeacherHeadStyle</key>
 	<integer>0</integer>
 	<key>AD_Store</key>
-	<false/>
+	<true/>
 	<key>AD_Day</key>
-	<false/>
+	<true/>
 	<key>AD_Course</key>
-	<false/>
+	<true/>
 	<key>AD_Lesson</key>
-	<false/>
+	<true/>
 	<key>AD_Recording</key>
-	<false/>
+	<true/>
 </dict>
 </plist>
