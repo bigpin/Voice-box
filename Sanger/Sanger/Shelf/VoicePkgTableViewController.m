@@ -59,6 +59,7 @@
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(openCourseNotification:) name:NOTIFICATION_OPEN_PKG object:nil];
     
+    [self.tableView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
     
     [self loadPkgArray];
     // Uncomment the following line to preserve selection between presentations.
@@ -403,4 +404,25 @@
          }
     }
 }
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ((object == self.tableView) && [keyPath isEqualToString:@"frame"])
+	{
+        V_NSLog(@"frame changed, nCountPerRow %d", nCountPerRow);
+        UIInterfaceOrientation orientation = [self interfaceOrientation];
+        NSInteger currentPerRow = 3;
+        if (IS_IPAD) {
+            currentPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 4 :6;
+        } else {
+            currentPerRow = UIInterfaceOrientationIsPortrait(orientation) ? 3 :4;
+            
+        }
+        if (currentPerRow != nCountPerRow) {
+            nCountPerRow = currentPerRow;
+            [self.tableView reloadData];            
+        }
+	}
+}
+
 @end
