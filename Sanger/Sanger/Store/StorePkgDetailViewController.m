@@ -138,7 +138,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    NSInteger section = indexPath.section;
+    //NSInteger section = indexPath.section;
     NSInteger row =  indexPath.row;
     CGFloat height = 44.0f;
     if (row == 0) {
@@ -207,7 +207,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    NSInteger section = indexPath.section;
+   // NSInteger section = indexPath.section;
     NSInteger row =  indexPath.row;
     if (!cell) {
         if (row == 0) {
