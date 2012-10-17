@@ -76,6 +76,7 @@
 @implementation StorePkgDetailTableViewCell
 @synthesize coverImageView, titleLabel, downloadButton;
 @synthesize delegate;
+@synthesize backToShelfButton;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -99,9 +100,17 @@
 	[center addObserver:self selector:@selector(didDownloadedXML:) name:NOTIFICATION_DOWNLOADED_VOICE_PKGXML object:nil];
 
     [self.downloadButton setTitle:STRING_DOWNLOAD forState:UIControlStateNormal];
-    UIImage *greenButtonImage = [UIImage imageNamed:@"buttonblue_normal.png"];
+    UIImage *blueButtonImage = [UIImage imageNamed:@"buttonblue_normal.png"];
+    UIImage *stretchableBlueButton = [blueButtonImage stretchableImageWithLeftCapWidth:6 topCapHeight:6];
+    [self.downloadButton setBackgroundImage:stretchableBlueButton forState:UIControlStateNormal];
+    
+    UIImage *greenButtonImage = [UIImage imageNamed:@"button_green_normal.png"];
     UIImage *stretchableGreenButton = [greenButtonImage stretchableImageWithLeftCapWidth:6 topCapHeight:6];
-    [self.downloadButton setBackgroundImage:stretchableGreenButton forState:UIControlStateNormal];
+   [self.backToShelfButton setBackgroundImage:stretchableGreenButton forState:UIControlStateNormal];
+    [self.backToShelfButton setTitle:STRING_START_LEARNING forState:UIControlStateNormal];
+    [self.backToShelfButton setTitle:STRING_START_LEARNING forState:UIControlStateSelected];
+   
+    [self.backToShelfButton setHidden:NO];
     
     UIImage *darkGreenButtonImage = [UIImage imageNamed:@"buttonblue_pressed.png"];
     UIImage *stretchabledarkGreenButton = [darkGreenButtonImage stretchableImageWithLeftCapWidth:6 topCapHeight:6];
@@ -115,6 +124,9 @@
     if ([db loadVoicePkgInfoByTitle:info.title] != nil) {
         [self.downloadButton setTitle:STRING_DOWNLOADED forState:UIControlStateNormal];
         [self.downloadButton setEnabled:NO];
+        [self.downloadButton setHidden:YES];
+    } else {
+        [self.backToShelfButton setHidden:YES];
     }
     
     _info = info;
@@ -175,12 +187,24 @@
     }
 }
 
+- (IBAction)clickStartLearn:(id)sender;
+{
+    [self.delegate startLearning:_info];
+}
+
 - (void)didDownloadedXML:(NSNotification *)aNotification
 {
 	NSString *infoTitle = [aNotification object];
     if ([infoTitle isEqualToString:_info.title]) {
         [self.downloadButton setTitle:STRING_DOWNLOADED forState:UIControlStateNormal];
         [self.downloadButton setEnabled:NO];
+        [self performSelector:@selector(delayShowBackToShelfButton) withObject:nil afterDelay:0.5];
     }
+}
+
+- (void)delayShowBackToShelfButton
+{
+    [self.downloadButton setHidden:YES];
+    [self.backToShelfButton setHidden:NO];
 }
 @end

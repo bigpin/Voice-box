@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VoicePkgInfoObject.h"
+
 @protocol StoreRootViewControllerDelegate <NSObject>
 
 - (void)pushViewController:(UIViewController*)detail;
-
+- (void)backToShelf:(DownloadDataPkgInfo*)info;
 @end
  
 @interface StoreRootViewController : UITableViewController

@@ -26,6 +26,7 @@ typedef enum {
 @protocol StorePkgDetailTableViewCellDelegate <NSObject>
 
 - (void)doDownload:(DownloadDataPkgInfo*)info;
+- (void)startLearning:(DownloadDataPkgInfo*)info;
 - (void)updateButtonStatus;
 
 @end
@@ -38,9 +39,13 @@ typedef enum {
 @property (nonatomic, retain) IBOutlet UIImageView* coverImageView;
 @property (nonatomic, retain) IBOutlet UILabel* titleLabel;
 @property (nonatomic, retain) IBOutlet UIButton* downloadButton;
+@property (nonatomic, retain) IBOutlet UIButton* backToShelfButton;
 @property (nonatomic, assign) id<StorePkgDetailTableViewCellDelegate> delegate;
 
 - (void)setVoiceData:(DownloadDataPkgInfo*)info;
 - (void)setButtomImage;
 - (IBAction)clickButton:(id)sender;
+- (IBAction)clickStartLearn:(id)sender;
+- (void)delayShowBackToShelfButton;
+
 @end

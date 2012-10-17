@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SangerAppDelegate.h"
-
+#import "MobiSageSDK.h"
 int main(int argc, char *argv[])
 {
     /*NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     [pool release];
     return retVal;*/
     @autoreleasepool {
+        [[MobiSageManager getInstance] setPublisherID:@"0d7377403b9044a7938a54f751f0cfc5"];
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([SangerAppDelegate class]));
     }
 }

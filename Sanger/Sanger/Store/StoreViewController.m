@@ -54,7 +54,8 @@
     NSString* shadowPath = [NSString stringWithFormat:@"%@/%@", resourcePath, shadowImageName];
     UIImage* shadowimage = [UIImage imageWithContentsOfFile:shadowPath];
     shadowView.backgroundColor = [UIColor colorWithPatternImage:shadowimage];
-    [self.view addSubview:shadowView];
+    shadowView.userInteractionEnabled = YES;
+    //[self.view addSubview:shadowView];
     [shadowView release];
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:VALUE_TITLEBAR_COLOR_R green:VALUE_TITLEBAR_COLOR_G blue:VALUE_TITLEBAR_COLOR_B alpha:1.0];
 
@@ -136,4 +137,18 @@
 {
     [self.navigationController pushViewController:detail animated:YES];
 }
+
+- (void)backToShelf:(DownloadDataPkgInfo*)info;
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_OPEN_PKG object:info.title];
+    
+   [self.navigationController popToRootViewControllerAnimated:YES];
+    UIViewAnimationTransition trans = UIViewAnimationTransitionFlipFromRight;
+    [UIView beginAnimations: nil context: nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationTransition: trans forView:[self.view window] cache: NO];
+    [self dismissModalViewControllerAnimated:NO];
+    [UIView commitAnimations];
+}
+
 @end

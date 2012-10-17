@@ -9,6 +9,8 @@
 #import "StorePkgDetailViewController.h"
 #import "StorePkgDetailTableViewCell.h"
 #import "StoreCourceTableViewCell.h"
+#import "MobiSageSDK.h"
+
 @interface StorePkgDetailViewController ()
 
 @end
@@ -79,7 +81,7 @@
 {
     // Return the number of sections.
     if (self.info != nil) {
-        return 2;
+        return 1;
     }
     return 0;
 }
@@ -87,6 +89,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    return self.info.dataPkgCourseInfoArray.count + 4;
     if (section == 0) {
         return 1;
     } else if (section == 1) {
@@ -97,11 +100,66 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+{
+    return 40;
+}
+
+// Section header & footer information. Views are preferred over title should you decide to provide both
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;   // custom view for header. will be adjusted to default or specified header height
+{
+    UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
+    [header setBackgroundColor:[UIColor clearColor]];
+    MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:Ad_320X40];
+    //设置广告轮显方式
+    [header addSubview:adBanner];
+    /*[adBanner setSwitchAnimeType:Random];
+     adBanner.frame = CGRectMake(0, 20, 320, 40);
+     
+     UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
+     [header setBackgroundColor:[UIColor greenColor]];*/
+    return header;
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     NSInteger section = indexPath.section;
     NSInteger row =  indexPath.row;
     CGFloat height = 44.0f;
+    if (row == 0) {
+        return 114.0f;
+    } else if (row == 1) {
+        return 44.0f;
+    } else if (row == 2) {
+        // content
+        CGSize sz = [StorePkgDetailViewController calcTextHeight:info.intro withWidth:self.view.frame.size.width withFontSize:17];
+        return fmaxf(height, (sz.height + 22));
+       
+    } else if (row == 3) {
+        return 44.0f;
+
+    } else {
+        // lessons
+        NSInteger i = row - 4;
+        if (i < [self.info.dataPkgCourseInfoArray count] ) {
+            DownloadDataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+            CGSize sz = [StorePkgDetailViewController calcTextHeight:course.title withWidth:self.view.frame.size.width withFontSize:17];
+            return fmaxf(height, sz.height);
+        }
+        return 44.0f;
+        
+    }
+    return 44.0f;
+    /*
+    switch (row) {
+        case 0:
+            return 114.0f;
+            
+        default:
+            break;
+    }
    if (section == 0) {
         return 114.0f;
     } else if (section == 1) {
@@ -127,7 +185,7 @@
         return 44.0f;
     } else {
         return 44.0f;
-    }
+    }*/
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,8 +196,87 @@
     // Configure the cell...
     NSInteger section = indexPath.section;
     NSInteger row =  indexPath.row;
-    
     if (!cell) {
+        if (row == 0) {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StorePkgDetailTableViewCell" owner:self options:NULL];
+            if ([array count] > 0) {
+                cell = [array objectAtIndex:0];
+            }
+            UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+            backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
+            cell.backgroundView = backgroundView;
+            [backgroundView release];
+        } else if (row == 1) {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourseTableCellHeader" owner:self options:NULL];
+            if ([array count] > 0) {
+                cell = [array objectAtIndex:0];
+            }
+            
+            DetailCustomBackgroundView* backgroundView = [[DetailCustomBackgroundView alloc] init];
+            cell.backgroundView = backgroundView;
+            [backgroundView release];
+        } else {
+            NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourceTableViewCell" owner:self options:NULL];
+            if ([array count] > 0) {
+                cell = [array objectAtIndex:0];
+            }
+            
+            UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+            backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
+            cell.backgroundView = backgroundView;
+            [backgroundView release];
+            
+        }
+    }
+    if (row == 0) {
+        StorePkgDetailTableViewCell * detailCell = (StorePkgDetailTableViewCell*)cell;
+        [detailCell setVoiceData:info];
+        detailCell.delegate = (id)self;
+        
+        
+    } else if (row == 1) {
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.textLabel.text = STRING_INTRO_TITLE;
+        cell.textLabel.numberOfLines = 0;
+        [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        //cell.textLabel.textColor = [UIColor colorWithRed:105.0/255.0 green:128.0/255.0 blue:133.0/255.0 alpha:1.0];
+      
+    } else if (row == 2) {
+        cell.textLabel.text = info.intro;
+        cell.textLabel.numberOfLines = 0;
+        [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        //cell.textLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:132.0/255.0 blue:146.0/255.0 alpha:1.0];
+        
+    } else if (row == 3) {
+        // cell.textLabel.textColor = [UIColor colorWithRed:121.0/255.0 green:132.0/255.0 blue:146.0/255.0 alpha:1.0];
+        cell.textLabel.text = STRING_LESSONS_TITLE;
+        cell.textLabel.numberOfLines = 0;
+        [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor darkGrayColor];
+        
+    } else {
+        NSInteger i = row - 3;
+        if (i < [self.info.dataPkgCourseInfoArray count] ) {
+            DownloadDataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
+            cell.textLabel.text = course.title;
+            [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+            cell.textLabel.backgroundColor = [UIColor clearColor];
+            cell.textLabel.textColor = [UIColor darkGrayColor];
+            //StoreCourceTableViewCell * courseCell = (StoreCourceTableViewCell*)cell;
+            //[courseCell setCourseData:course withURL:self.info.url];
+        }
+    }
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.backgroundColor =  [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 alpha:1.0];
+    return cell;
+    
+    /*if (!cell) {
         if (section == 0) {
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StorePkgDetailTableViewCell" owner:self options:NULL];
             if ([array count] > 0) {
@@ -252,6 +389,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     //cell.backgroundColor =  [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 green:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR2 alpha:1.0];
     return cell;
+     */
 }
 
 /*
@@ -316,6 +454,11 @@
 - (void)doDownload:(DownloadDataPkgInfo*)infom;
 {
     [self.delegate doDownload:infom];
+}
+
+- (void)startLearning:(DownloadDataPkgInfo*)infom;
+{
+    [self.delegate startLearning:infom];
 }
 
 - (void)updateButtonStatus

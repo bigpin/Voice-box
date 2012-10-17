@@ -55,12 +55,25 @@
     }
 	nDY = IS_IPAD ? 20 : 15;
     _bEdit = NO;
+    
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(openCourseNotification:) name:NOTIFICATION_OPEN_PKG object:nil];
+    
+    
     [self loadPkgArray];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated;     // Called when the view has been fully
+{
+    [super viewDidAppear:animated];
+    if (_willOpenCourseTitle != nil) {
+        [self performSelector:@selector(delayOpenCourse) withObject:nil afterDelay:0.5];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -362,6 +375,32 @@
         // cancel
     }
     _deleteObject = nil;
+}
 
+- (void)openCourseNotification:(NSNotification*)aNotification;
+{
+	NSString *title = [aNotification object];
+    if (title == nil) {
+        return;
+    }
+    _willOpenCourseTitle = title;
+    [_willOpenCourseTitle retain];
+}
+
+
+- (void)delayOpenCourse;
+{
+    if (_willOpenCourseTitle != nil) {
+        Database* db = [Database sharedDatabase];
+        VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:_willOpenCourseTitle];
+        if (info != nil) {
+            ScenesCoverViewController * scenes = [[ScenesCoverViewController alloc] init];
+            scenes.dataPath = info.dataPath;
+            scenes.dataTitle = info.dataTitle;
+            [self.delegate openVoiceData:scenes];
+            [_willOpenCourseTitle release];
+            _willOpenCourseTitle = nil;
+         }
+    }
 }
 @end

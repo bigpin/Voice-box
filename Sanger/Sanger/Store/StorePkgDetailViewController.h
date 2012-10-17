@@ -11,6 +11,7 @@
 @protocol StorePkgDetailViewControllerDelegate <NSObject>
 
 - (void)doDownload:(DownloadDataPkgInfo*)info;
+- (void)startLearning:(DownloadDataPkgInfo*)info;
 @end
 
 @interface StorePkgDetailViewController : UITableViewController

@@ -26,10 +26,13 @@
     NSMutableArray* _pkgArray;
     BOOL _bEdit;
     VoiceDataPkgObject* _deleteObject;
+    NSString* _willOpenCourseTitle;
 }
+
 @property (nonatomic, assign) id<VoicePkgTableViewControllerDelegate>delegate;
 - (void)loadPkgArray;
 - (void)checkPkgfromFolder;
 - (void)reloadPkgTable;
 - (void)addAction:(VoicePkgShelfCell*)v;
+- (void)delayOpenCourse;
 @end

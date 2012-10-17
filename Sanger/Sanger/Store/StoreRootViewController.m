@@ -11,6 +11,7 @@
 #import "StorePkgTableViewCell.h"
 #import "StorePkgDetailViewController.h"
 #import "StoreDownloadPkg.h"
+#import "MobiSageSDK.h"
 
 @interface StoreRootViewController ()
 
@@ -80,6 +81,29 @@
     }*/
     return 98.0f;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+{
+    return 40;
+}
+
+// Section header & footer information. Views are preferred over title should you decide to provide both
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;   // custom view for header. will be adjusted to default or specified header height
+{
+    UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
+    [header setBackgroundColor:[UIColor clearColor]];
+    MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:Ad_320X40];
+    //设置广告轮显方式
+    [header addSubview:adBanner];
+    /*[adBanner setSwitchAnimeType:Random];
+    adBanner.frame = CGRectMake(0, 20, 320, 40);
+
+    UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
+    [header setBackgroundColor:[UIColor greenColor]];*/
+    return header;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -193,5 +217,10 @@
     StoreDownloadPkg* downloadPkg = [[StoreDownloadPkg alloc] init];
     downloadPkg.info = info;
     [downloadPkg doDownload];
+}
+
+- (void)startLearning:(DownloadDataPkgInfo*)info;
+{
+    [self.delegate backToShelf:info];
 }
 @end
