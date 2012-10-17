@@ -23,5 +23,15 @@
 	<true/>
 	<key>UITeacherHeadStyle</key>
 	<integer>0</integer>
+	<key>AD_Store</key>
+	<false/>
+	<key>AD_Day</key>
+	<false/>
+	<key>AD_Course</key>
+	<false/>
+	<key>AD_Lesson</key>
+	<false/>
+	<key>AD_Recording</key>
+	<false/>
 </dict>
 </plist>

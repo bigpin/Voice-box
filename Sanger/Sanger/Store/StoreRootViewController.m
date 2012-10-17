@@ -12,6 +12,7 @@
 #import "StorePkgDetailViewController.h"
 #import "StoreDownloadPkg.h"
 #import "MobiSageSDK.h"
+#import "ConfigData.h"
 
 @interface StoreRootViewController ()
 
@@ -84,19 +85,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 {
-    return IS_IPAD ? 60 : 40;
-}
+    ConfigData* configData = [ConfigData sharedConfigData];
+
+    if (configData.bADStore) {
+        return IS_IPAD ? 60 : 40;
+    } else {
+        return 0;
+    }
+ }
 
 // Section header & footer information. Views are preferred over title should you decide to provide both
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;   // custom view for header. will be adjusted to default or specified header height
 {
+    ConfigData* configData = [ConfigData sharedConfigData];
+   if (!configData.bADStore) {
+       return nil;
+    }
     UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
     [header setBackgroundColor:[UIColor clearColor]];
     MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:IS_IPAD? Ad_748X60: Ad_320X40];
     adBanner.frame = CGRectMake((self.view.bounds.size.width - adBanner.frame.size.width)/2, 0, adBanner.frame.size.width, adBanner.frame.size.height);
     //设置广告轮显方式
     [header addSubview:adBanner];
+    [adBanner release];
     /*[adBanner setSwitchAnimeType:Random];
     adBanner.frame = CGRectMake(0, 20, 320, 40);
 

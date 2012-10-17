@@ -8,6 +8,8 @@
 
 #import "ScenesCoverViewController.h"
 #import "LessonsViewController.h"
+#import "ConfigData.h"
+#import "MobiSageSDK.h"
 
 @implementation ScenesCoverViewController
 @synthesize scenesArray = _scenesArray;
@@ -114,6 +116,20 @@
         _daybayday.navigationController = self.navigationController;
         [_daybayday performSelector:@selector(loadDaybyDayView) withObject:nil afterDelay:0.2];
     }
+    ConfigData* config = [ConfigData sharedConfigData];
+    if (config.bADCourse) {
+        NSInteger height = IS_IPAD ? 60 : 40;
+        UIView* adView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, height)];
+        [adView setBackgroundColor:[UIColor clearColor]];
+        MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:IS_IPAD? Ad_748X60: Ad_320X40];
+        adBanner.frame = CGRectMake((self.view.bounds.size.width - adBanner.frame.size.width)/2, 0, adBanner.frame.size.width, adBanner.frame.size.height);
+        //设置广告轮显方式
+        [adView addSubview:adBanner];
+        [adBanner release];
+        [self.view addSubview:adView];
+        [adView release];
+    }
+
 }
 
 - (void) viewWillAppear:(BOOL)animated{

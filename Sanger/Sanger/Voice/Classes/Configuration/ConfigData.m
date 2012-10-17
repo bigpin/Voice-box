@@ -21,6 +21,12 @@
 @synthesize bShowTranslateText;
 @synthesize nTeacherHeadStyle;
 
+@synthesize bADStore;
+@synthesize bAdDay;
+@synthesize bADCourse;
+@synthesize bADLesson;
+@synthesize bADRecording;
+
 static ConfigData *_configData = nil;
 + (ConfigData *)sharedConfigData
 {
@@ -97,7 +103,29 @@ static ConfigData *_configData = nil;
             nTeacherHeadStyle = [numTeachHead intValue];
         }
        
-    } 
+        NSNumber* numAdStore = [config objectForKey:KEY_SETTING_SHOWAD_STORE];
+        if (numAdStore != nil) {
+            self.bADStore = [numAdStore boolValue];
+        }
+        NSNumber* numAdDay = [config objectForKey:KEY_SETTING_SHOWAD_DAY_BY_DAY];
+        if (numAdDay != nil) {
+            self.bAdDay = [numAdDay boolValue];
+        }
+
+        NSNumber* numAdCourse = [config objectForKey:KEY_SETTING_SHOWAD_COURSE];
+        if (numAdCourse != nil) {
+            self.bADCourse = [numAdCourse boolValue];
+        }
+        NSNumber* numAdLesson = [config objectForKey:KEY_SETTING_SHOWAD_LESSON];
+        if (numAdLesson != nil) {
+            self.bADLesson = [numAdLesson boolValue];
+        }
+        NSNumber* numAdRecording = [config objectForKey:KEY_SETTING_SHOWAD_RECORDING];
+        if (numAdRecording != nil) {
+            self.bADRecording = [numAdRecording boolValue];
+        }
+  
+    }
     [config release];
     config = nil;
 

@@ -22,6 +22,7 @@
 #import "VoiceDef.h"
 #import "GTMHTTPFetcher.h"
 #import "Database.h"
+#import "MobiSageSDK.h"
 
 #define LOADINGVIEWTAG      20933
 #define DOWNLOADINGVIEWTAG  20936
@@ -386,6 +387,47 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+{
+    if (section == 0) {
+        ConfigData* configData = [ConfigData sharedConfigData];
+        if (configData.bADLesson) {
+            return IS_IPAD ? 60 : 40;
+        } else {
+            return 0;
+        }
+
+    } else {
+        return 5.0;
+
+    }
+}
+
+// Section header & footer information. Views are preferred over title should you decide to provide both
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;   // custom view for header. will be adjusted to default or specified header height
+{
+    if (section == 0) {
+        ConfigData* configData = [ConfigData sharedConfigData];
+        if (!configData.bADLesson) {
+            return nil;
+        }
+        UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
+        [header setBackgroundColor:[UIColor clearColor]];
+        MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:IS_IPAD? Ad_748X60: Ad_320X40];
+        adBanner.frame = CGRectMake((self.view.bounds.size.width - adBanner.frame.size.width)/2, 0, adBanner.frame.size.width, adBanner.frame.size.height);
+        //设置广告轮显方式
+        [header addSubview:adBanner];
+        [adBanner release];
+        return header;
+    } else {
+        // create the parent view that will hold header Label
+        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(2, 0.0, self.view.bounds.size.width, 5.0)] autorelease];
+        return customView;
+
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = @"MsgListCell";
@@ -544,7 +586,7 @@
 	return height;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+/*- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	
     // create the parent view that will hold header Label
 	UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(2, 0.0, self.view.bounds.size.width, 5.0)] autorelease];
@@ -554,7 +596,7 @@
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return 5.0;
 }
-
+*/
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -12,7 +12,9 @@
 #import "MobClick.h"
 #import "NSPhoneticSymbol.h"
 #import "ConfigData.h"
+#import "MobiSageSDK.h"
 #import "VoiceDef.h"
+
 @implementation RecordingViewController
 @synthesize recordingdelegate;
 @synthesize sentence = _sentence;
@@ -507,6 +509,48 @@ char *OSTypeToStr(char *buf, OSType t)
         return 2;
     }
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section;
+{
+    if (section == 1) {
+        ConfigData* configData = [ConfigData sharedConfigData];
+        if (configData.bADRecording) {
+            return IS_IPAD ? 60 : 40;
+        } else {
+            return 0;
+        }
+        
+    } else {
+        return 5.0;
+        
+    }
+}
+
+// Section header & footer information. Views are preferred over title should you decide to provide both
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section;   // custom view for header. will be adjusted to default or specified header height
+{
+    if (section == 1) {
+        ConfigData* configData = [ConfigData sharedConfigData];
+        if (!configData.bADRecording) {
+            return nil;
+        }
+        UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
+        [header setBackgroundColor:[UIColor clearColor]];
+        MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:IS_IPAD? Ad_748X60: Ad_320X40];
+        adBanner.frame = CGRectMake((self.view.bounds.size.width - adBanner.frame.size.width)/2, 0, adBanner.frame.size.width, adBanner.frame.size.height);
+        //设置广告轮显方式
+        [header addSubview:adBanner];
+        [adBanner release];
+        return header;
+    } else {
+        // create the parent view that will hold header Label
+        UIView* customView = [[[UIView alloc] initWithFrame:CGRectMake(2, 0.0, self.view.bounds.size.width, 5.0)] autorelease];
+        return customView;
+        
+    }
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

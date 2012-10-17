@@ -8,6 +8,7 @@
 
 #import "DaybyDayViewController.h"
 #include "VoiceDef.h"
+#import "ConfigData.h"
 
 @interface DaybyDayViewController ()
 
@@ -61,8 +62,11 @@
     self.textLabel.scrollView.bounces = NO;
     self.settingPrompt.text = STRING_DAY_PROMPT;
     self.settingPrompt.textAlignment = UITextAlignmentLeft;
-    [self performSelector:@selector(addAD) withObject:nil afterDelay:0.2];
-}
+    ConfigData* config = [ConfigData sharedConfigData];
+    if (config.bAdDay) {
+        [self performSelector:@selector(addAD) withObject:nil afterDelay:0.2];
+    }
+ }
 
 - (void)viewDidUnload
 {

@@ -33,6 +33,13 @@
 @property BOOL      bShowTranslateText;
 @property NSInteger nTeacherHeadStyle;
 
+@property BOOL bADStore;
+@property BOOL bAdDay;
+@property BOOL bADCourse;
+@property BOOL bADLesson;
+@property BOOL bADRecording;
+
+
 + (ConfigData *)sharedConfigData;
 - (void)loadConfiguration;
 @end

@@ -36,6 +36,12 @@
 #define KEY_SETTING_LESSON_PAGE_OF_IPAD             @"UILessonPageCountOfiPad"
 #define KEY_SETTING_SHOWTRANLATION                  @"UIShowTranslation"
 #define KEY_SETTING_TEACHERHEAD_STYLE               @"UITeacherHeadStyle"
+#define KEY_SETTING_SHOWAD_STORE                    @"AD_Store"
+#define KEY_SETTING_SHOWAD_DAY_BY_DAY               @"AD_Day"
+#define KEY_SETTING_SHOWAD_COURSE                   @"AD_Course"
+#define KEY_SETTING_SHOWAD_LESSON                   @"AD_Lesson"
+#define KEY_SETTING_SHOWAD_RECORDING                @"AD_Recording"
+
 
 #define NOTI_CHANGED_SETTING_VALUE      @"ChangedSettingValueNotification"
 #define NOTI_WILLENTERFOREGROUND        @"WillEnterForegroundNotification"
