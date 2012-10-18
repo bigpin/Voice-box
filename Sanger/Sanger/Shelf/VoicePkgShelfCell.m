@@ -27,7 +27,7 @@
         _bookCover.layer.masksToBounds = YES;
         
         [self addSubview:_bookCover];
-        CGFloat ySpace = IS_IPAD ? frame.origin.y - 56 : - 5;
+        CGFloat ySpace = IS_IPAD ? frame.origin.y - 56 : - 6;
         _deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(_bookCover.frame.origin.x - 10, ySpace, 28, 28)];
         
         [_deleteButton setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"btn_delete.png"]] forState:UIControlStateNormal];
@@ -39,7 +39,10 @@
         [_deleteButton release];
         [_deleteButton setHidden:YES];
         _bEdit = NO;
-        _shadowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(-15, -22, frame.size.width + 26, frame.size.height + 42)];
+        NSInteger stretchHeight = IS_IPAD ? 34 : 42;
+        NSInteger stretchWidth = IS_IPAD ? 26 : 28;
+       NSInteger shadowY = IS_IPAD ? -18 : -22;
+       _shadowImageView  = [[UIImageView alloc] initWithFrame:CGRectMake(-15, shadowY, frame.size.width + stretchWidth, frame.size.height + stretchHeight)];
         _shadowImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", @"mask_book.png"]];
         _shadowImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
         //[bookView setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@", @"mask_book.png"]] forState:UIControlStateNormal];
