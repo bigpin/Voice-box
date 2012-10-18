@@ -10,6 +10,8 @@
 #import "StoreViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SettingViewController.h"
+#import "MobClick.h"
+
 @interface SangerViewController ()
 
 @end
@@ -116,6 +118,7 @@
 
 - (void)gotoStore
 {
+    [MobClick endEvent:@"goto_store"];
     StoreViewController* store = [[StoreViewController alloc] initWithNibName:@"StoreViewController" bundle:nil];
     UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:store];
     

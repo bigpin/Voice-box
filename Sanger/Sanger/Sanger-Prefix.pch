@@ -21,6 +21,7 @@
 #define V_NSLog(format, ...)
 #endif
 
+#define APP_KEY_UMENG @"507fd3f75270150daf00005d"
 #define NOTIFICATION_DOWNLOADED_VOICE_PKGXML   @"DownloadedVoicePkgXMLNotification"
 
 #define NOTIFICATION_EDIT_VOICE_PKG @"EditPkgNotification"

@@ -8,7 +8,7 @@
 
 #import "SangerAppDelegate.h"
 #import "SangerViewController.h"
-
+#import "MobClick.h"
 
 @implementation SangerAppDelegate
 
@@ -34,6 +34,10 @@
     
     self.window.rootViewController = nav;
     [nav release];
+
+    // UMeng setting
+    [MobClick startWithAppkey:APP_KEY_UMENG];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
