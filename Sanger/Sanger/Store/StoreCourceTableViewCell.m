@@ -67,13 +67,13 @@
     if (bSeperator) {
         // draw line v
         CGContextSetStrokeColorWithColor(graphicContext, [[UIColor colorWithRed:210.0/255.0 green:210.0/255.0 blue:210.0/255.0 alpha:1.0] CGColor]);
-        CGContextMoveToPoint(graphicContext, 42, 0);
-        CGContextAddLineToPoint(graphicContext, 42, rect.size.height);
+        CGContextMoveToPoint(graphicContext, 50, 0);
+        CGContextAddLineToPoint(graphicContext, 50, rect.size.height);
         CGContextStrokePath(graphicContext);
         
         CGContextSetStrokeColorWithColor(graphicContext, [[UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0] CGColor]);
-        CGContextMoveToPoint(graphicContext, 43, 0);
-        CGContextAddLineToPoint(graphicContext, 43, rect.size.height);
+        CGContextMoveToPoint(graphicContext, 51, 0);
+        CGContextAddLineToPoint(graphicContext, 51, rect.size.height);
         CGContextStrokePath(graphicContext);
 
     }

@@ -13,7 +13,7 @@
 #import "StoreDownloadPkg.h"
 #import "MobiSageSDK.h"
 #import "ConfigData.h"
-
+#import "StoreCourceTableViewCell.h"
 @interface StoreRootViewController ()
 
 @end
@@ -102,21 +102,17 @@
    if (!configData.bADStore) {
        return nil;
     }
-    UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
-    [header setBackgroundColor:[UIColor clearColor]];
+    
+    StoreCourceTableViewCellBackground* header = [[StoreCourceTableViewCellBackground alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
+    header.bDark = YES;
+    header.bSeperator = NO;
     MobiSageAdBanner * adBanner = [[MobiSageAdBanner alloc] initWithAdSize:IS_IPAD? Ad_748X60: Ad_320X40];
     adBanner.frame = CGRectMake((self.view.bounds.size.width - adBanner.frame.size.width)/2, 0, adBanner.frame.size.width, adBanner.frame.size.height);
-
     adBanner.autoresizingMask =  UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin ;
-//设置广告轮显方式
+    //设置广告轮显方式
     [header addSubview:adBanner];
     [adBanner release];
-    /*[adBanner setSwitchAnimeType:Random];
-    adBanner.frame = CGRectMake(0, 20, 320, 40);
-
-    UIView* header = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)] autorelease];
-    [header setBackgroundColor:[UIColor greenColor]];*/
-    return header;
+    return [header autorelease];
 }
 
 
