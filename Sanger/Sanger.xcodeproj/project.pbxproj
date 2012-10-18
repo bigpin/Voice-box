@@ -165,8 +165,6 @@
 		0DE21CF81609CEA600407EB4 /* StorePkgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */; };
 		0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */; };
 		0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */; };
-		0DE515CE1608743300B305A3 /* chuguobibei.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515CD1608743300B305A3 /* chuguobibei.png */; };
-		0DE515D016087DAA00B305A3 /* zhichangyingyu.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */; };
 		0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */; };
 		0DE718FB1607FA04001E03F1 /* GSBookViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE718F01607FA04001E03F1 /* GSBookViewContainerView.m */; };
 		0DE718FC1607FA04001E03F1 /* GSCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE718F21607FA04001E03F1 /* GSCellContainerView.m */; };
@@ -516,8 +514,6 @@
 		0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StorePkgTableViewCell.m; path = Store/StorePkgTableViewCell.m; sourceTree = "<group>"; };
 		0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StorePkgTableViewCell.xib; path = Store/StorePkgTableViewCell.xib; sourceTree = "<group>"; };
 		0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreAdTableViewCell.xib; path = Store/StoreAdTableViewCell.xib; sourceTree = "<group>"; };
-		0DE515CD1608743300B305A3 /* chuguobibei.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chuguobibei.png; sourceTree = "<group>"; };
-		0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zhichangyingyu.png; sourceTree = "<group>"; };
 		0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceShelfViewControllerforiPad.xib; sourceTree = "<group>"; };
 		0DE718EF1607FA04001E03F1 /* GSBookViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBookViewContainerView.h; sourceTree = "<group>"; };
 		0DE718F01607FA04001E03F1 /* GSBookViewContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBookViewContainerView.m; sourceTree = "<group>"; };
@@ -1361,8 +1357,6 @@
 			children = (
 				0D9ED33D16254423007BC9D1 /* Image */,
 				0D2437BD160FE7B000AA4039 /* App */,
-				0DE515CF16087DAA00B305A3 /* zhichangyingyu.png */,
-				0DE515CD1608743300B305A3 /* chuguobibei.png */,
 				0DC571C716070CCC00A5D17B /* Shelf */,
 				0DC571C816070CCC00A5D17B /* Store */,
 				0DC571C916070CCC00A5D17B /* Voice */,
@@ -1696,8 +1690,6 @@
 				0DC687C316084EBC0094C82A /* mask_book@2x.png in Resources */,
 				0DC687C416084EBC0094C82A /* mask_book@2x~iphone.png in Resources */,
 				0DC687C516084EBC0094C82A /* mask_book~iphone.png in Resources */,
-				0DE515CE1608743300B305A3 /* chuguobibei.png in Resources */,
-				0DE515D016087DAA00B305A3 /* zhichangyingyu.png in Resources */,
 				0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */,
 				0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */,
 				0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */,
