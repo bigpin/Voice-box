@@ -369,6 +369,7 @@ char *OSTypeToStr(char *buf, OSType t)
         
         [self setFileDescriptionForFormat:recorder->DataFormat() withName:@"Recorded File"];
         if (!bOK) {
+            [self removeStartRecordingView];
             [self addFailedRecordingView];
             NSString* start = STRING_START_RECORDING;
             self.recordingItem.title = start;
