@@ -391,6 +391,7 @@
 		0D44CA6915B155AD00400EAD /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreViewController.m; path = Store/StoreViewController.m; sourceTree = "<group>"; };
 		0D44CA6A15B155AD00400EAD /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreViewController.xib; path = Store/StoreViewController.xib; sourceTree = "<group>"; };
 		0D44CA6E15B15A2200400EAD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0D47CBA9163007170089F516 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		0D71B9D9162E4B4D003B83EA /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		0D71B9DA162E4B4D003B83EA /* libMobiSageSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobiSageSDK.a; sourceTree = "<group>"; };
 		0D71B9DB162E4B4D003B83EA /* MobiSagePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobiSagePackage.h; sourceTree = "<group>"; };
@@ -988,6 +989,7 @@
 		0D44CA2E15B14C6100400EAD = {
 			isa = PBXGroup;
 			children = (
+				0D47CBA9163007170089F516 /* Security.framework */,
 				0D44CA4315B14C6200400EAD /* Sanger */,
 				0D44CA3C15B14C6200400EAD /* Frameworks */,
 				0D44CA3A15B14C6200400EAD /* Products */,

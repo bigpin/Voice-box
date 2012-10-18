@@ -229,9 +229,11 @@ BOOL AQRecorder::StartRecord(CFStringRef inRecordFile)
 		XThrowIfError(AudioQueueGetProperty(mQueue, kAudioQueueProperty_StreamDescription,	
 										 &mRecordFormat, &size), "couldn't get queue's format");
 			
-		NSString *recordFile = [NSTemporaryDirectory() stringByAppendingPathComponent: (NSString*)inRecordFile];	
+		NSString *recordFile = [NSTemporaryDirectory() stringByAppendingPathComponent: (NSString*)inRecordFile];
+         CFURLRef url = CFURLCreateWithFileSystemPath (NULL, (CFStringRef)recordFile, kCFURLPOSIXPathStyle, false);
         NSLog(@"%@", recordFile);
-		url = CFURLCreateWithString(kCFAllocatorDefault, (CFStringRef)recordFile, NULL);
+       
+		//url = CFURLCreateWithString(kCFAllocatorDefault, (CFStringRef)url1, NULL);
 		
 		// create the audio file
 		XThrowIfError(AudioFileCreateWithURL(url, kAudioFileWAVEType, &mRecordFormat, kAudioFileFlags_EraseFile,
