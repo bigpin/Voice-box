@@ -55,7 +55,7 @@
 #define STRING_DELETEBOOK_ALERT_TITLE   @"删除资料"
 #define STRING_DELETEBOOK_BUTTON_CONFIRM @"确认"
 #define STRING_DELETEBOOK_BUTTON_CANCEL @"取消"
-
+#define STRING_COURSE_INDEX @"课程"
 #define STRING_VOICE_PKG_DIR    @"VoicePkgData"
 #define SUB_DIR_DOCUMENT				@"/Documents/"
 #define SUB_DIR_CACHE                   @"/Caches/"

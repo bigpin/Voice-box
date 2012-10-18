@@ -91,14 +91,14 @@
 {
     // Return the number of rows in the section.
     return self.info.dataPkgCourseInfoArray.count + 4;
-    if (section == 0) {
+   /* if (section == 0) {
         return 1;
     } else if (section == 1) {
         return self.info.dataPkgCourseInfoArray.count + 3;
     } else {
         return 0;
         
-    }
+    }*/
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
@@ -228,18 +228,39 @@
             DetailCustomBackgroundView* backgroundView = [[DetailCustomBackgroundView alloc] init];
             cell.backgroundView = backgroundView;
             [backgroundView release];
-        } else {
+        } else  {
             NSArray *array = [[NSBundle mainBundle] loadNibNamed:@"StoreCourceTableViewCell" owner:self options:NULL];
             if ([array count] > 0) {
                 cell = [array objectAtIndex:0];
             }
             
-            UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
-            backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
-            cell.backgroundView = backgroundView;
-            [backgroundView release];
-            
-        }
+            if (row == 2) {
+                UIView* backgroundView = [[UIView alloc] initWithFrame:cell.frame];
+                backgroundView.backgroundColor = [UIColor colorWithRed:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_R green:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_G blue:VALUE_DETAIL_STORE_BACKGROUND_COLOR1_B alpha:1.0];
+                cell.backgroundView = backgroundView;
+                [backgroundView release];
+
+            } else if (row == 3) {
+                StoreCourceTableViewCellBackground* backgroundView = [[StoreCourceTableViewCellBackground alloc] initWithFrame:cell.frame];
+                cell.backgroundView = backgroundView;
+                backgroundView.bDark = !(row % 2 == 0);
+                backgroundView.bSeperator = NO;
+                [backgroundView release];
+                
+            } else {
+                StoreCourceTableViewCellBackground* backgroundView = [[StoreCourceTableViewCellBackground alloc] initWithFrame:cell.frame];
+                cell.backgroundView = backgroundView;
+                NSInteger i = row - 4;
+                if (i < [self.info.dataPkgCourseInfoArray count] ) {
+                    backgroundView.bSeperator = YES;
+                } else {
+                    backgroundView.bSeperator = NO;
+                }
+                backgroundView.bDark = !(row % 2 == 0);
+                [backgroundView release];
+
+            }
+        } 
     }
     if (row == 0) {
         StorePkgDetailTableViewCell * detailCell = (StorePkgDetailTableViewCell*)cell;
@@ -273,13 +294,19 @@
         cell.textLabel.textColor = [UIColor darkGrayColor];
         
     } else {
-        NSInteger i = row - 3;
+        NSInteger i = row - 4;
         if (i < [self.info.dataPkgCourseInfoArray count] ) {
             DownloadDataPkgCourseInfo* course = [self.info.dataPkgCourseInfoArray objectAtIndex:i];
-            cell.textLabel.text = course.title;
-            [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
+            StoreCourceTableViewCell* courseCell = (StoreCourceTableViewCell*)cell;
+            courseCell.courseIndexLabel.text = [NSString stringWithFormat:@"%d", i+1];
+            courseCell.courseIndexLabel.textColor = [UIColor darkGrayColor];
+           courseCell.courseNameLabel.text = [NSString stringWithFormat:@"%@ %d: %@",STRING_COURSE_INDEX, i+1, course.title];
+            courseCell.courseNameLabel.textColor = [UIColor darkGrayColor];
+
+            //cell.textLabel.text = course.title;
+            /*[cell.textLabel setFont:[UIFont systemFontOfSize:14]];
             cell.textLabel.backgroundColor = [UIColor clearColor];
-            cell.textLabel.textColor = [UIColor darkGrayColor];
+            cell.textLabel.textColor = [UIColor darkGrayColor];*/
             //StoreCourceTableViewCell * courseCell = (StoreCourceTableViewCell*)cell;
             //[courseCell setCourseData:course withURL:self.info.url];
         }

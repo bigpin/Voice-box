@@ -985,7 +985,6 @@
 		0D44CA2E15B14C6100400EAD = {
 			isa = PBXGroup;
 			children = (
-				0D47CBA9163007170089F516 /* Security.framework */,
 				0D44CA4315B14C6200400EAD /* Sanger */,
 				0D44CA3C15B14C6200400EAD /* Frameworks */,
 				0D44CA3A15B14C6200400EAD /* Products */,
@@ -1004,6 +1003,7 @@
 			isa = PBXGroup;
 			children = (
 				0DD84AF515FF3BFF00B2F2F1 /* libsqlite3.0.dylib */,
+				0D47CBA9163007170089F516 /* Security.framework */,
 				0DD84AF315FF3BD500B2F2F1 /* AudioToolbox.framework */,
 				0DD84AF115FF3BCE00B2F2F1 /* CoreTelephony.framework */,
 				0DD84AEF15FF3BC500B2F2F1 /* SystemConfiguration.framework */,
