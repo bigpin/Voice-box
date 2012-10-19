@@ -317,6 +317,9 @@
     if (!_bEdit) {
         VoicePkgShelfCell* cell = (VoicePkgShelfCell*)recognizer.view;
         [self openSences:cell];
+    } else {
+        VoicePkgShelfCell* cell = (VoicePkgShelfCell*)recognizer.view;
+        [self deletePkg:cell];
     }
 }
 
@@ -341,7 +344,7 @@
 {
     NSInteger index = cell.index;
     _deleteObject = [_pkgArray objectAtIndex:index];
-	NSString *message = [NSString stringWithFormat:@"%@",STRING_DELETEBOOK_ALERT_MESSAGE];
+    NSString *message = [NSString stringWithFormat:STRING_DELETEBOOK_ALERT_MESSAGE, _deleteObject.dataTitle];
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:STRING_DELETEBOOK_ALERT_TITLE
 													message:message
 												   delegate:self
@@ -374,6 +377,8 @@
         [self reloadPkgTable];
     } else {
         // cancel
+        _bEdit = NO;
+ 		[[NSNotificationCenter defaultCenter] postNotificationName: NOTIFICATION_EDIT_VOICE_PKG object: [NSNumber numberWithBool:NO]];
     }
     _deleteObject = nil;
 }

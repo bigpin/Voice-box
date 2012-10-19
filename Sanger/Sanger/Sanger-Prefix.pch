@@ -51,7 +51,7 @@
 #define STRING_LESSONS_TITLE    @"课程内容："
 #define STRING_DELETE           @"删除"
 #define STRING_UNDO             @"返回"
-#define STRING_DELETEBOOK_ALERT_MESSAGE @"您确定要删除收藏的资料吗?"
+#define STRING_DELETEBOOK_ALERT_MESSAGE @"您确定要删除收藏的资料《%@》吗?"
 #define STRING_DELETEBOOK_ALERT_TITLE   @"删除资料"
 #define STRING_DELETEBOOK_BUTTON_CONFIRM @"确认"
 #define STRING_DELETEBOOK_BUTTON_CANCEL @"取消"
