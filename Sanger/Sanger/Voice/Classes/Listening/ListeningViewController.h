@@ -120,6 +120,8 @@ typedef enum {
 - (void)pauseintime;
 - (void)setStatusPause;
 - (BOOL)downloadLesson;
+- (void)downloadXATByURL:(NSString*)url withTryIndex:(NSInteger)tryIndex;
+- (void)downloadISBByURL:(NSString *)url withTryIndex:(NSInteger)tryIndex;
 - (void)displayLesson;
 
 @end

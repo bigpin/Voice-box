@@ -11,6 +11,7 @@
 
 @implementation StoreVoiceDataListParser
 @synthesize pkgsArray;
+@synthesize serverlistArray;
 
 - (void)loadWithPath:(NSString*)path
 {
@@ -25,6 +26,26 @@
 	// Obtain root element
 	TBXMLElement * root = tbxml.rootXMLElement;
     if (root) {
+        // head
+        TBXMLElement * header = [TBXML childElementNamed:@"head" parentElement:root];
+        if (header) {
+            // load serverList
+            TBXMLElement* serverlist = [TBXML childElementNamed:@"serverList" parentElement:header];
+            if (serverlist) {
+                TBXMLElement* urlElement = [TBXML childElementNamed:@"url" parentElement:serverlist];
+                NSMutableArray* array = [[NSMutableArray alloc] init];
+                while (urlElement) {
+                    NSString* urltxt = [TBXML textForElement:urlElement];
+                    V_NSLog(@"urltxt %@", urltxt);
+                    [array addObject:urltxt];
+                     urlElement = [TBXML nextSiblingNamed:@"url" searchFromElement:urlElement];
+               }
+                self.serverlistArray = array;
+                [array release];
+            }
+        }
+        
+        // body
         TBXMLElement * body = [TBXML childElementNamed:@"body" parentElement:root];
 		if (body) {
             TBXMLElement * pkgs = [TBXML childElementNamed:@"pkgs" parentElement:body];

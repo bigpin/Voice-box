@@ -7,6 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@interface DownloadServerInfo :NSObject
+
+@property (nonatomic, retain, readwrite) NSMutableArray* serverList;
++ (DownloadServerInfo*)sharedDownloadServerInfo;
+
+@end;
 
 @interface DownloadDataPkgCourseInfo : NSObject
 @property (nonatomic, retain, readwrite) NSString* title;

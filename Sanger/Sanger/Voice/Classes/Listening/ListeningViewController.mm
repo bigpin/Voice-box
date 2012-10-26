@@ -26,6 +26,15 @@
 
 #define LOADINGVIEWTAG      20933
 #define DOWNLOADINGVIEWTAG  20936
+#define STRING_KEY_LESSONFILE @"lessonFile"
+#define STRING_KEY_DATAPATH @"dataPath"
+#define STRING_KEY_COURSETITLE @"title"
+#define STRING_KEY_LESSONPATH @"lessonPath"
+#define STRING_KEY_TRYSERVERLIST @"tryServerListIndex"
+#define STRING_KEY_FILETYPE @"fileType"
+#define STRING_KEY_FILETYPE_XAT @"xat"
+#define STRING_KEY_FILETYPE_ISB @"isb"
+
 @implementation ListeningViewController
 @synthesize sentencesArray = _sentencesArray;
 @synthesize teachersArray = _teachersArray;
@@ -1180,54 +1189,93 @@
     if (info == nil) {
         return NO;
     }
+    [self downloadXATByURL:info.url withTryIndex:-1];
+    [self downloadISBByURL:info.url withTryIndex:-1];
+    if (!_bDownloadedISB || !_bDownloadedXAT) {
+        [self addDownloadingView];
+    }
+    return YES;
+}
+
+- (void)downloadXATByURL:(NSString*)url withTryIndex:(NSInteger)tryIndex
+{
+    Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+    Database* db = [Database sharedDatabase];
     
+    VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:[self.delegate getPkgTitle]];
+    if (info == nil) {
+        return;
+    }
+
     NSMutableDictionary* dic = [[[NSMutableDictionary alloc] init] autorelease];
     NSFileManager* fileManager = [NSFileManager defaultManager];
     
-    [dic setObject:lesson.file forKey:@"lessonFile"];
-    [dic setObject:info.dataPath forKey:@"dataPath"];
-    [dic setObject:[self.delegate getCourseTitle] forKey:@"title"];
-    [dic setObject:lesson.path forKey:@"lessonPath"];
-
+    [dic setObject:lesson.file forKey:STRING_KEY_LESSONFILE];
+    [dic setObject:info.dataPath forKey:STRING_KEY_DATAPATH];
+    [dic setObject:[self.delegate getCourseTitle] forKey:STRING_KEY_COURSETITLE];
+    [dic setObject:lesson.path forKey:STRING_KEY_LESSONPATH];
+    [dic setObject:[NSNumber numberWithInteger:tryIndex] forKey:STRING_KEY_TRYSERVERLIST];
+    V_NSLog(@"try list xat %d", tryIndex);
     NSString* dataFile = [lesson.file substringToIndex:[lesson.file length] - 4];
     {
-        NSString* xatFile = [dataFile stringByAppendingPathExtension:@"xat"];
-        NSString* xatURLpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, xatFile];
+        NSString* xatFile = [dataFile stringByAppendingPathExtension:STRING_KEY_FILETYPE_XAT];
+        NSString* xatURLpath = [NSString stringWithFormat:@"%@/%@/%@", url, lesson.path, xatFile];
         
         NSString* xatDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, [self.delegate getCourseTitle], lesson.path, xatFile];
         V_NSLog(@"xatURLPath:  %@", xatURLpath);
         V_NSLog(@"xatDataPath:  %@", xatDatafile);
-     
         
-      if (![fileManager fileExistsAtPath:xatDatafile]) {
+        if (![fileManager fileExistsAtPath:xatDatafile]) {
             NSURL* url = [NSURL URLWithString:xatURLpath];
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-            [request setValue:@"xat" forHTTPHeaderField:@"User-Agent"];
-          NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
-           [userDic setObject:@"xat" forKey:@"fileType"];
+            [request setValue:STRING_KEY_FILETYPE_XAT forHTTPHeaderField:@"User-Agent"];
+            NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
+            [userDic setObject:STRING_KEY_FILETYPE_XAT forKey:STRING_KEY_FILETYPE];
             GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
             fetcher.userData = userDic;
             [fetcher beginFetchWithDelegate:self
                           didFinishSelector:@selector(fetcher:finishedWithData:error:)];
-           
-           _bDownloadedXAT = NO;
-       } else {
-           _bDownloadedXAT = YES;
-       }
+            
+            _bDownloadedXAT = NO;
+        } else {
+            _bDownloadedXAT = YES;
+        }
     }
     
-    NSString* isbFile = [dataFile stringByAppendingPathExtension:@"isb"];
-    NSString* isbpath = [NSString stringWithFormat:@"%@/%@/%@", info.url, lesson.path, isbFile];
+}
+
+- (void)downloadISBByURL:(NSString *)url withTryIndex:(NSInteger)tryIndex
+{
+    Lesson* lesson = (Lesson*)[self.courseParser.course.lessons objectAtIndex:self.nPositionInCourse];
+    Database* db = [Database sharedDatabase];
+    
+    VoiceDataPkgObjectFullInfo* info = [db loadVoicePkgInfoByTitle:[self.delegate getPkgTitle]];
+    if (info == nil) {
+        return;
+    }
+    NSMutableDictionary* dic = [[[NSMutableDictionary alloc] init] autorelease];
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    
+    [dic setObject:lesson.file forKey:STRING_KEY_LESSONFILE];
+    [dic setObject:info.dataPath forKey:STRING_KEY_DATAPATH];
+    [dic setObject:[self.delegate getCourseTitle] forKey:STRING_KEY_COURSETITLE];
+    [dic setObject:lesson.path forKey:STRING_KEY_LESSONPATH];
+    [dic setObject:[NSNumber numberWithInteger:tryIndex] forKey:STRING_KEY_TRYSERVERLIST];
+    V_NSLog(@"try list isb %d", tryIndex);
+  
+    NSString* dataFile = [lesson.file substringToIndex:[lesson.file length] - 4];
+    NSString* isbFile = [dataFile stringByAppendingPathExtension:STRING_KEY_FILETYPE_ISB];
+    NSString* isbpath = [NSString stringWithFormat:@"%@/%@/%@", url, lesson.path, isbFile];
     NSString* isbDatafile = [NSString stringWithFormat:@"%@/%@/%@/%@",info.dataPath, [self.delegate getCourseTitle], lesson.path, isbFile];
     V_NSLog(@"isbPath:  %@", isbpath);
     V_NSLog(@"isbDataPath:  %@", isbDatafile);
     if (![fileManager fileExistsAtPath:isbDatafile]) {
         NSURL* url = [NSURL URLWithString:isbpath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        [request setValue:@"isb" forHTTPHeaderField:@"User-Agent"];
+        [request setValue:STRING_KEY_FILETYPE_ISB forHTTPHeaderField:@"User-Agent"];
         GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
         NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
-        [userDic setObject:@"isb" forKey:@"fileType"];
+        [userDic setObject:STRING_KEY_FILETYPE_ISB forKey:STRING_KEY_FILETYPE];
         fetcher.userData = userDic;
         [fetcher beginFetchWithDelegate:self
                       didFinishSelector:@selector(fetcher:finishedWithData:error:)];
@@ -1236,34 +1284,59 @@
     } else {
         _bDownloadedISB = YES;
     }
-    
-    if (!_bDownloadedISB || !_bDownloadedXAT) {
-        [self addDownloadingView];
-    }
-    return YES;
 }
 
 - (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
 {
     if (error != nil) {
-        [self removeDownloadingView];
-        [self addDownloadingFailedView];
+        // try serverlist url
+        DownloadServerInfo* info = [DownloadServerInfo sharedDownloadServerInfo];
+        if (info != nil) {
+            NSMutableArray* serverlist = info.serverList;
+            NSMutableDictionary* dic = fecther.userData;
+            if (dic != nil) {
+                NSNumber* indexNumber = [dic objectForKey:STRING_KEY_TRYSERVERLIST];
+                if (indexNumber == nil) {
+                    [self removeDownloadingView];
+                    [self addDownloadingFailedView];
+                } else {
+                    NSInteger index = [indexNumber integerValue];
+                    index++;
+                     if (index < [serverlist count]) {
+                        NSString* url = [serverlist objectAtIndex:index];
+                        NSString* fileType = [dic objectForKey:STRING_KEY_FILETYPE];
+                        if ([fileType isEqualToString:STRING_KEY_FILETYPE_XAT]) {
+                            [self downloadXATByURL:url withTryIndex:index];
+                         } else if ([fileType isEqualToString:STRING_KEY_FILETYPE_ISB]) {
+                            [self downloadISBByURL:url withTryIndex:index];
+                        }
+                     } else {
+                         [self removeDownloadingView];
+                         [self addDownloadingFailedView];
+                     }
+                 }
+            }
+        } else {
+            [self removeDownloadingView];
+            [self addDownloadingFailedView];
+        }
     } else {
-        
         NSMutableDictionary* dic = fecther.userData;
         NSFileManager* fileManager = [NSFileManager defaultManager];
-        NSString* lessonPath = [dic objectForKey:@"lessonPath"];
-        NSString* dataPath = [dic objectForKey:@"dataPath"];
-        NSString* courseTitle = [dic objectForKey:@"title"];
-        NSString* lessonFile = [dic objectForKey:@"lessonFile"];
+        NSString* lessonPath = [dic objectForKey:STRING_KEY_LESSONPATH];
+        NSString* dataPath = [dic objectForKey:STRING_KEY_DATAPATH];
+        NSString* courseTitle = [dic objectForKey:STRING_KEY_COURSETITLE];
+        NSString* lessonFile = [dic objectForKey:STRING_KEY_LESSONFILE];
         NSString* xatFile = [lessonFile substringToIndex:[lessonFile length] - 4];
+        NSNumber* indexNumber = [dic objectForKey:STRING_KEY_TRYSERVERLIST];
+        V_NSLog(@"try list %d", [indexNumber integerValue]);
         
-        NSString* fileType = [dic objectForKey:@"fileType"];
-        if ([fileType isEqualToString:@"xat"]) {
-            xatFile = [xatFile stringByAppendingPathExtension:@"xat"];
+        NSString* fileType = [dic objectForKey:STRING_KEY_FILETYPE];
+        if ([fileType isEqualToString:STRING_KEY_FILETYPE_XAT]) {
+            xatFile = [xatFile stringByAppendingPathExtension:STRING_KEY_FILETYPE_XAT];
             _bDownloadedXAT = YES;
-         } else if ([fileType isEqualToString:@"isb"]) {
-            xatFile = [xatFile stringByAppendingPathExtension:@"isb"];
+         } else if ([fileType isEqualToString:STRING_KEY_FILETYPE_ISB]) {
+            xatFile = [xatFile stringByAppendingPathExtension:STRING_KEY_FILETYPE_ISB];
              _bDownloadedISB = YES;
         }
         NSString* path = [NSString stringWithFormat:@"%@/%@/%@",dataPath, courseTitle, lessonPath];
@@ -1281,5 +1354,6 @@
         }
     }
 }
+
 
 @end

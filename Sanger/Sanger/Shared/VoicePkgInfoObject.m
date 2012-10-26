@@ -8,6 +8,20 @@
 
 #import "VoicePkgInfoObject.h"
 
+
+@implementation DownloadServerInfo
+
+static DownloadServerInfo* _serverInfo;
++ (DownloadServerInfo*)sharedDownloadServerInfo
+{
+	if (_serverInfo == nil) {
+		_serverInfo = [[DownloadServerInfo alloc] init];
+        
+	}
+	return _serverInfo;
+}
+
+@end
 @implementation VoiceDataPkgObject
 @synthesize  dataPath;
 @synthesize  dataTitle;
