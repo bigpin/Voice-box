@@ -157,7 +157,13 @@ char *OSTypeToStr(char *buf, OSType t)
     [super viewDidLoad];
     self.title = STRING_SINGLE_TRAINING;
     
-    // adview
+    UIImage* bkimage = [[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/background_gray.png", resourcePath]] stretchableImageWithLeftCapWidth:24 topCapHeight:15];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:bkimage];
+    [self.recordingTableView setBackgroundView:nil];
+    [self.recordingTableView setBackgroundView:[[[UIView alloc] init] autorelease]];
+    [self.recordingTableView setBackgroundColor:UIColor.clearColor];
+   // adview
+    [self.adView setBackgroundColor:[UIColor clearColor]];
     ConfigData* configData = [ConfigData sharedConfigData];
     if (configData.bADRecording) {
         if (!IS_IPAD) {
