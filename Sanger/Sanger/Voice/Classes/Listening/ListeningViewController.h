@@ -91,7 +91,7 @@ typedef enum {
 @property (nonatomic, assign) NSInteger nPositionInCourse;
 @property (nonatomic, retain) CourseParser* courseParser;
 @property (nonatomic, assign) id<ListeningViewControllerDelegate>delegate;
-
+@property (nonatomic, retain) IBOutlet UIView* adView;
 - (void)initMembers;
 - (void)initValue;
 - (void)parseWAVFile;

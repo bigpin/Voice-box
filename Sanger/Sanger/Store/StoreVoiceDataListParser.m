@@ -36,7 +36,6 @@
                 NSMutableArray* array = [[NSMutableArray alloc] init];
                 while (urlElement) {
                     NSString* urltxt = [TBXML textForElement:urlElement];
-                    V_NSLog(@"urltxt %@", urltxt);
                     [array addObject:urltxt];
                      urlElement = [TBXML nextSiblingNamed:@"url" searchFromElement:urlElement];
                }

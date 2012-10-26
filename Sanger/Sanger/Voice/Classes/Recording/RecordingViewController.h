@@ -75,7 +75,7 @@
 @property						BOOL				playbackWasInterrupted;
 @property (nonatomic, assign) NSInteger nPos;
 @property (nonatomic, assign) NSInteger nTotalCount;
-
+@property (nonatomic, retain) IBOutlet UIView* adView;
 - (void)initMembers;
 - (void) loadToolbar;
 - (void) updateAudioDisplay;
