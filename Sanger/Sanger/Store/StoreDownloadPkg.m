@@ -28,6 +28,7 @@
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setValue:@"cover" forHTTPHeaderField:@"User-Agent"];
         
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
         [fetcher beginFetchWithDelegate:self
                       didFinishSelector:@selector(fetcher:finishedWithData:error:)];
@@ -37,8 +38,9 @@
 
 - (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
 {
-    if (error != nil) {
-        
+ 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+   if (error != nil) {
+       
     } else {
              NSString* xmlPath =  [NSString stringWithFormat:@"%@/index.xml", self.pkgPath];
             [data writeToFile:xmlPath atomically:YES];

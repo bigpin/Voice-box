@@ -85,7 +85,8 @@
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setValue:@"cover" forHTTPHeaderField:@"User-Agent"];
             
-            GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+           GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
             [fetcher beginFetchWithDelegate:self
                           didFinishSelector:@selector(fetcher:finishedWithData:error:)];
 
@@ -99,6 +100,7 @@
 
 - (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if (error != nil) {
         
     } else {

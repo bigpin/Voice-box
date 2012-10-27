@@ -1225,6 +1225,8 @@
             [request setValue:STRING_KEY_FILETYPE_XAT forHTTPHeaderField:@"User-Agent"];
             NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
             [userDic setObject:STRING_KEY_FILETYPE_XAT forKey:STRING_KEY_FILETYPE];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
             GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
             fetcher.userData = userDic;
             [fetcher beginFetchWithDelegate:self
@@ -1267,6 +1269,7 @@
         NSURL* url = [NSURL URLWithString:isbpath];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setValue:STRING_KEY_FILETYPE_ISB forHTTPHeaderField:@"User-Agent"];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         GTMHTTPFetcher *fetcher = [GTMHTTPFetcher fetcherWithRequest:request];
         NSMutableDictionary* userDic = [[[NSMutableDictionary alloc] initWithDictionary:dic] autorelease];
         [userDic setObject:STRING_KEY_FILETYPE_ISB forKey:STRING_KEY_FILETYPE];
@@ -1282,6 +1285,7 @@
 
 - (void)fetcher:(GTMHTTPFetcher*)fecther finishedWithData:(NSData*)data error:(id)error
 {
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     if (error != nil) {
         // try serverlist url
         DownloadServerInfo* info = [DownloadServerInfo sharedDownloadServerInfo];
