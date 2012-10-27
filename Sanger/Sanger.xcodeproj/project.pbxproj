@@ -165,16 +165,6 @@
 		0DE21CF81609CEA600407EB4 /* StorePkgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */; };
 		0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */; };
 		0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */; };
-		0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */; };
-		0DE718FB1607FA04001E03F1 /* GSBookViewContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE718F01607FA04001E03F1 /* GSBookViewContainerView.m */; };
-		0DE718FC1607FA04001E03F1 /* GSCellContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE718F21607FA04001E03F1 /* GSCellContainerView.m */; };
-		0DE718FD1607FA04001E03F1 /* GSBookShelfView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE718F61607FA04001E03F1 /* GSBookShelfView.m */; };
-		0DE718FE1607FA04001E03F1 /* NSMutableArrayRearrange.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE718FA1607FA04001E03F1 /* NSMutableArrayRearrange.m */; };
-		0DE719051607FB22001E03F1 /* VoiceShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE719031607FB22001E03F1 /* VoiceShelfViewController.m */; };
-		0DE719061607FB22001E03F1 /* VoiceShelfViewControllerforiPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE719041607FB22001E03F1 /* VoiceShelfViewControllerforiPhone.xib */; };
-		0DE719091608039C001E03F1 /* VoiceDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE719081608039C001E03F1 /* VoiceDataView.m */; };
-		0DE7190C160804D6001E03F1 /* VoiceDataCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7190B160804D6001E03F1 /* VoiceDataCellView.m */; };
-		0DE7190F1608060F001E03F1 /* BelowBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE7190E1608060F001E03F1 /* BelowBottomView.m */; };
 		0DF8124816118CA500AE415C /* StoreCourceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DF8124716118CA500AE415C /* StoreCourceTableViewCell.m */; };
 		0DF8124A16118CCB00AE415C /* StoreCourceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DF8124916118CCB00AE415C /* StoreCourceTableViewCell.xib */; };
 		0DFEAC34160A904600D32AF6 /* bg_webview.png in Resources */ = {isa = PBXBuildFile; fileRef = 0DFEAC33160A904600D32AF6 /* bg_webview.png */; };
@@ -514,26 +504,6 @@
 		0DE21CF71609CEA600407EB4 /* StorePkgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StorePkgTableViewCell.m; path = Store/StorePkgTableViewCell.m; sourceTree = "<group>"; };
 		0DE21CF91609CECF00407EB4 /* StorePkgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StorePkgTableViewCell.xib; path = Store/StorePkgTableViewCell.xib; sourceTree = "<group>"; };
 		0DE21CFB1609D40C00407EB4 /* StoreAdTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StoreAdTableViewCell.xib; path = Store/StoreAdTableViewCell.xib; sourceTree = "<group>"; };
-		0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceShelfViewControllerforiPad.xib; sourceTree = "<group>"; };
-		0DE718EF1607FA04001E03F1 /* GSBookViewContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBookViewContainerView.h; sourceTree = "<group>"; };
-		0DE718F01607FA04001E03F1 /* GSBookViewContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBookViewContainerView.m; sourceTree = "<group>"; };
-		0DE718F11607FA04001E03F1 /* GSCellContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSCellContainerView.h; sourceTree = "<group>"; };
-		0DE718F21607FA04001E03F1 /* GSCellContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSCellContainerView.m; sourceTree = "<group>"; };
-		0DE718F41607FA04001E03F1 /* GSBookShelfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBookShelfCell.h; sourceTree = "<group>"; };
-		0DE718F51607FA04001E03F1 /* GSBookShelfView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBookShelfView.h; sourceTree = "<group>"; };
-		0DE718F61607FA04001E03F1 /* GSBookShelfView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSBookShelfView.m; sourceTree = "<group>"; };
-		0DE718F71607FA04001E03F1 /* GSBookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSBookView.h; sourceTree = "<group>"; };
-		0DE718F91607FA04001E03F1 /* NSMutableArrayRearrange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMutableArrayRearrange.h; sourceTree = "<group>"; };
-		0DE718FA1607FA04001E03F1 /* NSMutableArrayRearrange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMutableArrayRearrange.m; sourceTree = "<group>"; };
-		0DE719021607FB22001E03F1 /* VoiceShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceShelfViewController.h; sourceTree = "<group>"; };
-		0DE719031607FB22001E03F1 /* VoiceShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceShelfViewController.m; sourceTree = "<group>"; };
-		0DE719041607FB22001E03F1 /* VoiceShelfViewControllerforiPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VoiceShelfViewControllerforiPhone.xib; sourceTree = "<group>"; };
-		0DE719071608039B001E03F1 /* VoiceDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceDataView.h; sourceTree = "<group>"; };
-		0DE719081608039C001E03F1 /* VoiceDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceDataView.m; sourceTree = "<group>"; };
-		0DE7190A160804D6001E03F1 /* VoiceDataCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceDataCellView.h; sourceTree = "<group>"; };
-		0DE7190B160804D6001E03F1 /* VoiceDataCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceDataCellView.m; sourceTree = "<group>"; };
-		0DE7190D1608060E001E03F1 /* BelowBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BelowBottomView.h; sourceTree = "<group>"; };
-		0DE7190E1608060F001E03F1 /* BelowBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BelowBottomView.m; sourceTree = "<group>"; };
 		0DF8124616118CA500AE415C /* StoreCourceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StoreCourceTableViewCell.h; path = Store/StoreCourceTableViewCell.h; sourceTree = "<group>"; };
 		0DF8124716118CA500AE415C /* StoreCourceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StoreCourceTableViewCell.m; path = Store/StoreCourceTableViewCell.m; sourceTree = "<group>"; };
 		0DF8124916118CCB00AE415C /* StoreCourceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreCourceTableViewCell.xib; sourceTree = "<group>"; };
@@ -1417,11 +1387,6 @@
 		0DC571CE16070D2000A5D17B /* Shelf */ = {
 			isa = PBXGroup;
 			children = (
-				0DE718ED1607FA04001E03F1 /* GSBookShelf */,
-				0DE719021607FB22001E03F1 /* VoiceShelfViewController.h */,
-				0DE719031607FB22001E03F1 /* VoiceShelfViewController.m */,
-				0DE515D116087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib */,
-				0DE719041607FB22001E03F1 /* VoiceShelfViewControllerforiPhone.xib */,
 				0D9ED34C16257118007BC9D1 /* VoicePkgShelfViewController.h */,
 				0D9ED34D16257118007BC9D1 /* VoicePkgShelfViewController.m */,
 				0D9ED34F16257150007BC9D1 /* VoicePkgTableViewController.h */,
@@ -1429,12 +1394,6 @@
 				0D9ED35A162575FA007BC9D1 /* VoicePkgShelfCell.h */,
 				0D9ED35B162575FA007BC9D1 /* VoicePkgShelfCell.m */,
 				0D9ED35D1625764E007BC9D1 /* VoicePkgShelfCell.xib */,
-				0DE7190D1608060E001E03F1 /* BelowBottomView.h */,
-				0DE7190E1608060F001E03F1 /* BelowBottomView.m */,
-				0DE7190A160804D6001E03F1 /* VoiceDataCellView.h */,
-				0DE7190B160804D6001E03F1 /* VoiceDataCellView.m */,
-				0DE719071608039B001E03F1 /* VoiceDataView.h */,
-				0DE719081608039C001E03F1 /* VoiceDataView.m */,
 			);
 			path = Shelf;
 			sourceTree = "<group>";
@@ -1523,47 +1482,6 @@
 			);
 			name = GTMHTTPFetcher;
 			path = Store/GTMHTTPFetcher;
-			sourceTree = "<group>";
-		};
-		0DE718ED1607FA04001E03F1 /* GSBookShelf */ = {
-			isa = PBXGroup;
-			children = (
-				0DE718EE1607FA04001E03F1 /* Private */,
-				0DE718F31607FA04001E03F1 /* Public */,
-				0DE718F81607FA04001E03F1 /* Utilities */,
-			);
-			path = GSBookShelf;
-			sourceTree = "<group>";
-		};
-		0DE718EE1607FA04001E03F1 /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				0DE718EF1607FA04001E03F1 /* GSBookViewContainerView.h */,
-				0DE718F01607FA04001E03F1 /* GSBookViewContainerView.m */,
-				0DE718F11607FA04001E03F1 /* GSCellContainerView.h */,
-				0DE718F21607FA04001E03F1 /* GSCellContainerView.m */,
-			);
-			path = Private;
-			sourceTree = "<group>";
-		};
-		0DE718F31607FA04001E03F1 /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				0DE718F41607FA04001E03F1 /* GSBookShelfCell.h */,
-				0DE718F51607FA04001E03F1 /* GSBookShelfView.h */,
-				0DE718F61607FA04001E03F1 /* GSBookShelfView.m */,
-				0DE718F71607FA04001E03F1 /* GSBookView.h */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
-		0DE718F81607FA04001E03F1 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				0DE718F91607FA04001E03F1 /* NSMutableArrayRearrange.h */,
-				0DE718FA1607FA04001E03F1 /* NSMutableArrayRearrange.m */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1685,12 +1603,10 @@
 				0DC571F1160729CE00A5D17B /* bookshelf_titlebar_shadow@2x.png in Resources */,
 				0DC571F2160729CE00A5D17B /* bookshelf_titlebar_shadow@2x~iphone.png in Resources */,
 				0DC571F3160729CE00A5D17B /* bookshelf_titlebar_shadow~iphone.png in Resources */,
-				0DE719061607FB22001E03F1 /* VoiceShelfViewControllerforiPhone.xib in Resources */,
 				0DC687C216084EBC0094C82A /* mask_book.png in Resources */,
 				0DC687C316084EBC0094C82A /* mask_book@2x.png in Resources */,
 				0DC687C416084EBC0094C82A /* mask_book@2x~iphone.png in Resources */,
 				0DC687C516084EBC0094C82A /* mask_book~iphone.png in Resources */,
-				0DE515D216087F9E00B305A3 /* VoiceShelfViewControllerforiPad.xib in Resources */,
 				0DE21CFA1609CECF00407EB4 /* StorePkgTableViewCell.xib in Resources */,
 				0DE21CFC1609D40C00407EB4 /* StoreAdTableViewCell.xib in Resources */,
 				0DFEAC34160A904600D32AF6 /* bg_webview.png in Resources */,
@@ -1784,14 +1700,6 @@
 				0DD8493015FF2FDA00B2F2F1 /* CJSONScanner.m in Sources */,
 				0DD8493115FF2FDA00B2F2F1 /* CJSONSerializer.m in Sources */,
 				0DD8493215FF2FDA00B2F2F1 /* CSerializedJSONData.m in Sources */,
-				0DE718FB1607FA04001E03F1 /* GSBookViewContainerView.m in Sources */,
-				0DE718FC1607FA04001E03F1 /* GSCellContainerView.m in Sources */,
-				0DE718FD1607FA04001E03F1 /* GSBookShelfView.m in Sources */,
-				0DE718FE1607FA04001E03F1 /* NSMutableArrayRearrange.m in Sources */,
-				0DE719051607FB22001E03F1 /* VoiceShelfViewController.m in Sources */,
-				0DE719091608039C001E03F1 /* VoiceDataView.m in Sources */,
-				0DE7190C160804D6001E03F1 /* VoiceDataCellView.m in Sources */,
-				0DE7190F1608060F001E03F1 /* BelowBottomView.m in Sources */,
 				0DE21CDF1609A6C400407EB4 /* GTMGatherInputStream.m in Sources */,
 				0DE21CE01609A6C400407EB4 /* GTMHTTPFetcher.m in Sources */,
 				0DE21CE11609A6C400407EB4 /* GTMHTTPFetcherLogging.m in Sources */,

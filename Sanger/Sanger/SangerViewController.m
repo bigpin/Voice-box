@@ -50,18 +50,6 @@
     UIImage* bgImage = [UIImage imageWithContentsOfFile:imagePath];
     self.view.backgroundColor = [UIColor colorWithPatternImage:bgImage];
     
-    // shelf tableView
-    /*if (_dataShelfViewController == nil) {
-        if (IS_IPAD) {
-            _dataShelfViewController = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewControllerforiPad" bundle:nil];
-
-        } else {
-            _dataShelfViewController = [[VoiceShelfViewController alloc] initWithNibName:@"VoiceShelfViewControllerforiPhone" bundle:nil];
-
-        }
-        _dataShelfViewController.delegate = (id)self;
-        [self.view addSubview:_dataShelfViewController.view];
-    }*/
     if (_voicePkgShelfViewController == nil) {
         _voicePkgShelfViewController = [[VoicePkgShelfViewController alloc] init];
         _voicePkgShelfViewController.delegate = (id)self;
@@ -147,25 +135,15 @@
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    if (_dataShelfViewController != nil) {
-        [_dataShelfViewController willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    }
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     if (_voicePkgShelfViewController != nil) {
         [_voicePkgShelfViewController reloadPkgShelf];
     }
-    
-    if (_dataShelfViewController != nil) {
-        [_dataShelfViewController willAnimateRotationToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    if (_dataShelfViewController != nil) {
-        [_dataShelfViewController didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-    }
 }
 
 - (void)openVoiceData:(UIViewController*)controller;
